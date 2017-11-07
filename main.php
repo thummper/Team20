@@ -1,65 +1,5 @@
 <!DOCTYPE HTML>
-<script>
-    function selectChange(select) {
-        console.log(select.value);
-        if(select.value == 1) {
-            
-            sortNewest();
-        }
-        else if(select.value == 2){
-            sortPriority();
-            
-        }
-    }
-	function sortNewest() {
-        console.log("Sort Newest");
-  var table, rows, switching, i, x, y, shouldSwitch;
-  table = document.getElementById("issuesTable");
-  switching = true;
-  while (switching) {
-    switching = false;
-    rows = table.getElementsByTagName("TR");
-    for (i = 1; i < (rows.length - 1); i++) {
-      shouldSwitch = false;
-      x = rows[i].getElementsByTagName("TD")[0];
-      y = rows[i + 1].getElementsByTagName("TD")[0];
-      //check if the two rows should switch place:
-      if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-        shouldSwitch= true;
-        break;
-      }
-    }
-    if (shouldSwitch) {
-      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-      switching = true;
-    }
-  }
-}
 
-	function sortPriority() {
-         console.log("Sort Priority");
-  var table, rows, switching, i, x, y, shouldSwitch;
-  table = document.getElementById("issuesTable");
-  switching = true;
-  while (switching) {
-    switching = false;
-    rows = table.getElementsByTagName("TR");
-    for (i = 1; i < (rows.length - 1); i++) {
-      shouldSwitch = false;
-      x = rows[i].getElementsByTagName("TD")[3];
-      y = rows[i + 1].getElementsByTagName("TD")[3];
-      if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-        shouldSwitch= true;
-        break;
-      }
-    }
-    if (shouldSwitch) {
-      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-      switching = true;
-    }
-  }
-}
-</script>
 <html>
 	<head>
         <title>Help Desk</title>
@@ -82,7 +22,7 @@
                     <li><a href="#" class="top-sub">All</a></li>
                     <li><a href="#">Open</a></li>
                     <li><h3>More</h3></li>
-                    <li><a href="analytics.php" class="top-sub">Analytics</a></li>
+                    <li><a href="analytics.php" class="top-sub">Stats</a></li>
                     <li><a href="index.php">Log out</a></li>
                     
                 </ul>
@@ -101,15 +41,15 @@
                     <input type="text" class="s-bar" name="query" id="query" placeholder="Search" />
                     <input type="submit" class="s-button" value="Search"/>
                     </div>
-                    <select name="sort" id="sort" class="sort" onchange="selectChange(this)">
+                    <select name="sort" id="sort" class="sort">
                         <option selected disabled value="">Sort By</option>
-                        <option value="2" onclick="sortPriority()">Highest Priority</option>
-                        <option value="1" onclick="sortNewest()">Newest First</option>
+                        <option value="2">Highest Priority</option>
+                        <option value="1">Newest First</option>
                     </select>
 
                 </div>
                 <div class="table">
-                    <table style="width:100%" id="issuesTable">
+                    <table style="width:100%">
                         <tr>
                             <th>Issue ID:</th>
                             <th>Category:</th>
