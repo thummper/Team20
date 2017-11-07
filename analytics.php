@@ -18,14 +18,14 @@
             <div class="sidebar-mid">
                 <ul class="nav">
                     <li><h3>Issues</h3></li>
-                    <li><a href="operator.php" class="top-sub">All</a></li>
+                    <li><a href="main.php" class="top-sub">All</a></li>
                     <li><a href="#">Open</a></li>
                     <li><a href="#">Closed</a></li>
                     <li><h3>Queries</h3></li>
                     <li><a href="#" class="top-sub">All</a></li>
                     <li><a href="#">Open</a></li>
                     <li><h3>More</h3></li>
-                    <li><a href="#" class="top-sub active">Analytics</a></li>
+                    <li><a href="#" class="top-sub active">Stats</a></li>
                     <li><a href="login.php">Log out</a></li>
                     
                 </ul>
