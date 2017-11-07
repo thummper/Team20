@@ -5,6 +5,9 @@
         <title>Help Desk</title>
         <link rel="shortcut icon" href="media/helpdesk.ico" width='16px' height='16px'/>
         <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet"  href="css/chartcss.css"/>
+        <script src="charts/Chart.bundle.js"></script>
+        <script src="charts/hardcodedCharts.js"></script>
 	</head>
 	<body>
         <div class="sidebar">
@@ -36,6 +39,15 @@
                 <h1>Analytics</h1>
                 
             </div>
+            <div class="content">
+                <div class="chart1Container">
+                <canvas id="chart1"></canvas>
+                    </div>
+            
+            
+            </div>
+            
+            
         </div>
 	</body>
 </html>

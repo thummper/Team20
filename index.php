@@ -1,7 +1,6 @@
 <!DOCTYPE HTML>
 <script>
     function login(form){
-        console.log("Testing Git");
         console.log(form.username.value)
         if (form.username.value =="Test1" || form.username=="Test2"){
             if (form.password.value == "123"){
