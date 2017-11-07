@@ -33,7 +33,7 @@
         </div>
         <div class="main">
             <div class="title">
-                <h1>Statistics</h1>
+                <h1>Analytics</h1>
                 
             </div>
         </div>
