@@ -5,6 +5,67 @@
         <title>Help Desk</title>
         <link rel="shortcut icon" href="media/helpdesk.ico" width='16px' height='16px'/>
         <link rel="stylesheet" href="css/style.css" />
+        <script>
+            function selectChange(select) {
+                console.log(select.value);
+                if(select.value == 1) {
+
+                    sortNewest();
+                }
+                else if(select.value == 2){
+                    sortPriority();
+
+                }
+            }
+            function sortNewest() {
+                console.log("Sort Newest");
+          var table, rows, switching, i, x, y, shouldSwitch;
+          table = document.getElementById("issuesTable");
+          switching = true;
+          while (switching) {
+            switching = false;
+            rows = table.getElementsByTagName("TR");
+            for (i = 1; i < (rows.length - 1); i++) {
+              shouldSwitch = false;
+              x = rows[i].getElementsByTagName("TD")[0];
+              y = rows[i + 1].getElementsByTagName("TD")[0];
+              //check if the two rows should switch place:
+              if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                shouldSwitch= true;
+                break;
+              }
+            }
+            if (shouldSwitch) {
+              rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+              switching = true;
+            }
+          }
+        }
+
+            function sortPriority() {
+                 console.log("Sort Priority");
+          var table, rows, switching, i, x, y, shouldSwitch;
+          table = document.getElementById("issuesTable");
+          switching = true;
+          while (switching) {
+            switching = false;
+            rows = table.getElementsByTagName("TR");
+            for (i = 1; i < (rows.length - 1); i++) {
+              shouldSwitch = false;
+              x = rows[i].getElementsByTagName("TD")[3];
+              y = rows[i + 1].getElementsByTagName("TD")[3];
+              if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                shouldSwitch= true;
+                break;
+              }
+            }
+            if (shouldSwitch) {
+              rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+              switching = true;
+            }
+          }
+        }
+    </script>
 	</head>
 	<body>
         <div class="sidebar">
