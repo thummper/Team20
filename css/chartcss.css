@@ -1,4 +1,22 @@
 .chart1Container{
-  
     height: 400px;
+}
+.totalTickets {
+    width: 400px;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 0 auto;
+    text-align: center;
+    background: #f5f6f7;
+}
+.mainChart {
+    width: 700px;
+    margin: 0 auto;
+    margin-bottom: 50px;
+}
+.displayCharts {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
