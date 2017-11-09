@@ -7,8 +7,8 @@ window.onload = function () {
             labels: ["9am", "10am", "11am", "12pm", "1pm", "2pm", "3pm", "4pm", "5pm"],
             datasets: [{
                 label: 'Tickets Made',
-                backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                borderColor: 'rgba(255,99,132,1)',
+                backgroundColor: 'rgba(237, 106, 94, 0.2)',
+                borderColor: 'rgba(237, 106, 94, 1)',
                 data: [15, 10, 7, 2, 4, 8, 9, 7, 3],
                 borderWidth: 1
         }]
@@ -36,8 +36,8 @@ window.onload = function () {
             labels: ["Free Wordprocessor 5000", "Cheap Mouse 72", "INKWARE Printer X", "RealVIEW Monitor"],
             datasets: [{
                 label: "Problems by Hard/Software",
-                backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                borderColor: 'rgba(255,99,132,1)',
+                backgroundColor: 'rgba(237, 106, 94, 0.2)',
+                borderColor: 'rgba(237, 106, 94, 1)',
                 data: [15, 10, 7, 3],
                 borderWidth: 1
 
@@ -65,8 +65,8 @@ window.onload = function () {
             labels: ["Printer", "Hardware Malfunction", "Software Crash", "Data Loss"],
             datasets: [{
                 label: "Problem by type",
-                backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                borderColor: 'rgba(255,99,132,1)',
+               backgroundColor: 'rgba(237, 106, 94, 0.2)',
+                borderColor: 'rgba(237, 106, 94, 1)',
                 data: [20, 8, 6, 5],
                 borderWidth: 1
 

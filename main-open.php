@@ -74,8 +74,8 @@
             <div class="sidebar-mid">
                 <ul class="nav">
                     <li><h3>Issues</h3></li>
-                    <li><a href="#" class="top-sub active">All</a></li>
-                    <li><a href="main-open.php">Open</a></li>
+                    <li><a href="main.php" class="top-sub">All</a></li>
+                    <li><a href="#" class="active">Open</a></li>
                     <li><a href="main-closed.php">Closed</a></li>
                     <li><h3>Queries</h3></li>
                     <li><a href="query.php" class="top-sub">All</a></li>
@@ -124,52 +124,13 @@
                             <td>N</td> 
                             <td><a href="issue.php">View</a></td>
                         </tr>
-                        <tr>
-                            <td>083</td>
-                            <td>Network Hardware</td>
-                            <td>P Jones</td>
-                            <td>3</td>
-                            <td>Y</td>
-                            <td><a href="#">View</a></td>
-                        </tr>
-                        <tr>
-                            <td>082</td>
-                            <td>Printer Jam</td>
-                            <td>A Smith</td>
-                            <td>1</td>
-                            <td>Y</td> 
-                            <td><a href="#">View</a></td>
-                        </tr>
+             
                         <tr>
                             <td>081</td>
                             <td>Network</td>
                             <td>A Smith</td>
                             <td>2</td>
                             <td>N</td> 
-                            <td><a href="#">View</a></td>
-                        </tr>
-                        <tr>
-                            <td>080</td>
-                            <td>Printer Jam</td>
-                            <td>P Jones</td>
-                            <td>1</td>
-                            <td>Y</td> 
-                            <td><a href="#">View</a></td>
-                        </tr>
-                        <tr>
-                            <td>079</td>
-                            <td>Application</td>
-                            <td>A Smith</td>
-                            <td>2</td>
-                            <td>Y</td> 
-                            <td><a href="#">View</a></td>
-                        </tr>
-                        <tr>
-                            <td>078</td>
-                            <td>OS Crash</td>
-                            <td>P Jones</td>
-                            <td>2</td>
-                            <td>Y</td>
                             <td><a href="#">View</a></td>
                         </tr>
                         <tr>
@@ -189,14 +150,6 @@
                             <td><a href="#">View</a></td>
                         </tr>
                         <tr>
-                            <td>075</td>
-                            <td>Printer Software</td>
-                            <td>P Jones</td>
-                            <td>2</td>
-                            <td>Y</td> 
-                            <td><a href="#">View</a></td>
-                        </tr>
-                        <tr>
                             <td>074</td>
                             <td>PC Malfunction</td>
                             <td>A Smith</td>
@@ -211,19 +164,9 @@
                             <td>1</td>
                             <td>N</td>
                             <td><a href="#">View</a></td>
-                        </tr>
-                        <tr>
-                            <td>072</td>
-                            <td>Application</td>
-                            <td>A Smith</td>
-                            <td>2</td>
-                            <td>Y</td> 
-                            <td><a href="#">View</a></td>
-                        </tr>
-                        
-                        
+                        </tr>   
                     </table>
-                    <div class="page-num">
+                    <div class="page-num open-num">
                         <ul>
                             <li><a href="#" class="first-last">Previous</a></li>
                             <li class="page-i">1</li>

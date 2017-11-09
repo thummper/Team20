@@ -10,13 +10,19 @@
     background: #f5f6f7;
 }
 .mainChart {
-    width: 700px;
+    width: 100%;
     margin: 0 auto;
     margin-bottom: 50px;
 }
 .displayCharts {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    width: 100%;
+    
+}
+.content{
+    width: 100%;
+    margin-bottom: 2em;
+}
+canvas{
+    margin: 4em 0;
+    width: 100%;
 }

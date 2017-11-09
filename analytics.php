@@ -24,17 +24,17 @@
                     <h3>Issues</h3>
                 </li>
                 <li><a href="main.php" class="top-sub">All</a></li>
-                <li><a href="#">Open</a></li>
-                <li><a href="#">Closed</a></li>
+                <li><a href="main-open.php">Open</a></li>
+                <li><a href="main-closed.php">Closed</a></li>
                 <li>
                     <h3>Queries</h3>
                 </li>
-                <li><a href="#" class="top-sub">All</a></li>
+                <li><a href="query.php" class="top-sub">All</a></li>
                 <li><a href="#">Open</a></li>
                 <li>
                     <h3>More</h3>
                 </li>
-                <li><a href="#" class="top-sub active">Stats</a></li>
+                <li><a href="#" class="top-sub active">Analytics</a></li>
                 <li><a href="login.php">Log out</a></li>
 
             </ul>
@@ -50,15 +50,15 @@
         </div>
         <div class="content">
             <div class="totalTickets">
-                A total of <b>5834</b> tickets have been made this year.
+                <p>A total of <b>5834</b> tickets have been made this year.</p>
             </div>
             <div class="mainChart">
-                <canvas width="700" height="300" id="chart1"></canvas>
+                <canvas id="chart1"></canvas>
             </div>
             <div class="displayCharts">
                 
-                <canvas width="620" height="300" id="hwswChart" ></canvas>
-                <canvas width="600" height="300" id="ptypeChart"></canvas>
+                <canvas  id="hwswChart" ></canvas>
+                <canvas  id="ptypeChart"></canvas>
 
             </div>
         </div>

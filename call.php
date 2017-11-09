@@ -127,13 +127,13 @@
                 <ul class="nav">
                     <li><h3>Issues</h3></li>
                     <li><a href="main.php" class="top-sub">All</a></li>
-                    <li><a href="#">Open</a></li>
-                    <li><a href="#">Closed</a></li>
+                    <li><a href="main-open.php">Open</a></li>
+                    <li><a href="main-closed.php">Closed</a></li>
                     <li><h3>Queries</h3></li>
-                    <li><a href="#" class="top-sub">All</a></li>
+                    <li><a href="query.php" class="top-sub">All</a></li>
                     <li><a href="#">Open</a></li>
                     <li><h3>More</h3></li>
-                    <li><a href="analytics.php" class="top-sub">Stats</a></li>
+                    <li><a href="analytics.php" class="top-sub">Analytics</a></li>
                     <li><a href="index.php">Log out</a></li>
                     
                 </ul>
@@ -218,13 +218,13 @@
                 <textarea  disabled rows="5" placeholder="Solution" class="solution"></textarea>  
                 <select name="resolved" id="resolved" class="dropdown priority">
                     <option selected disabled value="">Resolved</option>
-                    <option value="1">Yes</option>
-                    <option value="2">No</option>
+                    <option value="1" onclick="">Yes</option>
+                    <option value="2" onclick="">No</option>
                 </select>  
             </div>
             <div class="modal-but">
                 <input type="submit" class="cancel" value="Next Issue" action="action" onclick="modal.style.display = 'none';"/>
-                <input type="submit" id="finish" class="next" value="Finish" onclick=""/>
+                <input type="submit" id="finish" class="next" value="Submit" onclick="window.location.href='main.php'"/>
             </div>
         </div>
     </div>

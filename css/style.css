@@ -74,7 +74,7 @@ h1, h2, h3, h4, h5, h6, a, p, body, textarea{
     line-height:3em;
     border-bottom: solid 1px #e6e6e6;
     padding-left: 2em;
-    transition: color 0.3s ease-in-out;
+
     
 }
 .top-sub{
@@ -86,7 +86,7 @@ h1, h2, h3, h4, h5, h6, a, p, body, textarea{
 
 .nav a:hover{
     color: #ff8251;
-    transition: color 0.3s ease-in-out;
+
 }
 .nav h3{
     color: #333;
@@ -99,7 +99,7 @@ h1, h2, h3, h4, h5, h6, a, p, body, textarea{
 }
 .sidebar-bot a{
     background-color:#ed6a5e;
-    transition: background-color 0.5s ease-in-out;
+    
     display: block;
     width: auto;
     padding-top: 1.5em;
@@ -109,7 +109,7 @@ h1, h2, h3, h4, h5, h6, a, p, body, textarea{
 }
 .sidebar-bot a:hover{
     background-color: #d16055;
-    transition: background-color 0.5s ease-in-out;
+    
 }
 .main{
     margin-top: 4em;
@@ -140,7 +140,7 @@ h1, h2, h3, h4, h5, h6, a, p, body, textarea{
 .s-button, .next, .cancel, .login-button {
 	appearance: none;
     outline: 0;
-	transition: background-color 0.5s ease-in-out;
+	
 	background-color: #ed6a5e;
 	border: 0;
 	color: #ffffff;
@@ -178,7 +178,7 @@ input[type="text"], input[type="password"]{
 		}
 .s-button:hover, .next:hover{
     background-color: #d16055;
-    transition: background-color 0.5s ease-in-out;
+    
 }
 
 .sort{
@@ -252,6 +252,12 @@ table tbody tr:first-child td {
     padding-top: 0.5em;
    
 }
+.closed-num{
+    margin-top: 18.7em;
+}
+.open-num{
+    margin-top: 21.5em;
+}
 .page-num ul{
     list-style: none;
     display: flex;
@@ -264,7 +270,7 @@ table tbody tr:first-child td {
 .page-num ul li a{
     background-color:#ed6a5e;
     font-size: 11pt;
-    transition: background-color 0.5s ease-in-out;
+    
     display: block;
     width: 6em;
     padding-top: 0.5em;
@@ -276,7 +282,7 @@ table tbody tr:first-child td {
 }
 .page-num ul li a:hover{
     background-color:#d16055;
-    transition: background-color 0.5s ease-in-out;
+    
 }
 .page-num ul .page-i{
     color: #333;
@@ -313,7 +319,7 @@ table tbody tr:first-child td {
 }
 .tab li a{
     background-color:#ed6a5e;
-    transition: background-color 0.5s ease-in-out;
+    
     display: block;
     padding-top: 1em;
     padding-bottom: 1em;
@@ -407,7 +413,7 @@ textarea{
 
 .cancel:hover{
     background-color: #b7b5b5;
-    transition: background-color 0.5s ease-in-out
+    
 }
 .login{
     background-color: #fff;
