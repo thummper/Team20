@@ -53,13 +53,20 @@
             <div class="totalTickets">
                 A total of <b>5834</b> tickets have been made this year.
             </div>
+           
             <div class="mainChart">
-                <canvas width="700" height="300" id="chart1"></canvas>
+                <canvas id="chart1"></canvas>
+            </div>
+             <div class="ticketResponceTime">
+            <div class="minTime">The fastest ticket solve time is: <b> 2 Minutes</b></div>
+            <div class="averageTime">The average ticket solve time is: <b>34 Minutes</b></div>
+            <div class="maxTime">The slowest ticket solve time is: <b>27 Hours</b></div>
+            
             </div>
             <div class="displayCharts">
                 
-                <canvas width="620" height="300" id="hwswChart" ></canvas>
-                <canvas width="600" height="300" id="ptypeChart"></canvas>
+                <canvas width="500" height="300" id="hwswChart" ></canvas>
+                <canvas width="500" height="300" id="ptypeChart"></canvas>
 
             </div>
         </div>
