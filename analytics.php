@@ -35,7 +35,8 @@
                     <h3>More</h3>
                 </li>
                 <li><a href="#" class="top-sub active">Stats</a></li>
-                <li><a href="login.php">Log out</a></li>
+                <li><a href="#" class="top-sub">Personal Stats</a></li>
+                <li><a href="index.php">Log out</a></li>
 
             </ul>
         </div>
@@ -45,7 +46,7 @@
     </div>
     <div class="main">
         <div class="title">
-            <h1>Analytics</h1>
+            <h1>Statistics</h1>
 
         </div>
         <div class="content">
