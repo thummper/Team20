@@ -34,16 +34,8 @@
                 <li>
                     <h3>More</h3>
                 </li>
-
-<<<<<<< HEAD
                 <li><a href="#" class="top-sub active">Analytics</a></li>
-                <li><a href="login.php">Log out</a></li>
-=======
-                <li><a href="#" class="top-sub active">Stats</a></li>
-                <li><a href="#" class="top-sub">Personal Stats</a></li>
                 <li><a href="index.php">Log out</a></li>
-
->>>>>>> 273d4b36ea11aa6064b881a180c98c73d90bf71e
 
             </ul>
         </div>
@@ -64,15 +56,14 @@
             <div class="mainChart">
                 <canvas id="chart1"></canvas>
 
-<<<<<<< HEAD
+
             </div>
             <div class="displayCharts">
                 
                 <canvas  id="hwswChart" ></canvas>
                 <canvas  id="ptypeChart"></canvas>
 
-=======
->>>>>>> 273d4b36ea11aa6064b881a180c98c73d90bf71e
+
             </div>
              <div class="ticketResponceTime">
             <div class="minTime">The fastest ticket solve time is: <b> 2 Minutes</b></div>
@@ -80,16 +71,7 @@
             <div class="maxTime">The slowest ticket solve time is: <b>27 Hours</b></div>
             
             </div>
-<<<<<<< HEAD
-=======
-            <div class="displayCharts">
-                
-                <canvas width="500" height="300" id="hwswChart" ></canvas>
-                <canvas width="500" height="300" id="ptypeChart"></canvas>
 
-
-            </div>
->>>>>>> 273d4b36ea11aa6064b881a180c98c73d90bf71e
         </div>
 
 
