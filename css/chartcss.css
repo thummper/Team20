@@ -10,23 +10,13 @@
     background: #f5f6f7;
 }
 .mainChart {
-<<<<<<< HEAD
     width: 100%;
-=======
-   
-    width: 90%;
->>>>>>> 7aa0bc8b4e56466c3a5cdd0547aadbed4434ae5b
     margin: 0 auto;
     margin-bottom: 50px;
     margin-top: 25px;
 
 }
-canvas {
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    
-}
+
 .displayCharts {
     width: 100%;
     

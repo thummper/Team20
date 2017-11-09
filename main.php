@@ -81,12 +81,7 @@
                     <li><a href="query.php" class="top-sub">All</a></li>
                     <li><a href="#">Open</a></li>
                     <li><h3>More</h3></li>
-<<<<<<< HEAD
                     <li><a href="analytics.php" class="top-sub">Analytics</a></li>
-=======
-                    <li><a href="analytics.php" class="top-sub">Stats</a></li>
-                    <li><a href="#" class="top-sub">Personal Stats</a></li>
->>>>>>> 7aa0bc8b4e56466c3a5cdd0547aadbed4434ae5b
                     <li><a href="index.php">Log out</a></li>
                     
                 </ul>
