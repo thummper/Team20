@@ -34,8 +34,14 @@
                 <li>
                     <h3>More</h3>
                 </li>
+<<<<<<< HEAD
                 <li><a href="#" class="top-sub active">Analytics</a></li>
                 <li><a href="login.php">Log out</a></li>
+=======
+                <li><a href="#" class="top-sub active">Stats</a></li>
+                <li><a href="#" class="top-sub">Personal Stats</a></li>
+                <li><a href="index.php">Log out</a></li>
+>>>>>>> 7aa0bc8b4e56466c3a5cdd0547aadbed4434ae5b
 
             </ul>
         </div>
@@ -45,20 +51,35 @@
     </div>
     <div class="main">
         <div class="title">
-            <h1>Analytics</h1>
+            <h1>Statistics</h1>
 
         </div>
         <div class="content">
             <div class="totalTickets">
                 <p>A total of <b>5834</b> tickets have been made this year.</p>
             </div>
+           
             <div class="mainChart">
                 <canvas id="chart1"></canvas>
+<<<<<<< HEAD
             </div>
             <div class="displayCharts">
                 
                 <canvas  id="hwswChart" ></canvas>
                 <canvas  id="ptypeChart"></canvas>
+=======
+            </div>
+             <div class="ticketResponceTime">
+            <div class="minTime">The fastest ticket solve time is: <b> 2 Minutes</b></div>
+            <div class="averageTime">The average ticket solve time is: <b>34 Minutes</b></div>
+            <div class="maxTime">The slowest ticket solve time is: <b>27 Hours</b></div>
+            
+            </div>
+            <div class="displayCharts">
+                
+                <canvas width="500" height="300" id="hwswChart" ></canvas>
+                <canvas width="500" height="300" id="ptypeChart"></canvas>
+>>>>>>> 7aa0bc8b4e56466c3a5cdd0547aadbed4434ae5b
 
             </div>
         </div>

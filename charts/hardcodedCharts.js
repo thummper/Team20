@@ -14,7 +14,7 @@ window.onload = function () {
         }]
         },
         options: {
-            responsive: false,
+            responsive: true,
             scales: {
                 yAxes: [{
                     ticks: {
@@ -51,7 +51,13 @@ window.onload = function () {
                     ticks: {
                         beginAtZero: true
                     }
-                }]
+                }],
+                xAxes: [{
+                    ticks:{
+                       display:false  
+                    }
+                   
+            }]
             }
 
         }
@@ -76,11 +82,17 @@ window.onload = function () {
         options: {
             responsive: false,
             scales: {
-                yAxes: [{
+                             yAxes: [{
                     ticks: {
                         beginAtZero: true
                     }
-                }]
+                }],
+                xAxes: [{
+                    ticks:{
+                       display:false  
+                    }
+                   
+            }]
             }
 
         }
