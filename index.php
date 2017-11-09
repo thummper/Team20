@@ -15,6 +15,14 @@
                     alert('Incorrect username and password')
                 }
             }
+            
+                        window.onload = function(){
+            document.getElementsByClassName("login")[0].onkeydown = function(e) {
+                if(e.keyCode == 13) {
+                    login();
+                }
+            };
+            }
         </script>
 	</head>
 	<body class="login-body">
