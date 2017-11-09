@@ -74,12 +74,12 @@
             <div class="sidebar-mid">
                 <ul class="nav">
                     <li><h3>Issues</h3></li>
-                    <li><a href="#" class="top-sub active">All</a></li>
+                    <li><a href="main.php" class="top-sub">All</a></li>
                     <li><a href="main-open.php">Open</a></li>
                     <li><a href="main-closed.php">Closed</a></li>
                     <li><h3>Queries</h3></li>
-                    <li><a href="query.php" class="top-sub">All</a></li>
-                    <li><a href="#">Open</a></li>
+                    <li><a href="#" class="top-sub active">All</a></li>
+                    <li><a href="#" >Open</a></li>
                     <li><h3>More</h3></li>
                     <li><a href="analytics.php" class="top-sub">Analytics</a></li>
                     <li><a href="index.php">Log out</a></li>
@@ -92,7 +92,7 @@
         </div>
         <div class="main">
             <div class="title">
-                <h1>Issues</h1>
+                <h1>Query</h1>
             </div>
             <div class="content">
                 <div class="menu-bar">
@@ -110,117 +110,116 @@
                 <div class="table">
                     <table style="width:100%" id="issuesTable">
                         <tr>
-                            <th>Issue ID:</th>
-                            <th>Category:</th>
-                            <th>Specialist:</th> 
-                            <th>Priority:</th> 
-                            <th>Resolved:</th> 
+                            <th>Query ID:</th>
+                            <th>Staff ID</th>
+                            <th>Issue ID</th> 
+                            <th>Date:</th> 
+                            <th>Issue Resolved:</th> 
                         </tr>
                         <tr>
-                            <td>084</td>
-                            <td>OS</td>
+                            <td>012</td>
+                            <td>Broken Something</td>
                             <td>A Smith</td>
-                            <td>2</td>
+                            <td>3</td>
                             <td>N</td> 
                             <td><a href="issue.php">View</a></td>
                         </tr>
                         <tr>
-                            <td>083</td>
-                            <td>Network Hardware</td>
-                            <td>P Jones</td>
-                            <td>3</td>
-                            <td>Y</td>
-                            <td><a href="#">View</a></td>
-                        </tr>
-                        <tr>
-                            <td>082</td>
-                            <td>Printer Jam</td>
-                            <td>A Smith</td>
-                            <td>1</td>
-                            <td>Y</td> 
-                            <td><a href="#">View</a></td>
-                        </tr>
-                        <tr>
-                            <td>081</td>
-                            <td>Network</td>
-                            <td>A Smith</td>
-                            <td>2</td>
-                            <td>N</td> 
-                            <td><a href="#">View</a></td>
-                        </tr>
-                        <tr>
-                            <td>080</td>
-                            <td>Printer Jam</td>
-                            <td>P Jones</td>
-                            <td>1</td>
-                            <td>Y</td> 
-                            <td><a href="#">View</a></td>
-                        </tr>
-                        <tr>
-                            <td>079</td>
-                            <td>Application</td>
-                            <td>A Smith</td>
-                            <td>2</td>
-                            <td>Y</td> 
-                            <td><a href="#">View</a></td>
-                        </tr>
-                        <tr>
-                            <td>078</td>
-                            <td>OS Crash</td>
-                            <td>P Jones</td>
-                            <td>2</td>
-                            <td>Y</td>
-                            <td><a href="#">View</a></td>
-                        </tr>
-                        <tr>
-                            <td>077</td>
-                            <td>PC Malfunction</td>
-                            <td>A Smith</td>
-                            <td>2</td>
-                            <td>N</td> 
-                            <td><a href="#">View</a></td>
-                        </tr>
-                        <tr>
-                            <td>076</td>
-                            <td>Network</td>
-                            <td>A Smith</td>
-                            <td>3</td>
-                            <td>N</td> 
-                            <td><a href="#">View</a></td>
-                        </tr>
-                        <tr>
-                            <td>075</td>
-                            <td>Printer Software</td>
-                            <td>P Jones</td>
-                            <td>2</td>
-                            <td>Y</td> 
-                            <td><a href="#">View</a></td>
-                        </tr>
-                        <tr>
-                            <td>074</td>
-                            <td>PC Malfunction</td>
-                            <td>A Smith</td>
-                            <td>2</td>
-                            <td>N</td> 
-                            <td><a href="#">View</a></td>
-                        </tr>
-                        <tr>
-                            <td>073</td>
-                            <td>Printer Hardware</td>
+                            <td>011</td>
+                            <td>Windows crash</td>
                             <td>P Jones</td>
                             <td>1</td>
                             <td>N</td>
                             <td><a href="#">View</a></td>
                         </tr>
                         <tr>
-                            <td>072</td>
-                            <td>Application</td>
+                            <td>010</td>
+                            <td>Printer Jam</td>
                             <td>A Smith</td>
                             <td>2</td>
                             <td>Y</td> 
                             <td><a href="#">View</a></td>
                         </tr>
-                        
+                        <tr>
+                            <td>009</td>
+                            <td>No Internet</td>
+                            <td>A Smith</td>
+                            <td>3</td>
+                            <td>N</td> 
+                            <td><a href="#">View</a></td>
+                        </tr>
+                        <tr>
+                            <td>008</td>
+                            <td>Printer Jam</td>
+                            <td>P Jones</td>
+                            <td>2</td>
+                            <td>Y</td> 
+                            <td><a href="#">View</a></td>
+                        </tr>
+                        <tr>
+                            <td>012</td>
+                            <td>Broken Something</td>
+                            <td>A Smith</td>
+                            <td>3</td>
+                            <td>N</td> 
+                            <td><a href="#">View</a></td>
+                        </tr>
+                        <tr>
+                            <td>011</td>
+                            <td>Windows crash</td>
+                            <td>P Jones</td>
+                            <td>1</td>
+                            <td>N</td>
+                            <td><a href="#">View</a></td>
+                        </tr>
+                        <tr>
+                            <td>010</td>
+                            <td>Printer Jam</td>
+                            <td>A Smith</td>
+                            <td>2</td>
+                            <td>Y</td> 
+                            <td><a href="#">View</a></td>
+                        </tr>
+                        <tr>
+                            <td>009</td>
+                            <td>No Internet</td>
+                            <td>A Smith</td>
+                            <td>3</td>
+                            <td>N</td> 
+                            <td><a href="#">View</a></td>
+                        </tr>
+                        <tr>
+                            <td>008</td>
+                            <td>Printer Jam</td>
+                            <td>P Jones</td>
+                            <td>2</td>
+                            <td>Y</td> 
+                            <td><a href="#">View</a></td>
+                        </tr>
+                        <tr>
+                            <td>012</td>
+                            <td>Broken Something</td>
+                            <td>A Smith</td>
+                            <td>3</td>
+                            <td>N</td> 
+                            <td><a href="#">View</a></td>
+                        </tr>
+                        <tr>
+                            <td>011</td>
+                            <td>Windows crash</td>
+                            <td>P Jones</td>
+                            <td>1</td>
+                            <td>N</td>
+                            <td><a href="#">View</a></td>
+                        </tr>
+                        <tr>
+                            <td>010</td>
+                            <td>Printer Jam</td>
+                            <td>A Smith</td>
+                            <td>2</td>
+                            <td>Y</td> 
+                            <td><a href="#">View</a></td>
+                        </tr>
                         
                     </table>
                     <div class="page-num">
