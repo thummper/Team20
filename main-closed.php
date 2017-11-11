@@ -1,3 +1,5 @@
+<!DOCTYPE HTML>
+   
 <script>
     function selectChange(select) {
         console.log(select.value);
@@ -45,8 +47,8 @@
     rows = table.getElementsByTagName("TR");
     for (i = 1; i < (rows.length - 1); i++) {
       shouldSwitch = false;
-      x = rows[i].getElementsByTagName("TD")[3];
-      y = rows[i + 1].getElementsByTagName("TD")[3];
+      x = rows[i].getElementsByTagName("TD")[4];
+      y = rows[i + 1].getElementsByTagName("TD")[4];
       if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
         shouldSwitch= true;
         break;
@@ -78,8 +80,8 @@
                     <li><a href="main-open.php">Open</a></li>
                     <li><a href="#" class="active">Closed</a></li>
                     <li><h3>Queries</h3></li>
-                    <li><a href="query.php" class="top-sub">All</a></li>
-                    <li><a href="#">Open</a></li>
+                    <li><a href="queries.php" class="top-sub">All</a></li>
+                    <li><a href="queries-open.php">Open</a></li>
                     <li><h3>More</h3></li>
                     <li><a href="analytics.php" class="top-sub">Analytics</a></li>
                     <li><a href="index.php">Log out</a></li>
@@ -112,7 +114,8 @@
                         <tr>
                             <th>Issue ID:</th>
                             <th>Category:</th>
-                            <th>Specialist:</th> 
+                            <th>Specialist:</th>
+                            <th>Date Added:</th> 
                             <th>Priority:</th> 
                             <th>Resolved:</th> 
                         </tr>
@@ -121,6 +124,7 @@
                             <td>083</td>
                             <td>Network Hardware</td>
                             <td>P Jones</td>
+                            <td>11/10/2017</td>
                             <td>3</td>
                             <td>Y</td>
                             <td><a href="#">View</a></td>
@@ -129,6 +133,7 @@
                             <td>082</td>
                             <td>Printer Jam</td>
                             <td>A Smith</td>
+                            <td>11/10/2017</td>
                             <td>1</td>
                             <td>Y</td> 
                             <td><a href="#">View</a></td>
@@ -138,6 +143,7 @@
                             <td>080</td>
                             <td>Printer Jam</td>
                             <td>P Jones</td>
+                            <td>10/10/2017</td>
                             <td>1</td>
                             <td>Y</td> 
                             <td><a href="#">View</a></td>
@@ -146,6 +152,7 @@
                             <td>079</td>
                             <td>Application</td>
                             <td>A Smith</td>
+                            <td>10/10/2017</td>
                             <td>2</td>
                             <td>Y</td> 
                             <td><a href="#">View</a></td>
@@ -154,6 +161,7 @@
                             <td>078</td>
                             <td>OS Crash</td>
                             <td>P Jones</td>
+                            <td>10/10/2017</td>
                             <td>2</td>
                             <td>Y</td>
                             <td><a href="#">View</a></td>
@@ -163,6 +171,7 @@
                             <td>075</td>
                             <td>Printer Software</td>
                             <td>P Jones</td>
+                            <td>09/10/2017</td>
                             <td>2</td>
                             <td>Y</td> 
                             <td><a href="#">View</a></td>
@@ -172,6 +181,7 @@
                             <td>072</td>
                             <td>Application</td>
                             <td>A Smith</td>
+                            <td>09/10/2017</td>
                             <td>2</td>
                             <td>Y</td> 
                             <td><a href="#">View</a></td>

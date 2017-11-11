@@ -39,3 +39,59 @@
         </div>
     </div>
 </div>
+
+<div id="printertable">
+	<table style="width:100%" id="issuesTable">
+		<tr>
+			<th>Issue ID:</th>
+			<th>Category:</th>
+			<th>Specialist:</th> 
+			<th>Date Added:</th> 
+			<th>Priority:</th> 
+			<th>Resolved:</th> 
+		</tr>
+		<tr>
+			<td>082</td>
+			<td>Printer Jam</td>
+			<td>A Smith</td>
+			<td>11/10/2017</td>
+			<td>1</td>
+			<td>Y</td> 
+			<td><a href="#">View</a></td>
+		</tr>
+		<tr>
+			<td>080</td>
+			<td>Printer Jam</td>
+			<td>P Jones</td>
+			<td>10/10/2017</td>
+			<td>1</td>
+			<td>Y</td> 
+			<td><a href="#">View</a></td>
+		</tr>
+		<tr>
+			<td>075</td>
+			<td>Printer Software</td>
+			<td>P Jones</td>
+			<td>09/10/2017</td>
+			<td>2</td>
+			<td>Y</td> 
+			<td><a href="#">View</a></td>
+		</tr>
+		<tr>
+			<td>073</td>
+			<td>Printer Hardware</td>
+			<td>P Jones</td>
+			<td>09/10/2017</td>
+			<td>1</td>
+			<td>N</td>
+			<td><a href="#">View</a></td>
+		</tr>
+	</table>
+	<div class="page-num print-table" >
+		<ul>
+			<li><a href="#" class="first-last">Previous</a></li>
+			<li class="page-i">1</li>
+			<li><a href="#" class="first-last">Next</a></li>
+		</ul>
+    </div>
+</div>

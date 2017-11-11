@@ -29,8 +29,8 @@
                 <li>
                     <h3>Queries</h3>
                 </li>
-                <li><a href="query.php" class="top-sub">All</a></li>
-                <li><a href="#">Open</a></li>
+                <li><a href="queries.php" class="top-sub">All</a></li>
+                <li><a href="queries-open.php">Open</a></li>
                 <li>
                     <h3>More</h3>
                 </li>
@@ -45,13 +45,11 @@
     </div>
     <div class="main">
         <div class="title">
-            <h1>Statistics</h1>
+            <h1>Analytics</h1>
 
         </div>
         <div class="content">
-            <div class="totalTickets">
-                <p>A total of <b>5834</b> tickets have been made this year.</p>
-            </div>
+            
            
             <div class="mainChart">
                 <canvas id="chart1"></canvas>

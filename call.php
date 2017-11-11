@@ -130,8 +130,8 @@
                     <li><a href="main-open.php">Open</a></li>
                     <li><a href="main-closed.php">Closed</a></li>
                     <li><h3>Queries</h3></li>
-                    <li><a href="query.php" class="top-sub">All</a></li>
-                    <li><a href="#">Open</a></li>
+                    <li><a href="queries.php" class="top-sub">All</a></li>
+                    <li><a href="queries-open.php">Open</a></li>
                     <li><h3>More</h3></li>
                     <li><a href="analytics.php" class="top-sub">Analytics</a></li>
                     <li><a href="index.php">Log out</a></li>
@@ -215,11 +215,11 @@
                     </table>
             </div>
             <div class="sol-div">
-                <textarea  disabled rows="5" placeholder="Solution" class="solution"></textarea>  
-                <select name="resolved" id="resolved" class="dropdown priority">
+                <textarea  disabled rows="5" id="solution" placeholder="Solution" class="solution"></textarea>  
+                <select name="resolved" id="resolved" class="dropdown priority" onchange="selectChange(this)">
                     <option selected disabled value="">Resolved</option>
-                    <option value="1" onclick="">Yes</option>
-                    <option value="2" onclick="">No</option>
+                    <option value="1" onclick="sol();">Yes</option>
+                    <option value="2" onclick="sol1();">No</option>
                 </select>  
             </div>
             <div class="modal-but">
@@ -229,8 +229,25 @@
         </div>
     </div>
     <script type="text/javascript">
+    function selectChange(select) {
+        console.log(select.value);
+        if(select.value == 1) {
+            
+            sol();
+        }
+        else if(select.value == 2){
+            sol1();
+            
+        }
+    }
     var modal = document.getElementById('Modal');
     var span = document.getElementsByClassName("close")[0];
+    function sol(){
+       document.getElementById("solution").disabled = false;
+    }
+    function sol1(){
+       document.getElementById("solution").disabled = true;
+    }
     function modalopen() {
         modal.style.display = "block";
     }
