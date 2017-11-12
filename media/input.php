@@ -35,7 +35,8 @@
         <textarea rows="10" placeholder="Reason for Call" class="query"></textarea>
         <div class="issue-but1">
             <input type="submit" class="cancel" value="Cancel" action="action" onclick="window.history.back(); return false;"/>
-            <input type="submit" id="mybtn1" class="next" value="Next"/>
+            <input type="submit" id="mybtn1" class="next" value="Submit" onclick="window.location.href='main.php'"/>
+            
         </div>
     </div>
 </div>
@@ -94,4 +95,49 @@
 			<li><a href="#" class="first-last">Next</a></li>
 		</ul>
     </div>
+</div>
+<div id="operator">
+            <div class="sidebar-top">
+                <h2>Operator</h2>
+                <p>Claire Davies</p>
+            </div>
+            <div class="sidebar-mid">
+                <ul class="nav">
+                    <li><h3>Issues</h3></li>
+                    <li><a href="main.php" class="top-sub">All</a></li>
+                    <li><a href="main-open.php">Open</a></li>
+                    <li><a href="main-closed.php">Closed</a></li>
+                    <li><h3>Queries</h3></li>
+                    <li><a href="queries.php" class="top-sub">All</a></li>
+                    <li><a href="queries-open.php">Open</a></li>
+                    <li><h3>More</h3></li>
+                    <li><a href="analytics.php" class="top-sub">Analytics</a></li>
+                    <li><a href="index.php">Log out</a></li>
+                    
+                </ul>
+            </div> 
+            <div class="sidebar-bot">
+                <a class="call" href="call.php">New Call</a>
+            </div>
+        </div>
+
+<div id="specialist">
+
+            <div class="sidebar-top">
+                <h2>Specialist</h2>
+                <p>Paul Jones</p>
+            </div>
+            <div class="sidebar-mid">
+                <ul class="nav">
+                    <li><h3>Issues</h3></li>
+                    <li><a href="main.php" class="top-sub">All</a></li>
+                    <li><a href="main-open-spec.php">My Issues</a></li>
+                    <li><a href="main-closed.php">Closed</a></li>
+                    <li><h3>More</h3></li>
+                    <li><a href="analytics.php" class="top-sub">Analytics</a></li>
+                    <li><a href="index.php">Log out</a></li>
+                    
+                </ul>
+            </div> 
+            
 </div>

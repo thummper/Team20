@@ -5,32 +5,19 @@
         <title>Help Desk</title>
         <link rel="shortcut icon" href="media/helpdesk.ico" width='16px' height='16px'/>
         <link rel="stylesheet" href="css/style.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	</head>
 	<body>
-        <div class="sidebar">
-            <div class="sidebar-top">
-                <h2>Operator</h2>
-                <p>Full Name</p>
-            </div>
-            <div class="sidebar-mid">
-                <ul class="nav">
-                    <li><h3>Issues</h3></li>
-                    <li><a href="main.php" class="top-sub">All</a></li>
-                    <li><a href="main-open.php">Open</a></li>
-                    <li><a href="main-closed.php">Closed</a></li>
-                    <li><h3>Queries</h3></li>
-                    <li><a href="#" class="top-sub active">All</a></li>
-                    <li><a href="queries-open.php" >Open</a></li>
-                    <li><h3>More</h3></li>
-                    <li><a href="analytics.php" class="top-sub">Analytics</a></li>
-                    <li><a href="index.php">Log out</a></li>
-                    
-                </ul>
-            </div> 
-            <div class="sidebar-bot">
-                <a class="call" href="call.php">New Call</a>
-            </div>
+        <div id="sidebar" class="sidebar">
+            
         </div>
+        <script>
+            if(localStorage.usertype == "specialist"){
+                $("#sidebar").load("media/input.php #specialist")
+            }else{
+                $("#sidebar").load("media/input.php #operator")
+            }
+        </script>
         <div class="main">
             <div class="title">
                 <h1>Query</h1>
@@ -142,16 +129,9 @@
                             <td>N</td>
                             <td><a href="#">View</a></td>
                         </tr>
+                        
                         <tr>
                             <td>087</td>
-                            <td>E Thomas</td>
-                            <td>082</td>
-                            <td>09/11/17</td>
-                            <td>Y</td> 
-                            <td><a href="#">View</a></td>
-                        </tr>
-                        <tr>
-                            <td>086</td>
                             <td>E Thomas</td>
                             <td>072</td>
                             <td>09/11/17</td>
@@ -159,7 +139,7 @@
                             <td><a href="#">View</a></td>
                         </tr>
                         <tr>
-                            <td>085</td>
+                            <td>086</td>
                             <td>C Davies</td>
                             <td>073</td>
                             <td>09/11/17</td>
@@ -168,7 +148,7 @@
                         </tr>
                         
                     </table>
-                    <div class="page-num">
+                    <div class="page-num page-num-q">
                         <ul>
                             <li><a href="#" class="first-last">Previous</a></li>
                             <li class="page-i">1</li>

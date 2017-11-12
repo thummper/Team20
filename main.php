@@ -73,33 +73,20 @@
 				$("#table").load("media/input.php #printertable")
 				}
 			}
+            
 		</script>
 	</head>
 	<body>
-        <div class="sidebar">
-            <div class="sidebar-top">
-                <h2>Operator</h2>
-                <p>Full Name</p>
-            </div>
-            <div class="sidebar-mid">
-                <ul class="nav">
-                    <li><h3>Issues</h3></li>
-                    <li><a href="main.php" class="top-sub active">All</a></li>
-                    <li><a href="main-open.php">Open</a></li>
-                    <li><a href="main-closed.php">Closed</a></li>
-                    <li><h3>Queries</h3></li>
-                    <li><a href="queries.php" class="top-sub">All</a></li>
-                    <li><a href="queries-open.php">Open</a></li>
-                    <li><h3>More</h3></li>
-                    <li><a href="analytics.php" class="top-sub">Analytics</a></li>
-                    <li><a href="index.php">Log out</a></li>
-                    
-                </ul>
-            </div> 
-            <div class="sidebar-bot">
-                <a class="call" href="call.php">New Call</a>
-            </div>
+        <div id="sidebar" class="sidebar">
+            
         </div>
+        <script>
+            if(localStorage.usertype == "specialist"){
+                $("#sidebar").load("media/input.php #specialist")
+            }else{
+                $("#sidebar").load("media/input.php #operator")
+            }
+        </script>
         <div class="main">
             <div class="title">
                 <h1>Issues</h1>

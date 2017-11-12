@@ -9,40 +9,21 @@
     <link rel="stylesheet" href="css/chartcss.css" />
     <script src="charts/Chart.bundle.js"></script>
     <script src="charts/hardcodedCharts.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     
 </head>
 
 <body>
-    <div class="sidebar">
-        <div class="sidebar-top">
-            <h2>Operator</h2>
-            <p>Full Name</p>
+    <div id="sidebar" class="sidebar">
+            
         </div>
-        <div class="sidebar-mid">
-            <ul class="nav">
-                <li>
-                    <h3>Issues</h3>
-                </li>
-                <li><a href="main.php" class="top-sub">All</a></li>
-                <li><a href="main-open.php">Open</a></li>
-                <li><a href="main-closed.php">Closed</a></li>
-                <li>
-                    <h3>Queries</h3>
-                </li>
-                <li><a href="queries.php" class="top-sub">All</a></li>
-                <li><a href="queries-open.php">Open</a></li>
-                <li>
-                    <h3>More</h3>
-                </li>
-                <li><a href="#" class="top-sub active">Analytics</a></li>
-                <li><a href="index.php">Log out</a></li>
-
-            </ul>
-        </div>
-        <div class="sidebar-bot">
-            <a class="call" href="call.php">New Call</a>
-        </div>
-    </div>
+        <script>
+            if(localStorage.usertype == "specialist"){
+                $("#sidebar").load("media/input.php #specialist")
+            }else{
+                $("#sidebar").load("media/input.php #operator")
+            }
+        </script>
     <div class="main">
         <div class="title">
             <h1>Analytics</h1>
