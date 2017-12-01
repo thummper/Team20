@@ -114,14 +114,14 @@
         padding-left:0.5em;
         padding-bottom: 0.2em;
         font-size: 22pt;
-        border-bottom: solid 3px #ed6a5e;
+        border-bottom: solid 3px #51a1ef;
         color: #333;
         margin-top:1em;
     }
     .sol-spe{
         margin-top: 21em;     
-        border-color: #d16055;
-        box-shadow: 0 0 0 2px #d16055;
+        border-color: #4287c9;
+        box-shadow: 0 0 0 2px #4287c9;
     }
     </style>
 	</head>

@@ -88,7 +88,7 @@
         padding-left:0.5em;
         padding-bottom: 0.2em;
         font-size: 22pt;
-        border-bottom: solid 3px #ed6a5e;
+        border-bottom: solid 3px #51a1ef;
         color: #333;
         margin-top:1em;
     }

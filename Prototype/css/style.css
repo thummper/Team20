@@ -26,7 +26,7 @@ h1, h2, h3, h4, h5, h6, a, p, body, textarea{
     }
 }
  a{
-    text-decoration: none; 
+    text-decoration: none;
     color: #000;
     font-weight: 300;
 }
@@ -34,13 +34,13 @@ h1, h2, h3, h4, h5, h6, a, p, body, textarea{
     padding-left: 10%;
     text-align: left;
     padding-top: 0.8em;
-    
+
     padding-bottom: 2em;
     background-color: #eff1f2;
     top: 0;
     position: absolute;
     width: 90%;
-    
+
 }
 .sidebar-top h2 {
     padding-left:0.5em;
@@ -48,7 +48,7 @@ h1, h2, h3, h4, h5, h6, a, p, body, textarea{
     width:80%;
     font-weight: 600;
     font-size: 22pt;
-    border-bottom: solid 3px #ed6a5e;
+    border-bottom: solid 3px #51a1ef;
     color: #333;
 }
 .sidebar-top p{
@@ -57,7 +57,7 @@ h1, h2, h3, h4, h5, h6, a, p, body, textarea{
     line-height: 0.2em;
     color: #666;
     font-weight: 300;
-    
+
 }
 .sidebar-mid{
     margin-top: 14em;\
@@ -75,17 +75,17 @@ h1, h2, h3, h4, h5, h6, a, p, body, textarea{
     border-bottom: solid 1px #e6e6e6;
     padding-left: 2em;
 
-    
+
 }
 .top-sub{
     border-top: solid 1px #e6e6e6;
 }
 .active{
-    color: #ff8251
+    color: #4287c9
 }
 
 .nav a:hover{
-    color: #ff8251;
+    color: #4287c9;
 
 }
 .nav h3{
@@ -98,8 +98,8 @@ h1, h2, h3, h4, h5, h6, a, p, body, textarea{
     width:100%;
 }
 .sidebar-bot a{
-    background-color:#ed6a5e;
-    
+    background-color:#51a1ef;
+
     display: block;
     width: auto;
     padding-top: 1.5em;
@@ -108,15 +108,15 @@ h1, h2, h3, h4, h5, h6, a, p, body, textarea{
     font-weight: 400;
 }
 .sidebar-bot a:hover{
-    background-color: #d16055;
-    
+    background-color:#4287c9;
+
 }
 .main{
     margin-top: 4em;
     width: 78%;
     margin-right:1.5%;
     margin-left:21.85%;
-    
+
 }
 .title{
     width:100%
@@ -132,7 +132,7 @@ h1, h2, h3, h4, h5, h6, a, p, body, textarea{
     color: #333;
     padding-left: 1%;
     padding-bottom: 0.2em;
-    border-bottom: solid 5px #ed6a5e;
+    border-bottom: solid 5px #51a1ef;
 }
 .search{
     width:40%
@@ -140,8 +140,8 @@ h1, h2, h3, h4, h5, h6, a, p, body, textarea{
 .s-button, .next, .cancel, .login-button {
 	appearance: none;
     outline: 0;
-	
-	background-color: #ed6a5e;
+
+	background-color: #51a1ef;
 	border: 0;
 	color: #ffffff;
 	font-weight: 400;
@@ -164,21 +164,21 @@ input[type="text"], input[type="password"]{
 	display: block;
 	outline: 0;
 	padding: 0 1em;
-	text-decoration: none;	
+	text-decoration: none;
     height:2.5em;
     float:left;
-    
+
 }
 .s-bar{
     width: 40%;
 }
 .s-bar:focus, .sort:focus, .s-bar-id:focus, .dropdown:focus, textarea:focus, .password:focus, .username:focus {
-	border-color: #d16055;
-	box-shadow: 0 0 0 2px #d16055;
+	border-color:#4287c9;
+	box-shadow: 0 0 0 2px#4287c9;
 		}
 .s-button:hover, .next:hover{
-    background-color: #d16055;
-    
+    background-color:#4287c9;
+
 }
 
 .sort{
@@ -190,26 +190,26 @@ input[type="text"], input[type="password"]{
 	display: block;
 	outline: 0;
 	padding: 0 1em;
-	text-decoration: none;	
+	text-decoration: none;
     height:2.5em;
 }
 .table a{
     text-decoration: underline;
-    color: #ed6a5e;
+    color: #51a1ef;
 }
 .table{
     margin-top:1em;
 }
 table{
     margin-bottom: 2em;
-    border-spacing:0; 
+    border-spacing:0;
     width: 100%;
 }
 table tbody tr {
-	
+
 	border-left: 0;
     border-right: 0;
-   
+
 }
 table tbody tr:nth-child(2n + 2) {
 	background-color: #f5f6f7;
@@ -231,7 +231,7 @@ table tfoot {
     border-top: 0;
 }
 table tbody tr td {
-	
+
 	border-left-width: 0;
 	border-top-width: 0;
 }
@@ -250,7 +250,7 @@ table tbody tr:first-child td {
 .page-num {
     width:100%;
     padding-top: 0.5em;
-   
+
 }
 .closed-num{
     margin-top: 18.7em;
@@ -268,9 +268,9 @@ table tbody tr:first-child td {
     display: inline-block;
 }
 .page-num ul li a{
-    background-color:#ed6a5e;
+    background-color:#51a1ef;
     font-size: 11pt;
-    
+
     display: block;
     width: 6em;
     padding-top: 0.5em;
@@ -281,19 +281,19 @@ table tbody tr:first-child td {
     text-decoration: none;
 }
 .page-num ul li a:hover{
-    background-color:#d16055;
-    
+    background-color:#4287c9;
+
 }
 .page-num ul .page-i{
     color: #333;
     margin: 0 1em;
     padding: 0.5em;
-    
+
 }
 .page-num ul li .first-last{
     pointer-events: none;
     cursor: default;
-    background-color:#f99c93;
+    background-color:#7cb6ef;
 }
 .id-sel{
     display: flex;
@@ -318,8 +318,8 @@ table tbody tr:first-child td {
     text-align: center;
 }
 .tab li a{
-    background-color:#ed6a5e;
-    
+    background-color:#51a1ef;
+
     display: block;
     padding-top: 1em;
     padding-bottom: 1em;
@@ -327,10 +327,10 @@ table tbody tr:first-child td {
     font-weight: 400;
 }
 .tab li .selected{
-    background-color: #d16055;
+    background-color:#4287c9;
 }
 .tab li a:hover{
-    background-color: #d16055;
+    background-color:#4287c9;
 }
 .issue-input{
     padding-top: 3em;
@@ -345,7 +345,7 @@ table tbody tr:first-child td {
 	display: block;
 	outline: 0;
 	padding: 0 1em;
-	text-decoration: none;	
+	text-decoration: none;
     height:3.5em;
 }
 .priority {
@@ -365,7 +365,7 @@ textarea{
 	color: inherit;
 	display: block;
 	outline: 0;
-	text-decoration: none;	
+	text-decoration: none;
     resize: none;
     padding: 1em;
 }
@@ -413,7 +413,7 @@ textarea{
 
 .cancel:hover{
     background-color: #b7b5b5;
-    
+
 }
 .login{
     background-color: #fff;
@@ -429,7 +429,7 @@ textarea{
     padding-bottom: 0.2em;
     width:40%;
     font-size: 22pt;
-    border-bottom: solid 3px #ed6a5e;
+    border-bottom: solid 3px #51a1ef;
     color: #333;
     margin-bottom: 1.5em;
 }
@@ -457,7 +457,7 @@ textarea{
 }
 .issue-data h2{
     padding-bottom: 0.5em;
-    border-bottom: solid 3px #ed6a5e;
+    border-bottom: solid 3px #51a1ef;
     color: #333;
     padding-left: 2%;
 }
@@ -465,7 +465,7 @@ textarea{
     width: 46%;
     float:left;
     padding-top: 0.1em;
-    
+
 }
 .ope-info h2{
      border-bottom: solid 2px #e6e6e6;
@@ -495,7 +495,7 @@ textarea{
     width: 92.2%;
     margin-top: 3em;
     margin-bottom: 3em;
-        
+
 }
 .time{
     float: right;
