@@ -8,7 +8,7 @@
         
 	</head>
 	<body class="login-body">
-        <form action="" class="login-form">
+        <form action="databaseFunction.php" class="login-form">
             <input type="text" placeholder="Staff ID" name="stfID" required>
             <input type="password" placeholder="Password" name="psw" class="login-field" required>
             <button type="submit" class="login-button">Login</button>
