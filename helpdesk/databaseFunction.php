@@ -5,7 +5,10 @@
     $username = "root";
     $password = "69420";
     $dbname = "Support";
-    $staffID = $_GET["stfID"];
+    $staffID = $_POST["stfID"];
+
+
+
     $conn = new mysqli($servername, $username, $password, $dbname);
     if($conn -> connect_error) {
         die("Connection Failed: " . $conn->connect_error);
@@ -21,13 +24,28 @@
             //Now check password
             $row = $result->fetch_assoc();
             $actualPass = $row["Password"];
-            $enteredPass = $_GET["psw"];
+            $enteredPass = $_POST["psw"];
             echo "Database password is: $actualPass<br>";
             echo "Entered password is: $enteredPass<br>";
             if($actualPass == $enteredPass){
-                echo "Passwords are the same";
+                echo "Passwords are the same<br>";
+                $jobID = $row["Job_ID"];
+                echo "Job ID is $jobID<br>";
+                //We need to get the employee type and load the correct page.
+                //There are only ever 3 cases? ID is 1, 2 or NULL 
+                //Could just get job stuff from job table.. 
+                if($jobID == 1){
+                    //Operator
+                    echo "Specialist<br>";
+                } else if($jobID == 2){
+                    //Specialist
+                    echo "Operator<br>";
+                } else {
+                    //Null/Other job
+                }
             } else {
                 echo "Passwords different";
+                //Would we make the webpage for bad login here? 
             }
             
             
