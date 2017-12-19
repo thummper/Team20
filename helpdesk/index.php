@@ -13,7 +13,9 @@
             <button type="submit" class="login-button">Login</button>
         </form> 
         <div class="databaseWrapper">
+            <a href="database.php">
         <button id="viewDatabases">Databases</button>
+                </a>
         </div>
 	</body>
 </html>
