@@ -28,12 +28,17 @@
                     header("Location: main.php");
                 } else {
                     session_destroy();
-                   header("Location: index.php");
+                    echo '<script language="javascript">';
+                    echo 'alert("incorrect username and password")';
+                    echo 'location.href = "index.php";';
+                    echo '</script>';
                 }
           }else{
               session_destroy();
-              header("Location: index.php");
-              
+              echo '<script language="javascript">';
+              echo 'alert("incorrect username and password");';
+              echo 'location.href = "index.php";';
+              echo '</script>';   
           }
       }
    }
