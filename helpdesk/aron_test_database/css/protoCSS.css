@@ -60,37 +60,36 @@ h1, h2, h3, h4, h5, h6, a, p, body, textarea{
 
 }
 .sidebar-mid{
-    margin-top: 14em;
+    margin-top: 14em;\
 }
 .nav {
     list-style: none;
     padding: 0;
     margin:0;
-    width: 100%;
-
+    width: 80%;
+    margin-left: 10%;
 }
 .nav a{
     display:block;
     line-height:3em;
-    border-bottom: solid 1px #eff1f2;
-    padding-left: 15%;
-	background-color: #f5f6f7;
+    border-bottom: solid 1px #e6e6e6;
+    padding-left: 2em;
+
 
 }
 .top-sub{
-    border-top: solid 1px #eff1f2;
+    border-top: solid 1px #e6e6e6;
 }
 .active{
     color: #4287c9
 }
 
 .nav a:hover{
-    background-color: #eff1f2;
+    color: #4287c9;
 
 }
 .nav h3{
     color: #333;
-	padding-left: 10%;
 }
 .sidebar-bot{
     bottom:0;
