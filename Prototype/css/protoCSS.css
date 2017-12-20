@@ -1,0 +1,513 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,400italic,600italic");
+body{
+    background-color: #fff;
+    width:98%;
+}
+.login-body{
+    background-color: #f5f6f7;
+}
+h1, h2, h3, h4, h5, h6, a, p, body, textarea{
+    font-family: "Source Sans Pro", sans-serif;
+}
+.sidebar{
+    float:left;
+    width: 20%;
+    background-color: #f5f6f7;
+    top: 0;
+    left: 0;
+    bottom:0;
+    position: fixed;
+    min-height: 850px;
+    min-width: 250px;
+}
+@media screen and (max-height: 850px){
+    .sidebar{
+        position:absolute;
+    }
+}
+ a{
+    text-decoration: none;
+    color: #000;
+    font-weight: 300;
+}
+.sidebar-top{
+    padding-left: 10%;
+    text-align: left;
+    padding-top: 0.8em;
+
+    padding-bottom: 2em;
+    background-color: #eff1f2;
+    top: 0;
+    position: absolute;
+    width: 90%;
+
+}
+.sidebar-top h2 {
+    padding-left:0.5em;
+    padding-bottom: 0.2em;
+    width:80%;
+    font-weight: 600;
+    font-size: 22pt;
+    border-bottom: solid 3px #51a1ef;
+    color: #333;
+}
+.sidebar-top p{
+    padding-left: 1.5em;
+    font-style: italic;
+    line-height: 0.2em;
+    color: #666;
+    font-weight: 300;
+
+}
+.sidebar-mid{
+    margin-top: 14em;\
+}
+.nav {
+    list-style: none;
+    padding: 0;
+    margin:0;
+    width: 80%;
+    margin-left: 10%;
+}
+.nav a{
+    display:block;
+    line-height:3em;
+    border-bottom: solid 1px #e6e6e6;
+    padding-left: 2em;
+
+
+}
+.top-sub{
+    border-top: solid 1px #e6e6e6;
+}
+.active{
+    color: #4287c9
+}
+
+.nav a:hover{
+    color: #4287c9;
+
+}
+.nav h3{
+    color: #333;
+}
+.sidebar-bot{
+    bottom:0;
+    position: absolute;
+    text-align: center;
+    width:100%;
+}
+.sidebar-bot a{
+    background-color:#51a1ef;
+
+    display: block;
+    width: auto;
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+    color: #fff;
+    font-weight: 400;
+}
+.sidebar-bot a:hover{
+    background-color:#4287c9;
+
+}
+.main{
+    margin-top: 4em;
+    width: 78%;
+    margin-right:1.5%;
+    margin-left:21.85%;
+
+}
+.title{
+    width:100%
+}
+@media screen and (max-width: 1225px){
+    .main{
+        margin-left:250px;
+    }
+}
+
+.title h1{
+    font-size: 30pt;
+    color: #333;
+    padding-left: 1%;
+    padding-bottom: 0.2em;
+    border-bottom: solid 5px #51a1ef;
+}
+.search{
+    width:40%
+}
+.s-button, .next, .cancel, .login-button {
+	appearance: none;
+    outline: 0;
+
+	background-color: #51a1ef;
+	border: 0;
+	color: #ffffff;
+	font-weight: 400;
+    cursor: pointer;
+	height: 2.6em;
+	line-height: 2.6em;
+	padding: 0 2em;
+	text-align: center;
+	text-decoration: none;
+	white-space: nowrap;
+}
+.s-button {
+    margin-left: 1em;
+}
+input[type="text"], input[type="password"]{
+	appearance: none;
+	background: #f5f6f7;
+	border: solid 1px #eff1f2;
+	color: inherit;
+	display: block;
+	outline: 0;
+	padding: 0 1em;
+	text-decoration: none;
+    height:2.5em;
+    float:left;
+
+}
+.s-bar{
+    width: 40%;
+}
+.s-bar:focus, .sort:focus, .s-bar-id:focus, .dropdown:focus, textarea:focus, .password:focus, .username:focus {
+	border-color:#4287c9;
+	box-shadow: 0 0 0 2px#4287c9;
+		}
+.s-button:hover, .next:hover{
+    background-color:#4287c9;
+
+}
+
+.sort{
+    float:right;
+    appearance: none;
+	background: #f5f6f7;
+	border: solid 1px #eff1f2;
+	color: inherit;
+	display: block;
+	outline: 0;
+	padding: 0 1em;
+	text-decoration: none;
+    height:2.5em;
+}
+.table a{
+    text-decoration: underline;
+    color: #51a1ef;
+}
+.table{
+    margin-top:1em;
+}
+table{
+    margin-bottom: 2em;
+    border-spacing:0;
+    width: 100%;
+}
+table tbody tr {
+
+	border-left: 0;
+    border-right: 0;
+
+}
+table tbody tr:nth-child(2n + 2) {
+	background-color: #f5f6f7;
+}
+table td {
+	padding: 0.75em 0.75em;
+}
+table th {
+	color: #646464;
+	font-size: 0.9em;
+	padding-bottom:0.5em;
+	text-align: left;
+}
+table thead {
+	border-bottom: 0;
+}
+
+table tfoot {
+    border-top: 0;
+}
+table tbody tr td {
+
+	border-left-width: 0;
+	border-top-width: 0;
+}
+
+table tbody tr td:first-child {
+	border-left-width: 1px;
+}
+
+table tbody tr:first-child td {
+	border-top-width: 1px;
+}
+.staff-info{
+    margin:0;
+    margin-top:2em;
+}
+.page-num {
+    width:100%;
+    padding-top: 0.5em;
+
+}
+.closed-num{
+    margin-top: 18.7em;
+}
+.open-num{
+    margin-top: 21.5em;
+}
+.page-num ul{
+    list-style: none;
+    display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.page-num ul li {
+    display: inline-block;
+}
+.page-num ul li a{
+    background-color:#51a1ef;
+    font-size: 11pt;
+
+    display: block;
+    width: 6em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    text-align: center;
+    color: #fff;
+    font-weight: 400;
+    text-decoration: none;
+}
+.page-num ul li a:hover{
+    background-color:#4287c9;
+
+}
+.page-num ul .page-i{
+    color: #333;
+    margin: 0 1em;
+    padding: 0.5em;
+
+}
+.page-num ul li .first-last{
+    pointer-events: none;
+    cursor: default;
+    background-color:#7cb6ef;
+}
+.id-sel{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tab{
+    list-style: none;
+    padding: 0;
+    list-style-type: none;
+    margin:0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 3.5em;
+    padding-bottom: 2em;
+}
+.tab li {
+    display: inline-block;
+    width:50%;
+    text-align: center;
+}
+.tab li a{
+    background-color:#51a1ef;
+
+    display: block;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    color: #fff;
+    font-weight: 400;
+}
+.tab li .selected{
+    background-color:#4287c9;
+}
+.tab li a:hover{
+    background-color:#4287c9;
+}
+.issue-input{
+    padding-top: 3em;
+}
+.dropdown{
+    width: 45%;
+    margin: 0 2.5%;
+    appearance: none;
+	background: #f5f6f7;
+	border: solid 1px #eff1f2;
+	color: #666;
+	display: block;
+	outline: 0;
+	padding: 0 1em;
+	text-decoration: none;
+    height:3.5em;
+}
+.priority {
+    float:right;
+}
+.cat{
+    float:left;
+}
+
+textarea{
+    font-size: 11pt;
+    width: 42%;
+    margin: 0 2.5%;
+    appearance: none;
+	background: #f5f6f7;
+	border: solid 1px #eff1f2;
+	color: inherit;
+	display: block;
+	outline: 0;
+	text-decoration: none;
+    resize: none;
+    padding: 1em;
+}
+#issueID{
+    width: 42.5%;
+    height: 3.3em;
+}
+.des{
+    margin-top: 3.5em;
+    float:left;
+}
+.query{
+    width:92.5%;
+    margin: 0 2.5%;
+    margin-top: 6.5em;
+}
+.soft{
+    margin-top: 3.5em;
+    float:right;
+}
+.hard{
+    margin-top: 3em;;
+    float: right;
+}
+.issue-but{
+    display: flex;
+    margin-top: 23em;
+    justify-content: center;
+}
+.issue-but1{
+    display: flex;
+    margin-top: 3.6em;
+    justify-content: center;
+}
+.next {
+    height: 3em;
+    width: 10%;
+    margin-left: 2em;
+}
+.cancel{
+    height: 3em;
+    background-color: #999;
+    width: 10%;
+}
+
+.cancel:hover{
+    background-color: #b7b5b5;
+
+}
+.login{
+    background-color: #fff;
+    padding: 2em;
+    width: 30%;
+    padding-bottom: 13em;
+    margin-top: 18%;
+    margin-left: 32%;
+}
+.login h2{
+    margin-left: 0.5em;
+    padding-left:0.5em;
+    padding-bottom: 0.2em;
+    width:40%;
+    font-size: 22pt;
+    border-bottom: solid 3px #51a1ef;
+    color: #333;
+    margin-bottom: 1.5em;
+}
+
+.username {
+    margin-bottom: 1.5em;
+}
+.username, .password {
+    width: 75%;
+    margin-left: 10%;
+}
+.login-button {
+    margin-top: 2em;
+    float: right;
+    margin-right: 10%;
+}
+.print-table{
+	margin-top: 26.7em;
+}
+.page-num-qo{
+	margin-top: 11.2em;
+}
+.issue-data{
+    width:100%;
+}
+.issue-data h2{
+    padding-bottom: 0.5em;
+    border-bottom: solid 3px #51a1ef;
+    color: #333;
+    padding-left: 2%;
+}
+.spe-info{
+    width: 46%;
+    float:left;
+    padding-top: 0.1em;
+
+}
+.ope-info h2{
+     border-bottom: solid 2px #e6e6e6;
+     padding-left: 11%;
+}
+.spe-info h2{
+     border-bottom: solid 2px #e6e6e6;
+     padding-left: 10%;
+}
+.ope-info{
+    width:46%
+    float:right;
+    margin-left: 45%;
+    padding-top: 0.1em;
+    margin-bottom: 3em;
+}
+.spe-info p{
+    padding-left: 12%;
+}
+.ope-info p{
+    padding-left: 13%;
+}
+.issued{
+    padding-top: 14em;
+}
+.query-sol{
+    width: 92.2%;
+    margin-top: 3em;
+    margin-bottom: 3em;
+
+}
+.time{
+    float: right;
+}
+.speinfo-q{
+    padding-top: 0.1em;
+    padding-bottom: 1em;
+}
+.speinfo-q h2{
+     border-bottom: solid 2px #e6e6e6;
+     padding-left: 5%;
+}
+.speinfo-q p{
+    padding-left: 6%;
+}
