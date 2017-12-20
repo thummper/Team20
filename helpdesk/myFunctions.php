@@ -7,6 +7,11 @@ function cLog($data){
     
     
 }
+function makeOperatorPage($staffID){
+    //Generates operator page?
+    
+}
+
 
 
 ?>

@@ -2,21 +2,31 @@
 
 <html>
 	<head>
+        <?php 
+        session_start();
+        
+        ?>
         <title>Help Desk</title>
         <link rel="shortcut icon" href="media/helpdesk.ico" width='16px' height='16px'/>
         <link rel="stylesheet" href="css/style.css" />
+        <?php 
+        require_once("myFunctions.php");
+        cLog("Logged in as: " . $_SESSION["staffID"] . " with name: " . $_SESSION["staffName"] . " job title: " . $_SESSION["jobTitle"]);
+        
+        ?>
+        
         
 	</head>
 	<body>
- 
+         
      	<div class="sidebar">
         	<div class="sidebar-top">
-                <h2>Operator</h2>
-                <p>Alice</p>
+                <h2><?php echo $_SESSION["jobTitle"]; ?></h2>
+                <p><?php echo $_SESSION["staffName"]; ?></p>
             </div>
             <div class="sidebar-mid">
                 <ul class="nav">
-                    <li><h3>Issues</h3></li>
+                    <li><h3>Issues</h3></li> 
                     <li><a href="#" class="top-sub active">All</a></li>
                     <li><a href="#">Open</a></li>
                     <li><a href="#">Closed</a></li>
@@ -34,6 +44,7 @@
         </div>
         <div class="main">
         	
-        </div>   
+        </div>
+        
 	</body>
 </html>
