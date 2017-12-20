@@ -1,5 +1,39 @@
 <!DOCTYPE HTML>
-
+<?php
+   include("config.php");
+   session_start();
+   
+   if($_SERVER["REQUEST_METHOD"] == "POST") {   
+      $staffID = $_POST["stfID"];
+      $password = $_POST["psw"];
+      $conn = new mysqli($DBservername, $DBusername, $DBpassword, $dbname);
+      if($conn -> connect_error) {
+        die("Connection Failed: " . $conn->connect_error);
+      } else {
+          $sql = "SELECT * FROM Staff WHERE Staff_ID = '$staffID' AND Password = '$password'";
+          $result = $conn->query($sql);
+          if($result->num_rows > 0){
+              $row = $result->fetch_assoc();
+              $_SESSION["staffID"] = $staffID;
+              $_SESSION["staffName"] = $row["Forename"] . " " . $row["Surname"];
+              $_SESSION["jobID"] = $row["Job_ID"];
+              $jobID = $row["Job_ID"];
+              if($jobID == 1){
+                    
+                    $_SESSION["jobTitle"] = "Specialist";
+                    header("Location: main.php");
+                } else if($jobID == 2){
+                    $_SESSION["jobTitle"] = "Operator";
+                    header("Location: main.php");
+                } else {
+                    session_destroy();
+                }
+          }else{
+              session_destroy();
+          }
+      }
+   }
+?>
 <html>
 	<head>
         <title>Help Desk</title>
@@ -8,10 +42,12 @@
         
 	</head>
 	<body class="login-body">
-        <form action="" class="login-form">
+        <form action=" " class="login-form" method="post">
             <input type="text" placeholder="Staff ID" name="stfID" required>
             <input type="password" placeholder="Password" name="psw" class="login-field" required>
             <button type="submit" class="login-button">Login</button>
         </form>    
 	</body>
 </html>
+
+            

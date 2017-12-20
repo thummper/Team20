@@ -8,7 +8,7 @@
         ?>
         <title>Help Desk</title>
         <link rel="shortcut icon" href="media/helpdesk.ico" width='16px' height='16px'/>
-        <link rel="stylesheet" href="css/protoCSS.css" />
+        <link rel="stylesheet" href="css/style.css" />
         <?php 
         require_once("myFunctions.php");
         cLog("Logged in as: " . $_SESSION["staffID"] . " with name: " . $_SESSION["staffName"] . " job title: " . $_SESSION["jobTitle"]);
