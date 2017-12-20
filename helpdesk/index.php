@@ -1,9 +1,10 @@
 <!DOCTYPE HTML>
 <?php
-   include("config.php");
-   session_start();
    
-   if($_SERVER["REQUEST_METHOD"] == "POST") {   
+   
+   if($_SERVER["REQUEST_METHOD"] == "POST") { 
+      include("config.php");
+      session_start();
       $staffID = $_POST["stfID"];
       $password = $_POST["psw"];
       $conn = new mysqli($DBservername, $DBusername, $DBpassword, $dbname);
@@ -27,9 +28,12 @@
                     header("Location: main.php");
                 } else {
                     session_destroy();
+                   header("Location: index.php");
                 }
           }else{
               session_destroy();
+              header("Location: index.php");
+              
           }
       }
    }
