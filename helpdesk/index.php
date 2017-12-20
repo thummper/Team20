@@ -1,7 +1,5 @@
 <!DOCTYPE HTML>
 <?php
-   
-   
    if($_SERVER["REQUEST_METHOD"] == "POST") { 
       include("config.php");
       session_start();
@@ -19,8 +17,7 @@
               $_SESSION["staffName"] = $row["Forename"] . " " . $row["Surname"];
               $_SESSION["jobID"] = $row["Job_ID"];
               $jobID = $row["Job_ID"];
-              if($jobID == 1){
-                    
+              if($jobID == 1){    
                     $_SESSION["jobTitle"] = "Specialist";
                     header("Location: main.php");
                 } else if($jobID == 2){

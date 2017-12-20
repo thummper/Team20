@@ -4,7 +4,9 @@
 	<head>
         <?php 
         session_start();
-        
+        if(empty($_SESSION["staffID"])){
+            header("Location: index.php");
+        }
         ?>
         <title>Help Desk</title>
         <link rel="shortcut icon" href="media/helpdesk.ico" width='16px' height='16px'/>
@@ -35,7 +37,7 @@
                     <li><a href="#">Open</a></li>
                     <li><h3>More</h3></li>
                     <li><a href="#" class="top-sub">Analytics</a></li>
-                    <li><a href="index.php">Log out</a></li>
+                    <li><a href="logout.php">Log out</a></li>
                 </ul>
             </div> 
             <div class="sidebar-bot">
