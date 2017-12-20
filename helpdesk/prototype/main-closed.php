@@ -67,17 +67,9 @@
         <link rel="shortcut icon" href="media/helpdesk.ico" width='16px' height='16px'/>
         <link rel="stylesheet" href="css/style.css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script type="text/javascript">
-			function printer(){
-				if($('#query').val() == "printer"){
-				$("#table").load("media/input.php #printertable")
-				}
-			}
-            
-		</script>
 	</head>
 	<body>
-        <div id="sidebar" class="sidebar">
+       <div id="sidebar" class="sidebar">
             
         </div>
         <script>
@@ -95,7 +87,7 @@
                 <div class="menu-bar">
                     <div class="search">
                     <input type="text" class="s-bar" name="query" id="query" placeholder="Search" />
-                    <input type="submit" class="s-button" value="Search" onclick = "printer()"/>
+                    <input type="submit" class="s-button" value="Search"/>
                     </div>
                     <select name="sort" id="sort" class="sort" onchange="selectChange(this)">
                         <option selected disabled value="">Sort By</option>
@@ -104,25 +96,17 @@
                     </select>
 
                 </div>
-                <div id="table" class="table">
+                <div class="table">
                     <table style="width:100%" id="issuesTable">
                         <tr>
                             <th>Issue ID:</th>
                             <th>Category:</th>
-                            <th>Specialist:</th> 
+                            <th>Specialist:</th>
                             <th>Date Added:</th> 
                             <th>Priority:</th> 
                             <th>Resolved:</th> 
                         </tr>
-                        <tr>
-                            <td>084</td>
-                            <td>OS</td>
-                            <td>A Smith</td>
-                            <td>11/10/2017</td>
-                            <td>2</td>
-                            <td>N</td> 
-                            <td><a href="issue.php">View</a></td>
-                        </tr>
+                        
                         <tr>
                             <td>083</td>
                             <td>Network Hardware</td>
@@ -141,15 +125,7 @@
                             <td>Y</td> 
                             <td><a href="#">View</a></td>
                         </tr>
-                        <tr>
-                            <td>081</td>
-                            <td>Network</td>
-                            <td>A Smith</td>
-                            <td>10/10/2017</td>
-                            <td>2</td>
-                            <td>N</td> 
-                            <td><a href="#">View</a></td>
-                        </tr>
+                        
                         <tr>
                             <td>080</td>
                             <td>Printer Jam</td>
@@ -177,24 +153,7 @@
                             <td>Y</td>
                             <td><a href="#">View</a></td>
                         </tr>
-                        <tr>
-                            <td>077</td>
-                            <td>PC Malfunction</td>
-                            <td>A Smith</td>
-                            <td>09/10/2017</td>
-                            <td>2</td>
-                            <td>N</td> 
-                            <td><a href="#">View</a></td>
-                        </tr>
-                        <tr>
-                            <td>076</td>
-                            <td>Network</td>
-                            <td>A Smith</td>
-                            <td>09/10/2017</td>
-                            <td>3</td>
-                            <td>N</td> 
-                            <td><a href="#">View</a></td>
-                        </tr>
+                        
                         <tr>
                             <td>075</td>
                             <td>Printer Software</td>
@@ -204,24 +163,7 @@
                             <td>Y</td> 
                             <td><a href="#">View</a></td>
                         </tr>
-                        <tr>
-                            <td>074</td>
-                            <td>PC Malfunction</td>
-                            <td>A Smith</td>
-                            <td>09/10/2017</td>
-                            <td>2</td>
-                            <td>N</td> 
-                            <td><a href="#">View</a></td>
-                        </tr>
-                        <tr>
-                            <td>073</td>
-                            <td>Printer Hardware</td>
-                            <td>P Jones</td>
-                            <td>09/10/2017</td>
-                            <td>1</td>
-                            <td>N</td>
-                            <td><a href="#">View</a></td>
-                        </tr>
+                        
                         <tr>
                             <td>072</td>
                             <td>Application</td>
@@ -232,9 +174,8 @@
                             <td><a href="#">View</a></td>
                         </tr>
                         
-                        
                     </table>
-                    <div class="page-num">
+                    <div class="page-num closed-num">
                         <ul>
                             <li><a href="#" class="first-last">Previous</a></li>
                             <li class="page-i">1</li>

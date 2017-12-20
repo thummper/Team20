@@ -7,7 +7,6 @@ h1, h2, h3, h4, h5, h6, a, p, body, textarea{
     font-family: "Source Sans Pro", sans-serif;
 }
 input[type="text"], input[type="password"]{
-	appearance: none;
 	background: #f5f6f7;
 	border: solid 1px #eff1f2;
 	color: inherit;
@@ -21,7 +20,6 @@ input[type="text"]:focus, input[type="password"]:focus{
 	box-shadow: 0 0 0 2px #4287c9;
 }
 button {
-	appearance: none;
     outline: 0;
 	background-color: #51a1ef;
 	border: 0;
@@ -40,9 +38,9 @@ button {
 }
 .login-form{
     background-color: #fff;
-    width: 35%;
+    width: 25%;
     padding: 3%;
-    margin-left: 30%;
+    margin-left: 35%;
     margin-top: 20%;
 }
 .login-form input{
@@ -57,48 +55,105 @@ button {
     width:100%;
     height: 3.2em;
 }
-.databaseWrapper{
-    background-color: #fff;
-    width: 35%;
-    padding: 3%;
-    margin: 0 auto;
-    margin-top: 12%;
+.sidebar{
+    float:left;
+    width: 20%;
+    background-color: #f5f6f7;
+    top: 0;
+    left: 0;
+    bottom:0;
+    position: fixed;
+    min-height: 850px;
+    min-width: 250px;
 }
-#viewDatabases{
-    display: block;
-    width: 100%;
-    margin: 0 auto;
-    padding: 2%;
-    height: 3.2em;
-        
+@media screen and (max-height: 850px){
+    .sidebar{
+        position:absolute;
+    }
 }
-#dbBody{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-.tableWrapper{
-    width: 90%;
-    background-color: #f2f2f2;
-    margin-bottom: 20px;    
-    
-}
-.tableName{
-    text-align: center;
-    padding: 10px;
-    border-bottom: 2px solid #fff;
-}
-.dbTable{
-    margin-top: 10px;
-    width: 100%;
-    text-align: center;
-    table-layout: fixed;
-    
-}
-.dbTable td{
-    
-}
-a {
+ a{
     text-decoration: none;
+    color: #000;
+    font-weight: 300;
+}
+.sidebar-top{
+    padding-left: 6%;
+    text-align: left;
+    padding-top: 0.8em;
+
+    padding-bottom: 2em;
+    background-color: #eff1f2;
+    top: 0;
+    position: absolute;
+    width: 94%;
+
+}
+.sidebar-top h2 {
+    padding-left: 5%;
+    padding-bottom: 0.2em;
+    width: 90%;
+    font-weight: 600;
+    font-size: 22pt;
+    border-bottom: solid 3px #51a1ef;
+    color: #333;
+}
+.sidebar-top p{
+	padding-right: 9%;
+    text-align: center;
+    font-style: italic;
+    line-height: 0.2em;
+    color: #666;
+    font-weight: 300;
+
+}
+.sidebar-mid{
+    margin-top: 14em;
+}
+.nav {
+    list-style: none;
+    padding: 0;
+    margin:0;
+    width: 98%;
+    margin-left: 2%;
+}
+.nav a{
+    display:block;
+    line-height:3em;
+    border-bottom: solid 1px #eff1f2;
+    padding-left: 15%;
+
+}
+.top-sub{
+   border-top: solid 1px #eff1f2;
+}
+
+.nav a:hover, .active{
+    background-color: #eff1f2;
+
+}
+.nav h3{
+    color: #333;
+	padding-left: 10%;
+    
+    
+}
+.sidebar-bot{
+    bottom:0;
+    position: absolute;
+    text-align: center;
+    width:100%;
+}
+.sidebar-bot a{
+    background-color:#51a1ef;
+
+    display: block;
+    width: auto;
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+    color: #fff;
+    font-weight: 400;
+}
+.sidebar-bot a:hover{
+    background-color:#4287c9;
+
 }

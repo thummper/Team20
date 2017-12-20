@@ -26,6 +26,7 @@
                 
                 <div class="table">
                     <table style="width:100%" id="issuesTable">
+                       <table style="width:100%" id="issuesTable">
                         <tr>
                             <th>Query ID:</th>
                             <th>Operator:</th>
@@ -49,14 +50,7 @@
                             <td>N</td>
                             <td><a href="query.php">View</a></td>
                         </tr>
-                        <tr>
-                            <td>096</td>
-                            <td>C Davies</td>
-                            <td>073</td>
-                            <td>10/11/17</td>
-                            <td>Y</td> 
-                            <td><a href="#">View</a></td>
-                        </tr>
+                       
                         <tr>
                             <td>095</td>
                             <td>C Davies</td>
@@ -65,14 +59,7 @@
                             <td>N</td> 
                             <td><a href="#">View</a></td>
                         </tr>
-                        <tr>
-                            <td>094</td>
-                            <td>C Davies</td>
-                            <td>073</td>
-                            <td>10/11/17</td>
-                            <td>Y</td> 
-                            <td><a href="#">View</a></td>
-                        </tr>
+                        
                         <tr>
                             <td>093</td>
                             <td>E Thomas</td>
@@ -89,14 +76,7 @@
                             <td>N</td>
                             <td><a href="#">View</a></td>
                         </tr>
-                        <tr>
-                            <td>091</td>
-                            <td>E Thomas</td>
-                            <td>079</td>
-                            <td>10/11/17</td>
-                            <td>Y</td> 
-                            <td><a href="#">View</a></td>
-                        </tr>
+                        
                         <tr>
                             <td>009</td>
                             <td>C Davies</td>
@@ -105,14 +85,7 @@
                             <td>N</td> 
                             <td><a href="#">View</a></td>
                         </tr>
-                        <tr>
-                            <td>090</td>
-                            <td>E Thomas</td>
-                            <td>083</td>
-                            <td>10/11/17</td>
-                            <td>Y</td> 
-                            <td><a href="#">View</a></td>
-                        </tr>
+                        
                         <tr>
                             <td>089</td>
                             <td>C Davies</td>
@@ -131,7 +104,7 @@
                         </tr>
                         
                         <tr>
-                            <td>087</td>
+                            <td>086</td>
                             <td>E Thomas</td>
                             <td>072</td>
                             <td>09/11/17</td>
@@ -139,7 +112,7 @@
                             <td><a href="#">View</a></td>
                         </tr>
                         <tr>
-                            <td>086</td>
+                            <td>085</td>
                             <td>C Davies</td>
                             <td>073</td>
                             <td>09/11/17</td>
@@ -148,7 +121,7 @@
                         </tr>
                         
                     </table>
-                    <div class="page-num page-num-q">
+                    <div class="page-num page-num-qo">
                         <ul>
                             <li><a href="#" class="first-last">Previous</a></li>
                             <li class="page-i">1</li>
