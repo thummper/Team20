@@ -11,7 +11,7 @@
       } else {
           $sql = "SELECT * FROM Staff WHERE Staff_ID = '$staffID' AND Password = '$password'";
           $result = $conn->query($sql);
-          if($result->num_rows > 0){
+          if($result->num_rows == 1){
               $row = $result->fetch_assoc();
               $_SESSION["staffID"] = $staffID;
               $_SESSION["staffName"] = $row["Forename"] . " " . $row["Surname"];
@@ -44,8 +44,7 @@
 	<head>
         <title>Help Desk</title>
         <link rel="shortcut icon" href="media/helpdesk.ico" width='16px' height='16px'/>
-        <link rel="stylesheet" href="css/style.css" />
-        
+        <link rel="stylesheet" href="css/style.css" />    
 	</head>
 	<body class="login-body">
         <form action=" " class="login-form" method="post">
@@ -54,6 +53,4 @@
             <button type="submit" class="login-button">Login</button>
         </form>    
 	</body>
-</html>
-
-            
+</html>            
