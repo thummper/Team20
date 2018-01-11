@@ -12,12 +12,15 @@
     <?php 
     
     require_once('myFunctions.php');
+
     include("config.php");
 
 
 
 
     $conn = new mysqli($DBservername, $DBusername, $DBpassword, $dbname);
+
+
     if($conn -> connect_error) {
         die("Connection Failed: " . $conn->connect_error);
     } else {
@@ -33,7 +36,9 @@
         
         while($row = $result->fetch_row()){
             //For each table, make a table
-            
+
+            $start = 0;
+
             $tableName = $row[0];
             cLog($tableName);
             
@@ -53,6 +58,23 @@
             //Draw the table
             echo "<table class='dbTable $tableName'>";
             while( $row1 = $result1->fetch_assoc() ){
+
+                if($start == 0){
+                //Print the keys. 
+                $keyArr = array_keys($row1);
+                    
+                    echo "<tr class='keys'>";
+                    foreach($keyArr as $key){
+                        echo "<th>";
+                        echo $key;
+                        echo "</th>";
+                    }
+                    echo "</tr>";
+                    
+                }
+                
+                
+
                 echo "<tr>";
                 foreach($row1 as $value1){
                     //Draw table stuff.
@@ -62,8 +84,9 @@
                 }
                 echo "</tr>";
                 
-                
-                
+
+            $start++;
+
             }
             echo "</table>";
             echo "</div>";

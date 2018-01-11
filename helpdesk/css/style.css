@@ -196,7 +196,11 @@ button {
     table-layout: fixed;
     
 }
-.dbTable td{
-    
+
+.dbTable tr {
+    transition: all 0.3s;
 }
+.dbTable tr:hover {
+    background-color: #fff;
+
 
