@@ -51,6 +51,25 @@
             <input type="text" placeholder="Staff ID" name="stfID" required>
             <input type="password" placeholder="Password" name="psw" class="login-field" required>
             <button type="submit" class="login-button">Login</button>
-        </form>    
+        </form>   
+        <div class="databaseWrapper">
+            <a href="database.php">
+        <button id="viewDatabases">Databases</button>
+                </a>
+        </div>
+
 	</body>
-</html>            
+</html> 
+    
+
+
+
+
+
+
+
+
+
+
+
+
