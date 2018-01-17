@@ -10,7 +10,6 @@
 
     <!-- Connect to Database  -->
     <?php 
-    
     require_once('myFunctions.php');
     include("config.php");
     
@@ -28,22 +27,29 @@
             cLog("DB Error, could not list tables");
         }
 
-        $size = sizeof($result);
+        $tableNames = array();
+        echo "<div class='dbbuttonContainer'>";
         while($row = $result->fetch_row()){
-            //For each table, make a table
-            cLog($result);
-            $start = 0;
+            //Make ths buttons for tabbed nav 
+            
+                
+            
             $tableName = $row[0];
+            array_push($tableNames, $tableName);
+            echo "<button class='tablinks' onclick=' openTable(event, \"$tableName\" ) ' >$tableName</button>";
             
-            
-            
-            echo "<div class='tableWrapper'>";
-            echo "<div id='$tableName' class='tabcontent'></div>";
+        }
+        echo "</div>";
+        
+        
+        
+        foreach($tableNames as $tableName){
+            $start = 0;
+            echo "<div id='$tableName' class='tabcontent'>";
             
             $sql1 = "SELECT * FROM $tableName";
             $result1 = $conn->query($sql1);
-            
-            if(!$result1){
+                        if(!$result1){
                 cLog("DB Error");
             } else {
             
@@ -84,26 +90,43 @@
             echo "</div>";
         }
             
-            
-            
-            
-            
-            
-            
-        }
-        
-        
-        
+        } 
     }
-        ?>
+?>
 
 
-
-
+    
+    
+    
 </head>
 
 <body id="dbBody">
 
 </body>
+    <script>
+    
+        function openTable(evt,tableName) {
+      
+            var i, tabcontent, tablinks;
+
+            // Get all elements with class="tabcontent" and hide them
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            // Get all elements with class="tablinks" and remove the class "active"
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            // Show the current tab, and add an "active" class to the button that opened the tab
+            document.getElementById(tableName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+        
+
+    </script>
 
 </html>
