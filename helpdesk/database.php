@@ -12,15 +12,10 @@
     <?php 
     
     require_once('myFunctions.php');
-
     include("config.php");
-
-
-
-
+    
     $conn = new mysqli($DBservername, $DBusername, $DBpassword, $dbname);
-
-
+    
     if($conn -> connect_error) {
         die("Connection Failed: " . $conn->connect_error);
     } else {
@@ -29,26 +24,23 @@
         $sql = "SHOW TABLES FROM $dbname";
         $result = $conn->query($sql);
         
-        
         if(!$result){
             cLog("DB Error, could not list tables");
         }
-        
+
+        $size = sizeof($result);
         while($row = $result->fetch_row()){
             //For each table, make a table
-
+            cLog($result);
             $start = 0;
-
             $tableName = $row[0];
-            cLog($tableName);
+            
             
             
             echo "<div class='tableWrapper'>";
-            echo "<div class='tableName'>" . $tableName . " Table" . "</div>";
-            
+            echo "<div id='$tableName' class='tabcontent'></div>";
             
             $sql1 = "SELECT * FROM $tableName";
-            
             $result1 = $conn->query($sql1);
             
             if(!$result1){
