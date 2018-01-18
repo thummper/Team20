@@ -87,6 +87,13 @@
 
             }
             echo "</table>";
+            //Placeholders for buttons.
+            echo "<div class='dbedit'>";
+            echo "<button> Add Entry </button><button> Remove Entry </button>";
+                            
+                            
+                            
+            echo "</div>";
             echo "</div>";
         }
             

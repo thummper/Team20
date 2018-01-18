@@ -193,10 +193,25 @@ button {
     border: 1px solid #ccc;
     border-top: none;
 }
+.tabcontent table {
+    width: 100%;
+}
+.tabcontent table td {
+    text-align: center;
+}
 
 #dbBody{
     width: 100vw;
     margin: 0;
+}
+.dbedit {
+    display: flex;
+    justify-content: center;
+}
+.dbedit button{
+    margin: 15px 15px 0px 15px;
+    padding: 3px 14px;
+    height: auto;
 }
 
 
