@@ -52,7 +52,6 @@
                     </div>
                 </div>
         	<div id="table" class="table">
-                  
             </div>
         </div>
         
