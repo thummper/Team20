@@ -332,9 +332,9 @@ table tbody tr:first-child td {
 }
 
 .dbedit button {
-    margin: 15px 15px 0px 15px;
-    padding: 3px 14px;
-    height: auto;
+    width: 10%;
+    height: 3em;
+    margin: 2em;
 }
 
 .dbTable tr:hover {
