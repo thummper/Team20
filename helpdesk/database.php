@@ -73,7 +73,7 @@
                 
                 
 
-                echo "<tr>";
+                echo "<tr onclick='rowClick(this,event)'>";
                 foreach($row1 as $value1){
                     //Draw table stuff.
                     echo "<td>";
@@ -87,46 +87,122 @@
 
             }
             echo "</table>";
+            //Placeholders for buttons.
+            echo "<div class='dbedit'>";
+            echo "<button onclick='addEntry(this)'> Add Entry </button><button onclick='removeEntry(this)'> Remove Entry </button>";
+                            
+                            
+                            
             echo "</div>";
+            
         }
+            //Draw windows for inputting stuff? 
+            cLog("This is next section");
+            $sqlCols = "SHOW COLUMNS FROM $tableName";
+            $result = $conn->query($sqlCols);
+            if(!$result){
+            cLog("DB Error, could not list tables");
+            }
+            
+            echo "<div class='inputDB $tableName'>";
+            echo "<button class='closeDBInput' onclick='closeInput(this)'>X</button>";
+            echo "<form class='inputDBSE $tableName'>";
+            while($row = $result->fetch_row()){
+                echo $row[0].": <br>"; 
+                echo "<input type='text' name='$row[0]'><br>";
+                
+                
+            }
+            echo "</form>";
+            echo "</div>";
+            echo "</div>";
+
+                
+             
+
+            
+            
+            
+            
             
         } 
     }
 ?>
 
 
-    
-    
-    
+
+
+
 </head>
 
 <body id="dbBody">
 
 </body>
-    <script>
-    
-        function openTable(evt,tableName) {
-      
-            var i, tabcontent, tablinks;
+<script>
+    function closeInput(item) {
+        console.log("Closing: " + item);
+        item.parentNode.style.display = "none";
+    }
+    function rowClick(row, evt) {
+        if (row.classList.contains("active")) {
+            //Already has active tag
+            row.classList.remove("active");
+        } else {
 
-            // Get all elements with class="tabcontent" and hide them
-            tabcontent = document.getElementsByClassName("tabcontent");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].style.display = "none";
+            rows = document.getElementsByTagName("tr");
+            for (i = 0; i < rows.length; i++) {
+                rows[i].classList.remove("active");
             }
-
-            // Get all elements with class="tablinks" and remove the class "active"
-            tablinks = document.getElementsByClassName("tablinks");
-            for (i = 0; i < tablinks.length; i++) {
-                tablinks[i].className = tablinks[i].className.replace(" active", "");
-            }
-
-            // Show the current tab, and add an "active" class to the button that opened the tab
-            document.getElementById(tableName).style.display = "block";
-            evt.currentTarget.className += " active";
+            row.classList.add("active");
         }
-        
+    }
 
-    </script>
+
+    function openTable(evt, tableName) {
+
+        var i, tabcontent, tablinks;
+
+        // Get all elements with class="tabcontent" and hide them
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+
+        // Get all elements with class="tablinks" and remove the class "active"
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+
+        // Show the current tab, and add an "active" class to the button that opened the tab
+        document.getElementById(tableName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+
+    function trClick(row, event) {
+
+    }
+
+    function addEntry(t) {
+        //MAKE this visible.. inputDB $tableName
+        var elementName = "inputDB " + t.parentNode.parentElement.id;
+        document.getElementsByClassName(elementName)[0].style.display = "block";
+        console.log("Add a record to this table: " + t.parentNode.parentElement.id);
+    }
+
+    function removeEntry(t) {
+        //Will remove active row.
+        var tableName = t.parentNode.parentElement.id;
+        var rows = document.getElementsByTagName("tr");
+        var record = false;
+        for (i = 0; i < rows.length; i++) {
+            if (rows[i].classList.contains("active")) {
+                record = rows[i];
+            }
+        }
+        console.log("Remove: " + record + " from this table: " + t.parentNode.parentElement.id);
+    }
+
+</script>
 
 </html>
