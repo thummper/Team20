@@ -11,7 +11,25 @@
         <title>Help Desk</title>
         <link rel="shortcut icon" href="media/helpdesk.ico" width='16px' height='16px'/>
         <link rel="stylesheet" href="css/style.css" />
-         
+        <?php
+        include("config.php");
+        $conn = new mysqli($DBservername, $DBusername, $DBpassword, $dbname); 
+        $start = 0;
+        $ticketTable = " <table style=\"width:100%\" id=\"issuesTable\"><tr><th>Ticket ID:</th><th>Category:</th><th>Specialist ID:</th><th>Date Added:</th><th>Priority:</th> <th>Resolved:</th></tr>";
+            $sql1 = "SELECT * FROM Ticket";
+            $result1 = $conn->query($sql1);
+            if(!$result1){
+                cLog("DB Error");
+            } else {
+            
+            //Draw the table
+            while( ($row = $result1->fetch_assoc())){
+                $ticketTable = $ticketTable."<tr><td>".$row["Ticket_ID"]."</td><td>".$row["Problem_Type"]."</td><td>".$row["Specialist_ID"]."</td><td>".$row["Date_Made"]."</td><td>".$row["Priority"]."</td><td>".$row["Resolved"]."</td><td><a href='#'>View</a></td></tr>";
+            $start++;
+            }
+            $ticketTable = $ticketTable."</table>"; 
+        }
+        ?>
 	</head>
 	<body>
          
@@ -50,6 +68,7 @@
                     </div>
                 </div>
         	<div id="table" class="table">
+                <?php echo $ticketTable;?>
             </div>
             <div class="page-num">
                 <ul>
