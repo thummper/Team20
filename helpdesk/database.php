@@ -133,44 +133,6 @@
         } 
     }
 ?>
-</head>
-
-<body>
-        <div class="sidebar">
-        	<div class="sidebar-top">
-                <h2><?php echo $_SESSION["jobTitle"]; ?></h2>
-                <p><?php echo $_SESSION["staffName"]; ?></p>
-            </div>
-            <div class="sidebar-mid">
-                <ul class="nav">
-                    <li><h3>Tickets</h3></li> 
-                    <li><a href="main.php" class="top-sub">All</a></li>
-                    <li><a href="#">Open</a></li>
-                    <li><a href="#">Closed</a></li>
-                    <li><h3>Queries</h3></li>
-                    <li><a href="#" class="top-sub">All</a></li>
-                    <li><a href="#">Open</a></li>
-                    <li><h3>More</h3></li>
-                    <li><a href="#" class="top-sub">Analytics</a></li>
-                    <li><a href="#" class="active">Databases</a></li>
-                    <li><a href="logout.php">Log out</a></li>
-                </ul>
-            </div> 
-            <div class="sidebar-bot">
-                <a class="call" href="call.php">New Call</a>
-            </div>
-        </div>
-        <div class="main">
-            <div class="title">
-                <h1>Databases</h1>
-            </div>
-        	<div id="dbBody">
-                <?php
-                    dbData();
-                ?>
-            </div>        
-        </div>
-</body>
 <script>
     function closeInput(item) {
         console.log("Closing: " + item);
@@ -237,5 +199,46 @@
     }
 
 </script>
+</head>
+
+<body>
+        <div class="sidebar">
+        	<div class="sidebar-top">
+                <h2><?php echo $_SESSION["jobTitle"]; ?></h2>
+                <p><?php echo $_SESSION["staffName"]; ?></p>
+            </div>
+            <div class="sidebar-mid">
+                <ul class="nav">
+                    <li><h3>Tickets</h3></li> 
+                    <li><a href="main.php" class="top-sub">All</a></li>
+                    <li><a href="#">Open</a></li>
+                    <li><a href="#">Closed</a></li>
+                    <li><h3>Queries</h3></li>
+                    <li><a href="#" class="top-sub">All</a></li>
+                    <li><a href="#">Open</a></li>
+                    <li><h3>More</h3></li>
+                    <li><a href="#" class="top-sub">Analytics</a></li>
+                    <li><a href="#" class="active">Databases</a></li>
+                    <li><a href="logout.php">Log out</a></li>
+                </ul>
+            </div> 
+            <div class="sidebar-bot">
+                <a class="call" href="call.php">New Call</a>
+            </div>
+        </div>
+        <div class="main">
+            <div class="title">
+                <h1>Databases</h1>
+            </div>
+        	<div id="dbBody">
+                <?php
+                    dbData();
+                ?>
+                <script> openTable(event, "Specialisation");</script>
+                
+            </div>        
+        </div>
+</body>
+
 
 </html>
