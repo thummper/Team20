@@ -16,7 +16,7 @@
         $conn = new mysqli($DBservername, $DBusername, $DBpassword, $dbname); 
         $start = 0;
         $ticketTable = " <table style=\"width:100%\" id=\"issuesTable\"><tr><th>Ticket ID:</th><th>Category:</th><th>Specialist ID:</th><th>Date Added:</th><th>Priority:</th> <th>Resolved:</th></tr>";
-            $sql1 = "SELECT * FROM Ticket";
+            $sql1 = "SELECT * FROM Ticket ORDER BY Ticket_ID DESC";
             $result1 = $conn->query($sql1);
             if(!$result1){
                 cLog("DB Error");
