@@ -34,6 +34,7 @@
                     <li><a href="#">Open</a></li>
                     <li><h3>More</h3></li>
                     <li><a href="#" class="top-sub">Analytics</a></li>
+                    <li><a href="database.php">Databases</a></li>
                     <li><a href="logout.php">Log out</a></li>
                 </ul>
             </div> 

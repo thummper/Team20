@@ -4,16 +4,7 @@ body {
     width: 98%;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-a,
-p,
-body,
-textarea {
+h1,h2,h3,h4,h5,h6,a,p,body,textarea, button {
     font-family: "Source Sans Pro", sans-serif;
 }
 
@@ -295,8 +286,9 @@ table tbody tr:first-child td {
 
 .dbbuttonContainer {
     overflow: hidden;
-    border: 1px solid #ccc;
-    background-color: #f1f1f1;
+    background-color: #f5f6f7;
+    margin-bottom: 2em;
+    border-bottom: solid 3px #51a1ef;
 }
 
 .dbbuttonContainer button {
@@ -305,26 +297,25 @@ table tbody tr:first-child td {
     border: none;
     outline: none;
     cursor: pointer;
-    padding: 14px 16px;
-    transition: 0.3s;
-    height: auto;
-    color: grey;
-
+    width: 9.09%;
+    text-decoration: none;
+    color: #000;
+    font-weight: 300;
+    height: 4em;
+    font-size: 12pt;
 }
 
 .dbbuttonContainer button.active {
-    background-color: #ccc;
+    background-color: #eff1f2;
 }
 
 .dbbuttonContainer button:hover {
-    background-color: #ddd;
+    background-color: #eff1f2;
 }
 
 .tabcontent {
     display: none;
     padding: 6px 12px;
-    border: 1px solid #ccc;
-    border-top: none;
 }
 
 .tabcontent table {
@@ -333,11 +324,6 @@ table tbody tr:first-child td {
 
 .tabcontent table td {
     text-align: center;
-}
-
-#dbBody {
-    width: 100vw;
-    margin: 0;
 }
 
 .dbedit {
