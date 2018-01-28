@@ -271,7 +271,7 @@ table tbody tr:first-child td {
     margin-left: 3%;
     height: 2.7em;
 }
-.s-button:hover {
+.s-button:hover, .dbedit button:hover, .login-button:hover {
     background-color:#4287c9;
 
 }
@@ -300,7 +300,7 @@ table tbody tr:first-child td {
     width: 9.09%;
     text-decoration: none;
     color: #000;
-    font-weight: 300;
+    font-weight: 400;
     height: 4em;
     font-size: 12pt;
 }
@@ -338,13 +338,11 @@ table tbody tr:first-child td {
 }
 
 .dbTable tr:hover {
-    background-color: #f2f2f2;
+    background-color: #eff1f2;
 }
-
-.dbTable tr:active tr .active {
-    background-color: grey;
+.dbTable .keys:hover {
+    background-color: #fff;
 }
-
 .inputDB {
     width: 300px;
     height: 300px;

@@ -7,8 +7,4 @@ function cLog($data){
     
     
 }
-
-
-
-
 ?>
