@@ -94,8 +94,36 @@
                             
                             
             echo "</div>";
-            echo "</div>";
+            
         }
+            //Draw windows for inputting stuff? 
+            cLog("This is next section");
+            $sqlCols = "SHOW COLUMNS FROM $tableName";
+            $result = $conn->query($sqlCols);
+            if(!$result){
+            cLog("DB Error, could not list tables");
+            }
+            
+            echo "<div class='inputDB $tableName'>";
+            echo "<button class='closeDBInput' onclick='closeInput(this)'>X</button>";
+            echo "<form class='inputDBSE $tableName'>";
+            while($row = $result->fetch_row()){
+                echo $row[0].": <br>"; 
+                echo "<input type='text' name='$row[0]'><br>";
+                
+                
+            }
+            echo "</form>";
+            echo "</div>";
+            echo "</div>";
+
+                
+             
+
+            
+            
+            
+            
             
         } 
     }
@@ -111,17 +139,21 @@
 
 </body>
 <script>
+    function closeInput(item) {
+        console.log("Closing: " + item);
+        item.parentNode.style.display = "none";
+    }
     function rowClick(row, evt) {
         if (row.classList.contains("active")) {
             //Already has active tag
             row.classList.remove("active");
-        } else{
+        } else {
 
-        rows = document.getElementsByTagName("tr");
-        for (i = 0; i < rows.length; i++) {
-            rows[i].classList.remove("active");
-        }
-        row.classList.add("active");
+            rows = document.getElementsByTagName("tr");
+            for (i = 0; i < rows.length; i++) {
+                rows[i].classList.remove("active");
+            }
+            row.classList.add("active");
         }
     }
 
@@ -152,20 +184,23 @@
     }
 
     function addEntry(t) {
+        //MAKE this visible.. inputDB $tableName
+        var elementName = "inputDB " + t.parentNode.parentElement.id;
+        document.getElementsByClassName(elementName)[0].style.display = "block";
         console.log("Add a record to this table: " + t.parentNode.parentElement.id);
     }
 
     function removeEntry(t) {
         //Will remove active row.
-        var tableName = t.parentNode.parentElement.id; 
+        var tableName = t.parentNode.parentElement.id;
         var rows = document.getElementsByTagName("tr");
         var record = false;
-        for(i = 0; i < rows.length; i++){
-            if(rows[i].classList.contains("active")){
+        for (i = 0; i < rows.length; i++) {
+            if (rows[i].classList.contains("active")) {
                 record = rows[i];
             }
         }
-        console.log("Remove: " + record +" from this table: " + t.parentNode.parentElement.id);
+        console.log("Remove: " + record + " from this table: " + t.parentNode.parentElement.id);
     }
 
 </script>

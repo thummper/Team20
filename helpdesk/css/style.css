@@ -1,82 +1,106 @@
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,400italic,600italic");
-body{
+body {
     background-color: #fff;
-    width:98%;
+    width: 98%;
 }
-h1, h2, h3, h4, h5, h6, a, p, body, textarea{
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+p,
+body,
+textarea {
     font-family: "Source Sans Pro", sans-serif;
 }
-input[type="text"], input[type="password"]{
-	background: #f5f6f7;
-	border: solid 1px #eff1f2;
-	color: inherit;
-	display: block;
-	outline: 0;
-	text-decoration: none;
-    height:2.5em;
+
+input[type="text"],
+input[type="password"] {
+    background: #f5f6f7;
+    border: solid 1px #eff1f2;
+    color: inherit;
+    display: block;
+    outline: 0;
+    text-decoration: none;
+    height: 2.5em;
 }
-input[type="text"]:focus, input[type="password"]:focus{
-	border-color:#4287c9;
-	box-shadow: 0 0 0 2px #4287c9;
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border-color: #4287c9;
+    box-shadow: 0 0 0 2px #4287c9;
 }
+
 button {
     outline: 0;
-	background-color: #51a1ef;
-	border: 0;
-	color: #ffffff;
-	font-weight: 400;
+    background-color: #51a1ef;
+    border: 0;
+    color: #ffffff;
+    font-weight: 400;
     cursor: pointer;
-	height: 2.6em;
-	line-height: 2.6em;
-	text-align: center;
-	text-decoration: none;
-	white-space: nowrap;
+    height: 2.6em;
+    line-height: 2.6em;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
 }
-.login-body{
+
+.login-body {
     background-color: #f5f6f7;
-    
+
 }
-.login-form{
+
+.login-form {
     background-color: #fff;
     width: 25%;
     padding: 3%;
     margin-left: 35%;
     margin-top: 20%;
 }
-.login-form input{
-    width:95.6%;
+
+.login-form input {
+    width: 95.6%;
     padding: 0 2%;
     height: 3.2em;
 }
-.login-field{
+
+.login-field {
     margin: 1.3em 0;
 }
-.login-button{
-    width:100%;
+
+.login-button {
+    width: 100%;
     height: 3.2em;
 }
-.sidebar{
-    float:left;
+
+.sidebar {
+    float: left;
     width: 20%;
     background-color: #f5f6f7;
     top: 0;
     left: 0;
-    bottom:0;
+    bottom: 0;
     position: fixed;
     min-height: 850px;
     min-width: 250px;
 }
-@media screen and (max-height: 850px){
-    .sidebar{
-        position:absolute;
+
+@media screen and (max-height: 850px) {
+    .sidebar {
+        position: absolute;
     }
 }
- a{
+
+a {
     text-decoration: none;
     color: #000;
     font-weight: 300;
 }
-.sidebar-top{
+
+.sidebar-top {
     padding-left: 6%;
     text-align: left;
     padding-top: 0.8em;
@@ -88,6 +112,7 @@ button {
     width: 94%;
 
 }
+
 .sidebar-top h2 {
     padding-left: 5%;
     padding-bottom: 0.2em;
@@ -97,8 +122,9 @@ button {
     border-bottom: solid 3px #51a1ef;
     color: #333;
 }
-.sidebar-top p{
-	padding-right: 9%;
+
+.sidebar-top p {
+    padding-right: 9%;
     text-align: center;
     font-style: italic;
     line-height: 0.2em;
@@ -106,45 +132,53 @@ button {
     font-weight: 300;
 
 }
-.sidebar-mid{
+
+.sidebar-mid {
     margin-top: 14em;
 }
+
 .nav {
     list-style: none;
     padding: 0;
-    margin:0;
+    margin: 0;
     width: 98%;
     margin-left: 2%;
 }
-.nav a{
-    display:block;
-    line-height:3em;
+
+.nav a {
+    display: block;
+    line-height: 3em;
     border-bottom: solid 1px #eff1f2;
     padding-left: 15%;
 
 }
-.top-sub{
-   border-top: solid 1px #eff1f2;
+
+.top-sub {
+    border-top: solid 1px #eff1f2;
 }
 
-.nav a:hover, .active{
+.nav a:hover,
+.active {
     background-color: #eff1f2;
 
 }
-.nav h3{
+
+.nav h3 {
     color: #333;
-	padding-left: 10%;
-    
-    
+    padding-left: 10%;
+
+
 }
-.sidebar-bot{
-    bottom:0;
+
+.sidebar-bot {
+    bottom: 0;
     position: absolute;
     text-align: center;
-    width:100%;
+    width: 100%;
 }
-.sidebar-bot a{
-    background-color:#51a1ef;
+
+.sidebar-bot a {
+    background-color: #51a1ef;
 
     display: block;
     width: auto;
@@ -153,24 +187,26 @@ button {
     color: #fff;
     font-weight: 400;
 }
-.sidebar-bot a:hover{
-    background-color:#4287c9;
+
+.sidebar-bot a:hover {
+    background-color: #4287c9;
 
 }
 
 /* Database Page Stuff */
 
-.databaseWrapper{
+.databaseWrapper {
     display: flex;
     justify-content: center;
     align-content: center;
 }
 
-.dbbuttonContainer{
+.dbbuttonContainer {
     overflow: hidden;
     border: 1px solid #ccc;
     background-color: #f1f1f1;
 }
+
 .dbbuttonContainer button {
     background-color: inherit;
     float: left;
@@ -183,45 +219,62 @@ button {
     color: grey;
 
 }
+
 .dbbuttonContainer button.active {
     background-color: #ccc;
 }
+
 .dbbuttonContainer button:hover {
     background-color: #ddd;
 }
+
 .tabcontent {
     display: none;
     padding: 6px 12px;
     border: 1px solid #ccc;
     border-top: none;
 }
+
 .tabcontent table {
     width: 100%;
 }
+
 .tabcontent table td {
     text-align: center;
 }
 
-#dbBody{
+#dbBody {
     width: 100vw;
     margin: 0;
 }
+
 .dbedit {
     display: flex;
     justify-content: center;
 }
-.dbedit button{
+
+.dbedit button {
     margin: 15px 15px 0px 15px;
     padding: 3px 14px;
     height: auto;
 }
+
 .dbTable tr:hover {
     background-color: #f2f2f2;
 }
+
 .dbTable tr:active tr .active {
     background-color: grey;
 }
 
-
-
-
+.inputDB {
+    width: 300px;
+    height: 300px;
+    display: none;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
