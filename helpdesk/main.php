@@ -11,10 +11,7 @@
         <title>Help Desk</title>
         <link rel="shortcut icon" href="media/helpdesk.ico" width='16px' height='16px'/>
         <link rel="stylesheet" href="css/style.css" />
-        <?php 
-            require_once("myFunctions.php");
-            cLog("Logged in as: " . $_SESSION["staffID"] . " with name: " . $_SESSION["staffName"] . " job title: " . $_SESSION["jobTitle"]);
-        ?>  
+         
 	</head>
 	<body>
          
@@ -53,6 +50,13 @@
                     </div>
                 </div>
         	<div id="table" class="table">
+            </div>
+            <div class="page-num">
+                <ul>
+                    <li class="prev"><button id="prev" class="first-last">Previous</button></li>
+                    <li class="page-i">1</li>
+                    <li class="next"><button id="next">Next</button></li>
+                </ul>
             </div>
         </div>
         

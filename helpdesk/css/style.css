@@ -275,6 +275,42 @@ table tbody tr:first-child td {
     background-color:#4287c9;
 
 }
+.page-num{
+    position:fixed;
+    bottom: 0;
+    width:98%;
+    margin-bottom: 1em;
+}
+.page-num ul{
+    list-style: none;
+    width: 50%;
+    margin-left: 32%;
+    position: relative;
+}
+.page-num ul li {
+    display: inline-block;
+}
+.page-num ul li button{
+    background-color:#51a1ef;
+    font-size: 11pt;
+    display: block;
+    text-align: center;
+    color: #fff;
+    font-weight: 400;
+    text-decoration: none;
+    width:100%;
+}
+.prev, .next{
+    width:10%;
+}
+.page-num ul li button:hover{
+    background-color:#4287c9;
+
+}
+.page-num ul .page-i{
+    color: #333;
+    margin: 0 2%;
+}
 
 /* Database Page Stuff */
 
