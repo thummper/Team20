@@ -15,7 +15,7 @@
         include("config.php");
         $conn = new mysqli($DBservername, $DBusername, $DBpassword, $dbname); 
         $start = 0;
-        $ticketTable = " <table style=\"width:100%\" id=\"issuesTable\"><tr><th>Ticket ID:</th><th>Category:</th><th>Specialist ID:</th><th>Date Added:</th><th>Priority:</th> <th>Resolved:</th></tr>";
+        $ticketTable = " <table style=\"width:100%\" id=\"issuesTable\"><tr><th>Ticket ID:</th><th>Category:</th><th>Operator:</th><th>Date Added:</th><th>Specialist:</th><th>Priority:</th> <th>Resolved:</th></tr>";
             $sql1 = "SELECT * FROM Ticket ORDER BY Ticket_ID DESC";
             $result1 = $conn->query($sql1);
             if(!$result1){
@@ -24,8 +24,32 @@
             
             //Draw the table
             while( ($row = $result1->fetch_assoc())){
-                $ticketTable = $ticketTable."<tr><td>".$row["Ticket_ID"]."</td><td>".$row["Problem_Type"]."</td><td>".$row["Specialist_ID"]."</td><td>".$row["Date_Made"]."</td><td>".$row["Priority"]."</td><td>".$row["Resolved"]."</td><td><a href='#'>View</a></td></tr>";
-            $start++;
+                $conn1 = new mysqli($DBservername, $DBusername, $DBpassword, $dbname); 
+                $sql2 = "SELECT * FROM Staff";
+                $result2 = $conn1->query($sql2);
+                if(!$result2){
+                cLog("DB Error");
+                } else {
+                while( ($row1 = $result2->fetch_assoc())){
+                    if($row1["Staff_ID"]==$row["Specialist_ID"]){
+                        $spec = $row1["Forename"]." ".$row1["Surname"];
+                }
+                }
+                }
+                $conn2 = new mysqli($DBservername, $DBusername, $DBpassword, $dbname); 
+                $sql3 = "SELECT * FROM Staff";
+                $result3 = $conn2->query($sql3);
+                if(!$result3){
+                cLog("DB Error");
+                } else {
+                while( ($row2 = $result3->fetch_assoc())){
+                    if($row2["Staff_ID"]==$row["Staff_ID"]){
+                        $op = $row2["Forename"]." ".$row2["Surname"];
+                }
+                }
+                }
+                $ticketTable = $ticketTable."<tr><td>".$row["Ticket_ID"]."</td><td>".$row["Problem_Type"]."</td><td>".$op."</td><td>".$row["Date_Made"]."</td><td>".$spec."</td><td>".$row["Priority"]."</td><td>".$row["Resolved"]."</td><td><a href='#'>View</a></td></tr>";
+                $start++;
             }
             $ticketTable = $ticketTable."</table>"; 
         }
