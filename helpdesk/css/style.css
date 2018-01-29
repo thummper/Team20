@@ -310,6 +310,9 @@ table tbody tr:first-child td {
     color: #333;
     margin: 0 2%;
 }
+.page-num ul li button:disabled{
+    background-color: #8cc0f2;
+}
 
 /* Database Page Stuff */
 
@@ -327,7 +330,7 @@ table tbody tr:first-child td {
 }
 
 .dbbuttonContainer button {
-    background-color: inherit;
+    background-color: #f5f6f7;
     float: left;
     border: none;
     outline: none;
@@ -337,7 +340,7 @@ table tbody tr:first-child td {
     color: #000;
     font-weight: 400;
     height: 4em;
-    font-size: 11pt;
+    font-size: 11pt; 
 }
 
 .dbbuttonContainer button.active {
