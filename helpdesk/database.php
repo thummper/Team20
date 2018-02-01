@@ -35,7 +35,7 @@
         $tableNames = array();
         echo "<div class='dbbuttonContainer'>";
         while($row = $result->fetch_row()){
-            //Make ths buttons for tabbed nav 
+            //Make the buttons for tabbed nav 
             
                 
             
@@ -111,16 +111,16 @@
             
             echo "<div class='inputDB $tableName'>";
             echo "<button class='closeDBInput' onclick='closeInput(this)'>X</button>";
-            echo "<form class='inputDBSE $tableName'>";
+            echo "<form class='inputDBSE $tableName' action='javascript:void(0);'>";
             while($row = $result->fetch_row()){
                 echo $row[0].": <br>"; 
                 echo "<input type='text' name='$row[0]'><br>";
                 
                 
             }
-            echo "</form>";
-            echo "</div>";
-            echo "</div>";
+            echo "<button onclick='databaseInput(this.parentNode, \"$tableName\")'> Submit</button>";
+            echo "</form></div></div>";
+        
         }
                 
              
@@ -133,111 +133,175 @@
         } 
     }
 ?>
-<script>
-    function closeInput(item) {
-        console.log("Closing: " + item);
-        item.parentNode.style.display = "none";
-    }
-    function rowClick(row, evt) {
-        if (row.classList.contains("active")) {
-            //Already has active tag
-            row.classList.remove("active");
-        } else {
+    <script>
+        function closeInput(item) {
+            console.log("Closing: " + item);
+            item.parentNode.style.display = "none";
+        }
 
-            rows = document.getElementsByTagName("tr");
+        function rowClick(row, evt) {
+            if (row.classList.contains("active")) {
+                //Already has active tag
+                row.classList.remove("active");
+            } else {
+
+                rows = document.getElementsByTagName("tr");
+                for (i = 0; i < rows.length; i++) {
+                    rows[i].classList.remove("active");
+                }
+                row.classList.add("active");
+            }
+        }
+
+
+        function openTable(evt, tableName) {
+
+            var i, tabcontent, tablinks;
+
+            // Get all elements with class="tabcontent" and hide them
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            // Get all elements with class="tablinks" and remove the class "active"
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            // Show the current tab, and add an "active" class to the button that opened the tab
+            document.getElementById(tableName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        function trClick(row, event) {
+
+        }
+
+        function addEntry(t) {
+            //MAKE this visible.. inputDB $tableName
+            var elementName = "inputDB " + t.parentNode.parentElement.id;
+            document.getElementsByClassName(elementName)[0].style.display = "block";
+            console.log("Add a record to this table: " + t.parentNode.parentElement.id);
+        }
+
+        function removeEntry(t) {
+            //Will remove active row.
+            var tableName = t.parentNode.parentElement.id;
+            var rows = document.getElementsByTagName("tr");
+            var record = false;
             for (i = 0; i < rows.length; i++) {
-                rows[i].classList.remove("active");
+                if (rows[i].classList.contains("active")) {
+                    record = rows[i];
+                }
             }
-            row.classList.add("active");
-        }
-    }
-
-
-    function openTable(evt, tableName) {
-
-        var i, tabcontent, tablinks;
-
-        // Get all elements with class="tabcontent" and hide them
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
+            console.log("Remove: " + record + " from this table: " + t.parentNode.parentElement.id);
         }
 
-        // Get all elements with class="tablinks" and remove the class "active"
-        tablinks = document.getElementsByClassName("tablinks");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(" active", "");
-        }
+        function databaseInput(form, tableName) {
 
-        // Show the current tab, and add an "active" class to the button that opened the tab
-        document.getElementById(tableName).style.display = "block";
-        evt.currentTarget.className += " active";
-    }
+            var data = [];
+            //Should do basic database validation?? 
+            console.log(form + " has been submitted for: " + tableName);
+            var nodeList = form.childNodes;
+            data.push({Field: "TableName", Data: tableName});
+            for (i in nodeList) {
+                if (nodeList[i].tagName == "INPUT") {
 
-    function trClick(row, event) {
+                    if (nodeList[i].name.length == 0) {
+                        //Nothing has been submitted in form.
+                        data.push({
+                            Field: nodeList[i].name,
+                            Data: ""
+                        });
 
-    }
 
-    function addEntry(t) {
-        //MAKE this visible.. inputDB $tableName
-        var elementName = "inputDB " + t.parentNode.parentElement.id;
-        document.getElementsByClassName(elementName)[0].style.display = "block";
-        console.log("Add a record to this table: " + t.parentNode.parentElement.id);
-    }
 
-    function removeEntry(t) {
-        //Will remove active row.
-        var tableName = t.parentNode.parentElement.id;
-        var rows = document.getElementsByTagName("tr");
-        var record = false;
-        for (i = 0; i < rows.length; i++) {
-            if (rows[i].classList.contains("active")) {
-                record = rows[i];
+
+
+                    } else {
+                        data.push({
+                            Field: nodeList[i].name,
+                            Data: nodeList[i].value
+                        });
+                    }
+
+
+
+                    //Now it will try and submit to database
+
+                }
+
+
             }
-        }
-        console.log("Remove: " + record + " from this table: " + t.parentNode.parentElement.id);
-    }
 
-</script>
+
+            var json_upload = "json_name=" + JSON.stringify(data);
+            var xmlhttp = new XMLHttpRequest(); // new HttpRequest instance 
+            
+              xmlhttp.onreadystatechange = function() {
+              if (this.readyState == 4 && this.status == 200) {
+              console.log(this.responseText);
+               }}
+            xmlhttp.open("POST", "/addDatabase.php");
+            xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xmlhttp.send(json_upload);
+
+
+
+        }
+
+    </script>
 </head>
 
 <body>
-        <div class="sidebar">
-        	<div class="sidebar-top">
-                <h2><?php echo $_SESSION["jobTitle"]; ?></h2>
-                <p><?php echo $_SESSION["staffName"]; ?></p>
-            </div>
-            <div class="sidebar-mid">
-                <ul class="nav">
-                    <li><h3>Tickets</h3></li> 
-                    <li><a href="main.php" class="top-sub">All</a></li>
-                    <li><a href="#">Open</a></li>
-                    <li><a href="#">Closed</a></li>
-                    <li><h3>Queries</h3></li>
-                    <li><a href="#" class="top-sub">All</a></li>
-                    <li><a href="#">Open</a></li>
-                    <li><h3>More</h3></li>
-                    <li><a href="#" class="top-sub">Analytics</a></li>
-                    <li><a href="#" class="active">Databases</a></li>
-                    <li><a href="logout.php">Log out</a></li>
-                </ul>
-            </div> 
-            <div class="sidebar-bot">
-                <a class="call" href="call.php">New Call</a>
-            </div>
+    <div class="sidebar">
+        <div class="sidebar-top">
+            <h2>
+                <?php echo $_SESSION["jobTitle"]; ?>
+            </h2>
+            <p>
+                <?php echo $_SESSION["staffName"]; ?>
+            </p>
         </div>
-        <div class="main">
-            <div class="title">
-                <h1>Databases</h1>
-            </div>
-        	<div id="dbBody">
-                <?php
+        <div class="sidebar-mid">
+            <ul class="nav">
+                <li>
+                    <h3>Tickets</h3>
+                </li>
+                <li><a href="main.php" class="top-sub">All</a></li>
+                <li><a href="#">Open</a></li>
+                <li><a href="#">Closed</a></li>
+                <li>
+                    <h3>Queries</h3>
+                </li>
+                <li><a href="#" class="top-sub">All</a></li>
+                <li><a href="#">Open</a></li>
+                <li>
+                    <h3>More</h3>
+                </li>
+                <li><a href="#" class="top-sub">Analytics</a></li>
+                <li><a href="#" class="active">Databases</a></li>
+                <li><a href="logout.php">Log out</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-bot">
+            <a class="call" href="call.php">New Call</a>
+        </div>
+    </div>
+    <div class="main">
+        <div class="title">
+            <h1>Databases</h1>
+        </div>
+        <div id="dbBody">
+            <?php
                     dbData();
                 ?>
-                <script> openTable(event, "Specialisation");</script>
-                
-            </div>        
+                <!-- This is causing error <script> openTable(event, "Specialisation");</script> -->
+
         </div>
+    </div>
 </body>
 
 
