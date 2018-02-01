@@ -205,7 +205,10 @@
             //Should do basic database validation?? 
             console.log(form + " has been submitted for: " + tableName);
             var nodeList = form.childNodes;
-            data.push({Field: "TableName", Data: tableName});
+            data.push({
+                Field: "TableName",
+                Data: tableName
+            });
             for (i in nodeList) {
                 if (nodeList[i].tagName == "INPUT") {
 
@@ -239,11 +242,12 @@
 
             var json_upload = "json_name=" + JSON.stringify(data);
             var xmlhttp = new XMLHttpRequest(); // new HttpRequest instance 
-            
-              xmlhttp.onreadystatechange = function() {
-              if (this.readyState == 4 && this.status == 200) {
-              console.log(this.responseText);
-               }}
+
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    console.log(this.responseText);
+                }
+            }
             xmlhttp.open("POST", "/addDatabase.php");
             xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             xmlhttp.send(json_upload);
