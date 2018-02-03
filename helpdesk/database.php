@@ -267,26 +267,20 @@
             </p>
         </div>
         <div class="sidebar-mid">
-            <ul class="nav">
-                <li>
-                    <h3>Tickets</h3>
-                </li>
-                <li><a id="all" href="main.php" class="top-sub">All</a></li>
-                <li><a id="open" href="main.php?tableType=Open">Open</a></li>
-                <li><a id="closed" href="main.php?tableType=Closed">Closed</a></li>
-                <li>
-                    <h3>Queries</h3>
-                </li>
-                <li><a href="#" class="top-sub">All</a></li>
-                <li><a href="#">Open</a></li>
-                <li>
-                    <h3>More</h3>
-                </li>
-                <li><a href="#" class="top-sub">Analytics</a></li>
-                <li><a href="#" class="active">Databases</a></li>
-                <li><a href="logout.php">Log out</a></li>
-            </ul>
-        </div>
+                <ul class="nav">
+                    <li><h3>Tickets</h3></li> 
+                    <li><a id="all" href="main.php" class="top-sub">All</a></li>
+                    <li><a id="open" href="main.php?tableType=Open">Open</a></li>
+                    <li><a id="closed" href="main.php?tableType=Closed">Closed</a></li>
+                    <li><h3>Queries</h3></li>
+                    <li><a href="view-query.php" class="top-sub">All</a></li>
+                    <li><a href="view-query.php?tableType=Open">Open</a></li>
+                    <li><h3>More</h3></li>
+                    <li><a href="#" class="top-sub">Analytics</a></li>
+                    <li><a href="database.php">Databases</a></li>
+                    <li><a href="logout.php">Log out</a></li>
+                </ul>
+            </div>
         <div class="sidebar-bot">
             <a class="call" href="call.php">New Call</a>
         </div>
