@@ -49,12 +49,11 @@
             <input type="submit" class="s-button s-button-call" value="Search" onclick="searchstaff();" />
         </div>
             <table class="staff-info" style="width:100%" >
-                <tr >
-                    <th >Staff ID:</th>
-                    <th >Full name:</th>
-                    <th >Job title:</th> 
-                    <th >Department:</th> 
-                    <th >Telephone number:</th> 
+                <tr>
+                    <th>Full name:</th>
+                    <th>Job title:</th> 
+                    <th>Department:</th> 
+                    <th>Telephone number:</th> 
                 </tr>
                 <tr id="staffinfo" >
                     <td >...</td>
@@ -65,8 +64,8 @@
                 </tr>
             </table>
             <ul class="tab" >
-                <li ><a id="issuebutton" class="selected" >Issue</a></li>
-                <li ><a id="querybutton" >Query</a></li>
+                <li><a id="issuebutton" class="selected" >Ticket</a></li>
+                <li><a id="querybutton" >Query</a></li>
             </ul>
 
     </div>
