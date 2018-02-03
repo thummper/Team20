@@ -271,9 +271,9 @@
                 <li>
                     <h3>Tickets</h3>
                 </li>
-                <li><a href="main.php" class="top-sub">All</a></li>
-                <li><a href="#">Open</a></li>
-                <li><a href="#">Closed</a></li>
+                <li><a id="all" href="main.php" class="top-sub">All</a></li>
+                <li><a id="open" href="main.php?tableType=Open">Open</a></li>
+                <li><a id="closed" href="main.php?tableType=Closed">Closed</a></li>
                 <li>
                     <h3>Queries</h3>
                 </li>
