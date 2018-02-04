@@ -13,21 +13,33 @@
         <link rel="stylesheet" href="css/style.css" />
         <?php
             function FullTable(){
-                $sql1 = "SELECT * FROM Ticket ORDER BY Ticket_ID DESC";
                 $start = 0;
+                if(!empty($_GET['query'])){
+                    $sql1 = "SELECT * FROM Ticket WHERE Problem_Type LIKE '%".$_GET['query']."%' ORDER BY Ticket_ID DESC";
+                }else {
+                    $sql1 = "SELECT * FROM Ticket ORDER BY Ticket_ID DESC";
+                }
                 echo FillTable($sql1, $start);
                 echo "<script>document.getElementById(\"all\").classList.add('active');document.getElementById(\"open\").classList.remove('active');document.getElementById(\"closed\").classList.remove('active'); </script>";
             }
             function OpenTable(){
-                $sql1 = "SELECT * FROM Ticket WHERE Resolved = 'N' ORDER BY Ticket_ID DESC";
                 $start = 0;
+                if(!empty($_GET['query'])){
+                    $sql1 = "SELECT * FROM Ticket WHERE Problem_Type LIKE '%".$_GET['query']."%' AND Resolved = 'N' ORDER BY Ticket_ID DESC";
+                }else {
+                    $sql1 = "SELECT * FROM Ticket WHERE Resolved = 'N' ORDER BY Ticket_ID DESC";
+                }
                 echo FillTable($sql1, $start);
                 echo "<script>document.getElementById(\"all\").classList.remove('active');document.getElementById(\"open\").classList.add('active');document.getElementById(\"closed\").classList.remove('active'); </script>";
 
             }
             function ClosedTable(){
-                $sql1 = "SELECT * FROM Ticket WHERE Resolved = 'Y' ORDER BY Ticket_ID DESC";
                 $start = 0;
+                if(!empty($_GET['query'])){
+                    $sql1 = "SELECT * FROM Ticket WHERE Problem_Type LIKE '%".$_GET['query']."%' AND Resolved = 'Y' ORDER BY Ticket_ID DESC";
+                }else {
+                    $sql1 = "SELECT * FROM Ticket WHERE Resolved = 'Y' ORDER BY Ticket_ID DESC";
+                }
                 echo FillTable($sql1, $start);
                 echo "<script>document.getElementById(\"all\").classList.remove('active');document.getElementById(\"open\").classList.remove('active');document.getElementById(\"closed\").classList.add('active'); </script>";
             }
@@ -109,14 +121,17 @@
             </div>
             <div class="menu-bar">
                     <div class="search">
-                        <input type="text" class="s-bar" name="query" id="query" placeholder="Problem Type" />
-                        <input type="submit" class="s-button" value="Search" onclick = ""/>
+                        <form action="<?php echo $url; ?>" method="get">
+                            <input type="hidden" name="tableType" value="<?php echo htmlspecialchars($_GET['tableType']);?>">
+                            <input type="text" class="s-bar" name="query" id="query" placeholder="Problem Type" />
+                            <input type="submit" class="s-button" value="Search" onclick = ""/>
+                        </form>
                     </div>
                 </div>
         	<div id="table" class="table">
                 <?php
                     if ($_GET['tableType'] == 'Open') { 
-                       OpenTable();
+                        OpenTable();
                     } else if ($_GET['tableType'] == 'Closed'){ 
                         ClosedTable();
                     } else {
