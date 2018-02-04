@@ -25,17 +25,11 @@
                     header("Location: main.php");
                 } else {
                     session_destroy();
-                    echo '<script language="javascript">';
-                    echo 'alert("incorrect username and password")';
-                    echo 'location.href = "index.php";';
-                    echo '</script>';
+                    echo '<script language="javascript">alert("incorrect username and password");location.href = "index.php";</script>';
                 }
           }else{
               session_destroy();
-              echo '<script language="javascript">';
-              echo 'alert("incorrect username and password");';
-              echo 'location.href = "index.php";';
-              echo '</script>';   
+              echo '<script language="javascript">alert("incorrect username and password");location.href = "index.php";</script>'; 
           }
       }
    }
@@ -46,13 +40,11 @@
         <link rel="shortcut icon" href="media/helpdesk.ico" width='16px' height='16px'/>
         <link rel="stylesheet" href="css/style.css" />    
 	</head>
-    
 	<body class="login-body">
         <form action=" " class="login-form" method="post">
             <input type="text" placeholder="Staff ID" name="stfID" required>
             <input type="password" placeholder="Password" name="psw" class="login-field" required>
             <button type="submit" class="login-button">Login</button>
         </form>   
-        
 	</body>
 </html> 
