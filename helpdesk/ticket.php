@@ -42,7 +42,7 @@
     </div>
     <div class="main">
         <div class="title">
-            <h1>Ticket</h1>
+            <h1>Ticket: <?php echo $_GET["TicketID"]; ?></h1>
         </div>
 
     </div>

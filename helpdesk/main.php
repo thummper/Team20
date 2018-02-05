@@ -87,7 +87,7 @@
                     }
                     }
                     }
-                    $ticketTable = $ticketTable."<tr><td>".$row["Ticket_ID"]."</td><td>".$row["Problem_Type"]."</td><td>".$op."</td><td>".$row["Date_Made"]."</td><td>".$spec."</td><td>".$row["Priority"]."</td><td>".$row["Resolved"]."</td><td><a href='#'>View</a></td></tr>";
+                    $ticketTable = $ticketTable."<tr><td>".$row["Ticket_ID"]."</td><td>".$row["Problem_Type"]."</td><td>".$op."</td><td>".$row["Date_Made"]."</td><td>".$spec."</td><td>".$row["Priority"]."</td><td>".$row["Resolved"]."</td><td><a href='ticket.php?TicketID=".$row["Ticket_ID"]."'>View</a></td></tr>";
                     $start++;
                 }
                 $ticketTable = $ticketTable."</table>"; 
