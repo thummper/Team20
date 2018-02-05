@@ -31,6 +31,7 @@
                 }
                 echo FillTable($sql1, $start);
                 echo "<script>document.getElementById(\"all\").classList.remove('active');document.getElementById(\"open\").classList.add('active');document.getElementById(\"closed\").classList.remove('active'); </script>";
+
             }
             function ClosedTable(){
                 $start = 0;
@@ -47,10 +48,13 @@
                 $conn = new mysqli($DBservername, $DBusername, $DBpassword, $dbname); 
                 $start = 0;
                 $ticketTable = " <table style=\"width:100%\" id=\"issuesTable\"><tr><th>Ticket ID:</th><th>Category:</th><th>Operator:</th><th>Date Added:</th><th>Specialist:</th><th>Priority:</th> <th>Resolved:</th></tr>";
+
                 $result1 = $conn->query($sql1);
                 if(!$result1){
                     cLog("DB Error");
                 } else {
+
+                //Draw the table
                 while( ($row = $result1->fetch_assoc())){
                     $conn1 = new mysqli($DBservername, $DBusername, $DBpassword, $dbname); 
                     $sql2 = "SELECT * FROM Staff";

@@ -188,7 +188,15 @@
 
         function removeEntry(t) {
             //Will remove active row.
+            var data = [];
             var tableName = t.parentNode.parentElement.id;
+            data.push({
+                Field: "TableName",
+                Data: tableName
+            });
+            //Get keys for table
+            var keys = t.parentNode.parentElement.getElementsByClassName("keys")[0];
+            console.log(keys);
             var rows = document.getElementsByTagName("tr");
             var record = false;
             for (i = 0; i < rows.length; i++) {
@@ -196,7 +204,31 @@
                     record = rows[i];
                 }
             }
+            record = record.children;
+            for (i = 0; i < record.length; i++) {
+                console.log(record[i].innerHTML + "From col: " + keys.children[i].innerHTML);
+                data.push({
+                    Field: keys.children[i].innerHTML,
+                    Data: "'"+record[i].innerHTML+"'"
+                });
+                //Need to push 
+            }
+
             console.log("Remove: " + record + " from this table: " + t.parentNode.parentElement.id);
+            //Push data to ajax.
+            var json_upload = "user_data=" + JSON.stringify(data);
+
+            var xmlhttp = new XMLHttpRequest(); // new HttpRequest instance 
+
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    console.log(this.responseText);
+                }
+            }
+            xmlhttp.open("POST", "/removeDatabase.php");
+            xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xmlhttp.send(json_upload);
+
         }
 
         function databaseInput(form, tableName) {
@@ -205,7 +237,10 @@
             //Should do basic database validation?? 
             console.log(form + " has been submitted for: " + tableName);
             var nodeList = form.childNodes;
-            data.push({Field: "TableName", Data: tableName});
+            data.push({
+                Field: "TableName",
+                Data: tableName
+            });
             for (i in nodeList) {
                 if (nodeList[i].tagName == "INPUT") {
 
@@ -223,7 +258,7 @@
                     } else {
                         data.push({
                             Field: nodeList[i].name,
-                            Data:  "'"+nodeList[i].value+"'"
+                            Data: "'" + nodeList[i].value + "'"
                         });
                     }
 
@@ -238,13 +273,14 @@
 
 
             var json_upload = "user_data=" + JSON.stringify(data);
-   
+
             var xmlhttp = new XMLHttpRequest(); // new HttpRequest instance 
-            
-              xmlhttp.onreadystatechange = function() {
-              if (this.readyState == 4 && this.status == 200) {
-              console.log(this.responseText);
-               }}
+
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    console.log(this.responseText);
+                }
+            }
             xmlhttp.open("POST", "/addDatabase.php");
             xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             xmlhttp.send(json_upload);
@@ -267,20 +303,26 @@
             </p>
         </div>
         <div class="sidebar-mid">
-                <ul class="nav">
-                    <li><h3>Tickets</h3></li> 
-                    <li><a id="all" href="main.php" class="top-sub">All</a></li>
-                    <li><a id="open" href="main.php?tableType=Open">Open</a></li>
-                    <li><a id="closed" href="main.php?tableType=Closed">Closed</a></li>
-                    <li><h3>Queries</h3></li>
-                    <li><a href="queries.php" class="top-sub">All</a></li>
-                    <li><a href="queries.php?tableType=Open">Open</a></li>
-                    <li><h3>More</h3></li>
-                    <li><a href="#" class="top-sub">Analytics</a></li>
-                    <li><a href="database.php">Databases</a></li>
-                    <li><a href="logout.php">Log out</a></li>
-                </ul>
-            </div>
+            <ul class="nav">
+                <li>
+                    <h3>Tickets</h3>
+                </li>
+                <li><a id="all" href="main.php" class="top-sub">All</a></li>
+                <li><a id="open" href="main.php?tableType=Open">Open</a></li>
+                <li><a id="closed" href="main.php?tableType=Closed">Closed</a></li>
+                <li>
+                    <h3>Queries</h3>
+                </li>
+                <li><a href="queries.php" class="top-sub">All</a></li>
+                <li><a href="queries.php?tableType=Open">Open</a></li>
+                <li>
+                    <h3>More</h3>
+                </li>
+                <li><a href="#" class="top-sub">Analytics</a></li>
+                <li><a href="database.php">Databases</a></li>
+                <li><a href="logout.php">Log out</a></li>
+            </ul>
+        </div>
         <div class="sidebar-bot">
             <a class="call" href="call.php">New Call</a>
         </div>
