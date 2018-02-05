@@ -111,13 +111,6 @@
                 }
             ?>
             </div>
-            <div class="page-num">
-                <ul>
-                    <li class="prev"><button id="prev" disabled>Previous</button></li>
-                    <li class="page-i">1</li>
-                    <li class="next"><button id="next" disabled>Next</button></li>
-                </ul>
-            </div>
         </div>
         
 	</body>
