@@ -111,7 +111,7 @@
             }
             
             //Window for inputting new record.
-            
+            echo "<div class='modal'>";
             echo "<div class='inputDB $tableName'>";
             echo "<button class='closeDBInput' onclick='closeInput(this)'>X</button>";
             echo "<form class='inputDBSE $tableName' action='javascript:void(0);'>";
@@ -121,11 +121,12 @@
                 
                 
             }
-            echo "<button onclick='databaseInput(this.parentNode, \"$tableName\", \"INPUT\") '> Submit</button>";
-            echo "</form></div>";
+            echo "<button class='dbSubmit' onclick='databaseInput(this.parentNode, \"$tableName\", \"INPUT\") '> Submit</button>";
+            echo "</form></div></div>";
             
             
             //Window for editing existing record. 
+            echo "<div class='modal'>";
             echo "<div class='editRecord $tableName'>";
             echo "<button class='closeDBInput' onclick='closeInput(this)'>X</button>";
             echo "<form class='editDBSE $tableName' action='javascript:void(0);'>";
@@ -138,8 +139,8 @@
             echo $row[0].": <br>"; 
             echo "<input type='text' name='$row[0]'><br>";
             }
-            echo "<button onclick='databaseInput(this.parentNode, \"$tableName\", \"EDIT\")'> Submit</button>";
-            echo "</form></div>";
+            echo "<button class='dbSubmit' onclick='databaseInput(this.parentNode, \"$tableName\", \"EDIT\")'> Submit</button>";
+            echo "</form></div></div>";
             
             
             
@@ -166,7 +167,8 @@
     <script>
         function closeInput(item) {
             console.log("Closing: " + item);
-            item.parentNode.style.display = "none";
+            console.log(item.parentElement);
+            item.parentElement.parentElement.style.display = "none";
         }
 
         function rowClick(row, evt) {
@@ -212,7 +214,8 @@
         function addEntry(t) {
             //MAKE this visible.. inputDB $tableName
             var elementName = "inputDB " + t.parentNode.parentElement.id;
-            document.getElementsByClassName(elementName)[0].style.display = "block";
+            var element = document.getElementsByClassName(elementName)[0];
+            element.parentElement.style.display = "block";
             console.log("Add a record to this table: " + t.parentNode.parentElement.id);
         }
         
@@ -221,37 +224,34 @@
         var globalEdit = []; 
         function editEntry(t) {
             //Make the edit window visible (should only make visible if it can find an active table row)
-            var elementName = "editRecord " + t.parentNode.parentElement.id;
+            var elementName = "editRecord " + t.parentElement.id;
             var element = document.getElementsByClassName(elementName)[0];
-            element.style.display = "block";
+            element.parentElement.style.display = "block";
+            
+      
+          
             //Set the fields in the form to the selected row. 
-            console.log("PARENT ELEMENT: " + element.parentElement);
-            var keys = element.parentElement.getElementsByClassName("keys")[0];
+            
+            var keys = element.parentElement.parentElement.getElementsByClassName("keys")[0];
             //Get Form? 
             var form = element.getElementsByTagName("form")[0];
             var formElements = form.getElementsByTagName("input");
-            console.log("FORM ELEMENT: " + formElements);
+            
             //Get the active row. 
-            var rows = element.parentElement.getElementsByTagName("tr");
+            var rows = element.parentElement.parentElement.getElementsByTagName("tr");
    
-            console.log("keys: "+ keys);
+            
             for( i = 0; i < rows.length; i++){
                 if(rows[i].classList.contains("active")){
                     //This is the record we want.
-                    console.log("HELLO ROWS ACTIVE IS: " + rows[i]);
+                    
                     for(j = 0; j<rows[i].children.length; j++){
                         if(j == 0){
                             //First item is always primary key - will store this for the UPDATE query. 
                             
                             globalEdit.push({Field: keys.children[j].innerHTML,
-                              Data: rows[i].children[j].innerHTML});
-                            console.log("GLOBAL EDIT: " + globalEdit);
-                         
-                            
+                              Data: rows[i].children[j].innerHTML});    
                         }
-                        console.log("HELLO AGAIN?");
-                        console.log(formElements[j]);
-                        console.log("should be: " + rows[i].children[j].innerHTML);
                         formElements[j].value = rows[i].children[j].innerHTML;
                     }
 

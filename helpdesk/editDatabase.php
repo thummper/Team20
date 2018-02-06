@@ -43,7 +43,7 @@ for($i = 0; $i < sizeof($userData); $i++){
         echo "sql QUERY IS: " . $sql;
         $result = $conn->query($sql);
         if($result === TRUE){
-            echo "Made new record";
+            echo "EDIT";
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
                 }
