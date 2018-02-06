@@ -125,7 +125,7 @@ a {
 }
 
 .sidebar-mid {
-    margin-top: 14em;
+    margin-top: 12em;
 }
 
 .nav {
@@ -134,6 +134,7 @@ a {
     margin: 0;
     width: 98%;
     margin-left: 2%;
+
 }
 
 .nav a {
@@ -235,7 +236,7 @@ table tbody tr:first-child td {
     margin-top: 4em;
     width: 80%;
     margin-left:20.7%;
-    min-width: 1200px;
+    min-width: 600px;
 }
 .title{
     width:100%
