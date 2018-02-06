@@ -51,7 +51,7 @@
         </div>
         <div class="id-sel" >
             <input type="text" class="s-bar s-bar-id" name="staff-id" id="staff-id" placeholder="Staff ID" />
-            <input type="submit" class="s-button s-button-call" value="Search" onclick="searchstaff();" />
+            <input type="submit" class="s-button s-button-call" value="Search" />
         </div>
             <table class="staff-info" style="width:100%" >
                 <tr>
@@ -73,7 +73,25 @@
                 <li><a id="issuebutton" class="selected" >Ticket</a></li>
                 <li><a id="querybutton" >Query</a></li>
             </ul>
-
+        <div id="ticket">
+            <form action="" method="post">
+                <div id="call-input" class="issue-input">
+                    <select name="sort" id="cat" class="dropdown cat">
+                        <option selected disabled value="">Category</option>
+                    </select>
+                    <select name="sort" id="priority" class="dropdown priority">
+                        <option selected disabled value="">Priority</option>
+                    </select>
+                    <textarea  id="des" rows="10" placeholder="Description" class="des"></textarea>
+                    <textarea  id="soft" rows="3" placeholder="Effected software (item1, item2, ...)" class="soft"></textarea>
+                    <textarea  id="hard" rows="3" placeholder="Effected hardware (item1, item2, ...)" class="hard"></textarea>
+                    <div class="issue-but">
+                        <input type="reset" class="reset" value="Reset"/>
+                        <input type="submit" id="mybtn" class="next" value="Next"/>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 	</body>
 </html>
