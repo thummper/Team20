@@ -23,6 +23,9 @@
                 } else if($jobID == 2){
                     $_SESSION["jobTitle"] = "Operator";
                     header("Location: main.php");
+                } else if($jobID == 3){
+                    $_SESSION["jobTitle"] = "Administrator";
+                    header("Location: main.php");
                 } else {
                     session_destroy();
                     echo '<script language="javascript">alert("incorrect username and password");location.href = "index.php";</script>';

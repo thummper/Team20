@@ -37,7 +37,11 @@
                     <li><a href="queries.php?tableType=Open">Open</a></li>
                     <li><h3>More</h3></li>
                     <li><a href="#" class="top-sub">Analytics</a></li>
-                    <li><a href="database.php">Databases</a></li>
+                    <?php
+                    if($_SESSION["jobID"] == 3){
+                        echo '<li><a href="databases.php">Databases</a></li>';
+                    }
+                    ?>
                     <li><a href="logout.php">Log out</a></li>
                 </ul>
             </div>

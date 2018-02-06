@@ -453,10 +453,7 @@ table tbody tr:first-child td {
     background-color: rgba(0,0,0,0.4);
     
 }
-@keyframes animatetop {
-    from {top: -300px; opacity: 0}
-    to {top: 0; opacity: 1}
-}
+
 .inputDB, .editRecord {
     background-color: #fefefe;
     margin: 15% auto;

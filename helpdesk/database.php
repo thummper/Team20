@@ -402,7 +402,7 @@
                 <li><h3>Tickets</h3></li> 
                     <li><a id="all" href="main.php" class="top-sub">All</a></li>
                     <?php
-                    if($_SESSION["jobID"] == 1){
+                    if($_SESSION["jobID"] == 3){
                         echo '<li><a id="my" href="main.php?tableType=My">My Tickets</a></li>';
                     }
                     ?>
@@ -413,7 +413,11 @@
                     <li><a href="queries.php?tableType=Open">Open</a></li>
                     <li><h3>More</h3></li>
                     <li><a href="#" class="top-sub">Analytics</a></li>
-                    <li><a href="database.php">Databases</a></li>
+                    <?php
+                    if($_SESSION["jobID"] == 1){
+                        echo '<li><a href="databases.php">Databases</a></li>';
+                    }
+                    ?>
                     <li><a href="logout.php">Log out</a></li>
             </ul>
         </div>
