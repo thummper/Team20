@@ -82,7 +82,7 @@
                     cLog("DB Error");
                     } else {
                     while( ($row2 = $result3->fetch_assoc())){
-                        if($row2["Staff_ID"]==$row["Staff_ID"]){
+                        if($row2["Staff_ID"]==$row["Operator_ID"]){
                             $op = $row2["Forename"]." ".$row2["Surname"];
                     }
                     }
