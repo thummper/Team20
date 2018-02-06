@@ -430,7 +430,7 @@ table tbody tr:first-child td {
 .dbTable .keys:hover {
     background-color: #fff;
 }
-.inputDB {
+.inputDB, .editRecord {
     width: 200px;
     height: 300px;
     display: none;
@@ -441,3 +441,4 @@ table tbody tr:first-child td {
     bottom: 0;
     right: 0;
 }
+

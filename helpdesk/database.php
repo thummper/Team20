@@ -94,7 +94,8 @@
             echo "</table>";
             //Placeholders for buttons.
             echo "<div class='dbedit'>";
-            echo "<button onclick='addEntry(this)'> Add Entry </button><button onclick='removeEntry(this)'> Remove Entry </button>";
+            //Buttons for add/remove/edit
+            echo "<button onclick='addEntry(this)'> Add Entry </button><button onclick='removeEntry(this)'> Remove Selected </button><button onclick='editEntry(this)'> Edit Selected </button>";
                             
                             
                             
@@ -109,6 +110,8 @@
             cLog("DB Error, could not list tables");
             }
             
+            //Window for inputting new record.
+            
             echo "<div class='inputDB $tableName'>";
             echo "<button class='closeDBInput' onclick='closeInput(this)'>X</button>";
             echo "<form class='inputDBSE $tableName' action='javascript:void(0);'>";
@@ -118,8 +121,35 @@
                 
                 
             }
-            echo "<button onclick='databaseInput(this.parentNode, \"$tableName\")'> Submit</button>";
-            echo "</form></div></div>";
+            echo "<button onclick='databaseInput(this.parentNode, \"$tableName\", \"INPUT\") '> Submit</button>";
+            echo "</form></div>";
+            
+            
+            //Window for editing existing record. 
+            echo "<div class='editRecord $tableName'>";
+            echo "<button class='closeDBInput' onclick='closeInput(this)'>X</button>";
+            echo "<form class='editDBSE $tableName' action='javascript:void(0);'>";
+            $sqlCols = "SHOW COLUMNS FROM $tableName";
+            $result = $conn->query($sqlCols);
+            if(!$result){
+            cLog("DB Error, could not list tables");
+            }
+            while($row = $result->fetch_row()){
+            echo $row[0].": <br>"; 
+            echo "<input type='text' name='$row[0]'><br>";
+            }
+            echo "<button onclick='databaseInput(this.parentNode, \"$tableName\", \"EDIT\")'> Submit</button>";
+            echo "</form></div>";
+            
+            
+            
+            
+            
+            echo "</div>";
+            
+            
+            
+            
         
         }
                 
@@ -185,7 +215,57 @@
             document.getElementsByClassName(elementName)[0].style.display = "block";
             console.log("Add a record to this table: " + t.parentNode.parentElement.id);
         }
+        
+        
+        
+        var globalEdit = []; 
+        function editEntry(t) {
+            //Make the edit window visible (should only make visible if it can find an active table row)
+            var elementName = "editRecord " + t.parentNode.parentElement.id;
+            var element = document.getElementsByClassName(elementName)[0];
+            element.style.display = "block";
+            //Set the fields in the form to the selected row. 
+            console.log("PARENT ELEMENT: " + element.parentElement);
+            var keys = element.parentElement.getElementsByClassName("keys")[0];
+            //Get Form? 
+            var form = element.getElementsByTagName("form")[0];
+            var formElements = form.getElementsByTagName("input");
+            console.log("FORM ELEMENT: " + formElements);
+            //Get the active row. 
+            var rows = element.parentElement.getElementsByTagName("tr");
+   
+            console.log("keys: "+ keys);
+            for( i = 0; i < rows.length; i++){
+                if(rows[i].classList.contains("active")){
+                    //This is the record we want.
+                    console.log("HELLO ROWS ACTIVE IS: " + rows[i]);
+                    for(j = 0; j<rows[i].children.length; j++){
+                        if(j == 0){
+                            //First item is always primary key - will store this for the UPDATE query. 
+                            
+                            globalEdit.push({Field: keys.children[j].innerHTML,
+                              Data: rows[i].children[j].innerHTML});
+                            console.log("GLOBAL EDIT: " + globalEdit);
+                         
+                            
+                        }
+                        console.log("HELLO AGAIN?");
+                        console.log(formElements[j]);
+                        console.log("should be: " + rows[i].children[j].innerHTML);
+                        formElements[j].value = rows[i].children[j].innerHTML;
+                    }
 
+                    
+                }
+            }
+            
+            //The problem is - need to store the old data for WHERE in UPDATE query, so the button can't have a separate function//I need a global variable to store the primary key of the row that's being updated. 
+           
+            
+            
+
+        }
+        
         function removeEntry(t) {
             //Will remove active row.
             var data = [];
@@ -231,7 +311,7 @@
 
         }
 
-        function databaseInput(form, tableName) {
+        function databaseInput(form, tableName, action) {
 
             var data = [];
             //Should do basic database validation?? 
@@ -272,7 +352,7 @@
             }
 
 
-            var json_upload = "user_data=" + JSON.stringify(data);
+            
 
             var xmlhttp = new XMLHttpRequest(); // new HttpRequest instance 
 
@@ -281,7 +361,22 @@
                     console.log(this.responseText);
                 }
             }
+            if(action == "INPUT"){
+                console.log("WANTS TO INPUT");
+            var json_upload = "user_data=" + JSON.stringify(data);
             xmlhttp.open("POST", "/addDatabase.php");
+            }
+            if (action == "EDIT"){
+            //Need the primary key of the field we are updating
+                console.log("WANTS TO EDIT");
+                console.log("Adding GEDIT: " + globalEdit[0].Field + " " + globalEdit[0].Data);
+                data.push({ Field: globalEdit[0].Field, Data: globalEdit[0].Data });
+                var json_upload = "user_data=" + JSON.stringify(data);
+            //This way the pKey will always be last in the data
+                
+                
+            xmlhttp.open("POST", "/editDatabase.php");    
+            }
             xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             xmlhttp.send(json_upload);
 
