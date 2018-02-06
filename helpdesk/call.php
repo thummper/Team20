@@ -55,6 +55,7 @@
         </div>
             <table class="staff-info" style="width:100%" >
                 <tr>
+                    <th>Staff ID:</th>
                     <th>Full name:</th>
                     <th>Job title:</th> 
                     <th>Department:</th> 

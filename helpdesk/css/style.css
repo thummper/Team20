@@ -75,7 +75,7 @@ button, .s-button {
     left: 0;
     bottom: 0;
     position: fixed;
-    min-height: 850px;
+    min-height: 885px;
     min-width: 300px;
 }
 
@@ -125,7 +125,7 @@ a {
 }
 
 .sidebar-mid {
-    margin-top: 12em;
+    margin-top: 13em;
 }
 
 .nav {
