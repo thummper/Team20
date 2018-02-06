@@ -47,31 +47,8 @@
     </div>
     <div class="main">
         <div class="title">
-            <h1>New Call</h1>
+            <h1>Ticket: <?php echo $_GET["TicketID"]; ?></h1>
         </div>
-        <div class="id-sel" >
-            <input type="text" class="s-bar s-bar-id" name="staff-id" id="staff-id" placeholder="Staff ID" />
-            <input type="submit" class="s-button s-button-call" value="Search" onclick="searchstaff();" />
-        </div>
-            <table class="staff-info" style="width:100%" >
-                <tr>
-                    <th>Full name:</th>
-                    <th>Job title:</th> 
-                    <th>Department:</th> 
-                    <th>Telephone number:</th> 
-                </tr>
-                <tr id="staffinfo" >
-                    <td >...</td>
-                    <td >...</td>
-                    <td >...</td>
-                    <td >...</td>
-                    <td >...</td> 
-                </tr>
-            </table>
-            <ul class="tab" >
-                <li><a id="issuebutton" class="selected" >Ticket</a></li>
-                <li><a id="querybutton" >Query</a></li>
-            </ul>
 
     </div>
 	</body>

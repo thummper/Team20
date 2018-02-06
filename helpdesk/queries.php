@@ -82,6 +82,11 @@
                 <ul class="nav">
                     <li><h3>Tickets</h3></li> 
                     <li><a id="all" href="main.php" class="top-sub">All</a></li>
+                    <?php
+                    if($_SESSION["jobID"] == 1){
+                        echo '<li><a id="my" href="main.php?tableType=My">My Tickets</a></li>';
+                    }
+                    ?>
                     <li><a id="open" href="main.php?tableType=Open">Open</a></li>
                     <li><a id="closed" href="main.php?tableType=Closed">Closed</a></li>
                     <li><h3>Queries</h3></li>
@@ -110,13 +115,6 @@
                     FullTable();
                 }
             ?>
-            </div>
-            <div class="page-num">
-                <ul>
-                    <li class="prev"><button id="prev" disabled>Previous</button></li>
-                    <li class="page-i">1</li>
-                    <li class="next"><button id="next" disabled>Next</button></li>
-                </ul>
             </div>
         </div>
         
