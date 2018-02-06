@@ -441,6 +441,52 @@ table tbody tr:first-child td {
     bottom: 0;
     right: 0;
 }
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+    
+}
+@keyframes animatetop {
+    from {top: -300px; opacity: 0}
+    to {top: 0; opacity: 1}
+}
+.inputDB, .editRecord {
+    background-color: #fefefe;
+    margin: 15% auto;
+    border: 1px solid #888;
+    width: 800px;
+    height: 400px;
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.inputDB form, .editRecord form{
+    margin: 0 auto;
+    order: 1;
+}
+.dbSubmit {
+    width: 100%;
+}
+
+.closeDBInput {
+   
+    font-size: 1em;
+    order: 2;
+    align-self: flex-start;
+ 
+}
+
+
 
 .issue-input{
     padding-top: 3em;
