@@ -126,10 +126,11 @@
                     <li><a href="logout.php">Log out</a></li>
                 </ul>
             </div>
+            </div>
             <div class="sidebar-bot">
                 <a class="call" href="call.php">New Call</a>
             </div>
-        </div>
+        
         <div class="main">
             <div class="title">
                 <h1>Tickets</h1>

@@ -389,20 +389,16 @@
 
 <body>
     <div class="sidebar">
-        <div class="sidebar-top">
-            <h2>
-                <?php echo $_SESSION["jobTitle"]; ?>
-            </h2>
-            <p>
-                <?php echo $_SESSION["staffName"]; ?>
-            </p>
-        </div>
-        <div class="sidebar-mid">
-            <ul class="nav">
-                <li><h3>Tickets</h3></li> 
+        	<div class="sidebar-top">
+                <h2><?php echo $_SESSION["jobTitle"]; ?></h2>
+                <p><?php echo $_SESSION["staffName"]; ?></p>
+            </div>
+            <div class="sidebar-mid">
+                <ul class="nav">
+                    <li><h3>Tickets</h3></li> 
                     <li><a id="all" href="main.php" class="top-sub">All</a></li>
                     <?php
-                    if($_SESSION["jobID"] == 3){
+                    if($_SESSION["jobID"] == 1){
                         echo '<li><a id="my" href="main.php?tableType=My">My Tickets</a></li>';
                     }
                     ?>
@@ -419,12 +415,13 @@
                     }
                     ?>
                     <li><a href="logout.php">Log out</a></li>
-            </ul>
-        </div>
-        <div class="sidebar-bot">
-            <a class="call" href="call.php">New Call</a>
-        </div>
-    </div>
+                </ul>
+            </div>
+            </div>
+            <div class="sidebar-bot">
+                <a class="call" href="call.php">New Call</a>
+            </div>
+        
     <div class="main">
         <div class="title">
             <h1>Databases</h1>

@@ -13,15 +13,11 @@
 	</head>
 	<body>
         <div class="sidebar">
-        <div class="sidebar-top">
-            <h2>
-                <?php echo $_SESSION["jobTitle"]; ?>
-            </h2>
-            <p>
-                <?php echo $_SESSION["staffName"]; ?>
-            </p>
-        </div>
-        <div class="sidebar-mid">
+        	<div class="sidebar-top">
+                <h2><?php echo $_SESSION["jobTitle"]; ?></h2>
+                <p><?php echo $_SESSION["staffName"]; ?></p>
+            </div>
+            <div class="sidebar-mid">
                 <ul class="nav">
                     <li><h3>Tickets</h3></li> 
                     <li><a id="all" href="main.php" class="top-sub">All</a></li>
@@ -45,10 +41,11 @@
                     <li><a href="logout.php">Log out</a></li>
                 </ul>
             </div>
-        <div class="sidebar-bot">
-            <a class="call" href="#">New Call</a>
-        </div>
-    </div>
+            </div>
+            <div class="sidebar-bot">
+                <a class="call" href="call.php">New Call</a>
+            </div>
+        
     <div class="main">
         <div class="title">
             <h1>New Call</h1>
