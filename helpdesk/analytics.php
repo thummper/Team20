@@ -46,7 +46,7 @@
                     <li>
                         <h3>More</h3>
                     </li>
-                    <li><a href="#" class="top-sub">Analytics</a></li>
+                    <li><a href="analytics.php" class="top-sub active">Analytics</a></li>
                     <?php
                     if($_SESSION["jobID"] == 3){
                         echo '<li><a href="database.php">Databases</a></li>';
