@@ -38,10 +38,10 @@ for($i = 0; $i < sizeof($userData); $i++){
 }
 //Construct final sql query: 
 $sql .= "($columns) VALUES ($values)";
-echo "sql QUERY IS: " . $sql;
+
 $result = $conn->query($sql);
                 if($result === TRUE){
-            echo "Made new record";
+            echo "YES";
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
                 }
