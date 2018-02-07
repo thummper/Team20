@@ -374,7 +374,7 @@
                     <li><a href="#" class="top-sub">Analytics</a></li>
                     <?php
                     if($_SESSION["jobID"] == 3){
-                        echo '<li><a href="database.php">Databases</a></li>';
+                        echo '<li><a  class="active" href="database.php">Databases</a></li>';
                     }
                     ?>
                     <li><a href="logout.php">Log out</a></li>

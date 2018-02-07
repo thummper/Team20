@@ -78,8 +78,8 @@
                     <li><a id="open" href="main.php?tableType=Open">Open</a></li>
                     <li><a id="closed" href="main.php?tableType=Closed">Closed</a></li>
                     <li><h3>Queries</h3></li>
-                    <li><a href="queries.php" class="top-sub">All</a></li>
-                    <li><a href="queries.php?tableType=Open">Open</a></li>
+                    <li><a id="qall" href="queries.php" class="top-sub">All</a></li>
+                    <li><a id="qopen" href="queries.php?tableType=Open">Open</a></li>
                     <li><h3>More</h3></li>
                     <li><a href="#" class="top-sub">Analytics</a></li>
                     <?php

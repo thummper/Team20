@@ -172,7 +172,7 @@
         <div id="query" class="divvis">
             <form action="" method="post">
                 <div id="call-input" class="tick-input">
-                    <select name="cat" id="cat" class="dropdown cat">
+                    <select name="tickID" id="tickID" class="dropdown cat">
                         <option selected disabled value="">Ticket ID</option>
                         <?php 
                             include("config.php");
@@ -188,7 +188,7 @@
                             }
                         ?>
                     </select>
-                    <select name="prior" id="priority" class="dropdown priority">
+                    <select name="resolved" id="resolved" class="dropdown priority">
                         <option selected disabled value="">Resolved</option>
                         <option value="Y">Yes</option>
                         <option value="N">No</option>
