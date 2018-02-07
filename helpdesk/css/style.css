@@ -75,14 +75,15 @@ button, .s-button, .next, .reset {
     left: 0;
     bottom: 0;
     position: fixed;
-    min-height: 885px;
     min-width: 300px;
 }
 
-@media screen and (max-height: 850px) {
+@media screen and (max-height: 835px) {
     .sidebar {
-        position: absolute;
+        overflow-y: scroll;
+        margin-bottom: 4.1em;
     }
+
 }
 
 a {
@@ -162,9 +163,12 @@ a {
 
 .sidebar-bot {
     bottom: 0;
-    position: absolute;
+    left: 0;
+    position: fixed;
     text-align: center;
-    width: 100%;
+    width: 20%;
+    min-width: 300px;
+    float: left;
 }
 
 .sidebar-bot a {
