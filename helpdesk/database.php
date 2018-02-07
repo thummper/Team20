@@ -36,13 +36,15 @@
         echo "<div class='dbbuttonContainer'>";
         while($row = $result->fetch_row()){
             //Make the buttons for tabbed nav 
-            
-                
-            
             $tableName = $row[0];
+            cLog("Checking: " . $tableName);
+            //SHOW sql is weird, seems like this is the best way to avoid reworking it.
+            if($tableName === "Equipment" || $tableName === "Job" || $tableName === "Software"|| $tableName === "Specialisation"){
+                cLog("Hello, nice table: " . $tableName);
+            
             array_push($tableNames, $tableName);
             echo "<button class='tablinks' onclick=' openTable(event, \"$tableName\" ) ' >$tableName</button>";
-            
+            }
         }
         echo "</div>";
         
