@@ -40,10 +40,10 @@ for($i = 0; $i < sizeof($userData); $i++){
 }
 //Construct final sql query: 
         $sql .= $updates;
-        echo "sql QUERY IS: " . $sql;
+      
         $result = $conn->query($sql);
         if($result === TRUE){
-            echo "EDIT";
+            echo "YES";
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
                 }
