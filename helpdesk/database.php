@@ -17,37 +17,38 @@
     require_once('myFunctions.php');
     
     function dbData(){
-    include("config.php");
-    $conn = new mysqli($DBservername, $DBusername, $DBpassword, $dbname);
+        include("config.php");
+        $conn = new mysqli($DBservername, $DBusername, $DBpassword, $dbname);
     
-    if($conn -> connect_error) {
-        die("Connection Failed: " . $conn->connect_error);
-    } else {
-        //echo "Connected to database okay. <br>";
-        //Will make a dbase query
-        $sql = "SHOW TABLES FROM $dbname";
-        $result = $conn->query($sql);
+        if($conn -> connect_error) {
+            die("Connection Failed: " . $conn->connect_error);
+        } else {
+            //echo "Connected to database okay. <br>";
+            //Get all tables.
+            $sql = "SHOW TABLES FROM $dbname";
+            $result = $conn->query($sql);
         
-        if(!$result){
-            cLog("DB Error, could not list tables");
-        }
+            if(!$result){
+                cLog("DB Error, could not list tables");
+            }
 
-        $tableNames = array();
-        echo "<div class='dbbuttonContainer'>";
-        while($row = $result->fetch_row()){
-            //Make the buttons for tabbed nav 
+            $tableNames = array();
+            echo "<div class='dbbuttonContainer'>";
+            //From list of tables get the ones we need
+            while($row = $result->fetch_row()){
+                //Make the buttons for tabbed nav 
+                $tableName = $row[0];
             
-                
-            
-            $tableName = $row[0];
-            array_push($tableNames, $tableName);
-            echo "<button class='tablinks' onclick=' openTable(event, \"$tableName\" ) ' >$tableName</button>";
-            
-        }
+                //SHOW sql is weird, seems like this is the best way to avoid reworking it.
+                if($tableName === "Equipment" || $tableName === "Job" || $tableName === "Software"|| $tableName === "Specialisation"){
+                array_push($tableNames, $tableName);
+                echo "<button class='tablinks' onclick=' openTable(event, \"$tableName\" ) ' >$tableName</button>";
+                }
+            }
         echo "</div>";
         
         
-        
+        //For each table make a tabbed section for it. 
         foreach($tableNames as $tableName){
             $start = 0;
             echo "<div id='$tableName' class='tabcontent'>";
@@ -57,13 +58,12 @@
                         if(!$result1){
                 cLog("DB Error");
             } else {
-            
             //Draw the table
             echo "<table class='dbTable $tableName'>";
             while( $row1 = $result1->fetch_assoc() ){
 
                 if($start == 0){
-                //Print the keys. 
+                //Start is 0, first row of table, column headers.
                 $keyArr = array_keys($row1);
                     
                     echo "<tr class='keys'>";
@@ -74,43 +74,34 @@
                     }
                     echo "</tr>";
                     
-                }
+                } 
+                    // print normal trs
+                    echo "<tr onclick='rowClick(this,event)'>";
+                    foreach($row1 as $value1){
+                        //Draw table stuff.
+                        echo "<td>";
+                        echo $value1;
+                        echo "</td>";
+                    }
+                    echo "</tr>";
                 
-                
-
-                echo "<tr onclick='rowClick(this,event)'>";
-                foreach($row1 as $value1){
-                    //Draw table stuff.
-                    echo "<td>";
-                    echo $value1;
-                    echo "</td>";
-                }
-                echo "</tr>";
-                
-
-            $start++;
-
+                $start++;
             }
-            echo "</table>";
-            //Placeholders for buttons.
-            echo "<div class='dbedit'>";
+            echo "</table>";     
+            //Container for dbButtons
+            echo "<div class='dbedit' id='$tableName'>";
             //Buttons for add/remove/edit
-            echo "<button onclick='addEntry(this)'> Add Entry </button><button onclick='removeEntry(this)'> Remove Selected </button><button onclick='editEntry(this)'> Edit Selected </button>";
-                            
-                            
-                            
+            echo "<button onclick='addEntry(this)'> Add Entry </button><button onclick='editEntry(this)'> Edit Selected </button>";
             echo "</div>";
-            
-        }
-            //Draw windows for inputting stuff? 
-            cLog("This is next section");
+            }
+            //Get all columns from the table to make the add/edit forms.
             $sqlCols = "SHOW COLUMNS FROM $tableName";
             $result = $conn->query($sqlCols);
             if(!$result){
             cLog("DB Error, could not list tables");
             }
             
-            //Window for inputting new record.
+            //Modal window for inputting data.
             echo "<div class='modal'>";
             echo "<div class='inputDB $tableName'>";
             echo "<button class='closeDBInput' onclick='closeInput(this)'>X</button>";
@@ -122,11 +113,13 @@
                 
             }
             echo "<button class='dbSubmit' onclick='databaseInput(this.parentNode, \"$tableName\", \"INPUT\") '> Submit</button>";
+            echo "<div class='dbFeedback'>Query was not successful, please try again.</div>";
             echo "</form></div></div>";
             
             
-            //Window for editing existing record. 
+            //Modal window for editing existing record. 
             echo "<div class='modal'>";
+            cLog("Table Name at this point: " . $tableName);
             echo "<div class='editRecord $tableName'>";
             echo "<button class='closeDBInput' onclick='closeInput(this)'>X</button>";
             echo "<form class='editDBSE $tableName' action='javascript:void(0);'>";
@@ -140,6 +133,10 @@
             echo "<input type='text' name='$row[0]'><br>";
             }
             echo "<button class='dbSubmit' onclick='databaseInput(this.parentNode, \"$tableName\", \"EDIT\")'> Submit</button>";
+            
+            //User feedback for query. 
+            echo "<div class='dbFeedback'>Query was not successful, please try again.</div>";
+            
             echo "</form></div></div>";
             
             
@@ -147,20 +144,7 @@
             
             
             echo "</div>";
-            
-            
-            
-            
-        
-        }
-                
-             
-
-            
-            
-            
-            
-            
+        }    
         } 
     }
 ?>
@@ -169,6 +153,11 @@
             console.log("Closing: " + item);
             console.log(item.parentElement);
             item.parentElement.parentElement.style.display = "none";
+            //Also when you close the input windows make the fails dissapear. 
+            var feedbacks = document.getElementsByClassName("dbFeedback");
+            for(var i = 0; i<feedbacks.length; i++){
+                feedbacks[i].style.display = "none";
+            }
         }
 
         function rowClick(row, evt) {
@@ -218,98 +207,51 @@
             element.parentElement.style.display = "block";
             console.log("Add a record to this table: " + t.parentNode.parentElement.id);
         }
-        
-        
-        
-        var globalEdit = []; 
+
+
+
+        var globalEdit = [];
+
         function editEntry(t) {
             //Make the edit window visible (should only make visible if it can find an active table row)
             var elementName = "editRecord " + t.parentElement.id;
             var element = document.getElementsByClassName(elementName)[0];
             element.parentElement.style.display = "block";
-            
-      
-          
+
+
+
             //Set the fields in the form to the selected row. 
-            
+
             var keys = element.parentElement.parentElement.getElementsByClassName("keys")[0];
             //Get Form? 
             var form = element.getElementsByTagName("form")[0];
             var formElements = form.getElementsByTagName("input");
-            
+
             //Get the active row. 
             var rows = element.parentElement.parentElement.getElementsByTagName("tr");
-   
-            
-            for( i = 0; i < rows.length; i++){
-                if(rows[i].classList.contains("active")){
+
+
+            for (i = 0; i < rows.length; i++) {
+                if (rows[i].classList.contains("active")) {
                     //This is the record we want.
-                    
-                    for(j = 0; j<rows[i].children.length; j++){
-                        if(j == 0){
+
+                    for (j = 0; j < rows[i].children.length; j++) {
+                        if (j == 0) {
                             //First item is always primary key - will store this for the UPDATE query. 
-                            
-                            globalEdit.push({Field: keys.children[j].innerHTML,
-                              Data: rows[i].children[j].innerHTML});    
+
+                            globalEdit.push({
+                                Field: keys.children[j].innerHTML,
+                                Data: rows[i].children[j].innerHTML
+                            });
                         }
                         formElements[j].value = rows[i].children[j].innerHTML;
                     }
 
-                    
+
                 }
             }
-            
-            //The problem is - need to store the old data for WHERE in UPDATE query, so the button can't have a separate function//I need a global variable to store the primary key of the row that's being updated. 
-           
-            
-            
-
         }
-        
-        function removeEntry(t) {
-            //Will remove active row.
-            var data = [];
-            var tableName = t.parentNode.parentElement.id;
-            data.push({
-                Field: "TableName",
-                Data: tableName
-            });
-            //Get keys for table
-            var keys = t.parentNode.parentElement.getElementsByClassName("keys")[0];
-            console.log(keys);
-            var rows = document.getElementsByTagName("tr");
-            var record = false;
-            for (i = 0; i < rows.length; i++) {
-                if (rows[i].classList.contains("active")) {
-                    record = rows[i];
-                }
-            }
-            record = record.children;
-            for (i = 0; i < record.length; i++) {
-                console.log(record[i].innerHTML + "From col: " + keys.children[i].innerHTML);
-                data.push({
-                    Field: keys.children[i].innerHTML,
-                    Data: "'"+record[i].innerHTML+"'"
-                });
-                //Need to push 
-            }
 
-            console.log("Remove: " + record + " from this table: " + t.parentNode.parentElement.id);
-            //Push data to ajax.
-            var json_upload = "user_data=" + JSON.stringify(data);
-
-            var xmlhttp = new XMLHttpRequest(); // new HttpRequest instance 
-
-            xmlhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    console.log(this.responseText);
-                }
-            }
-            xmlhttp.open("POST", "/removeDatabase.php");
-            xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            xmlhttp.send(json_upload);
-
-        }
 
         function databaseInput(form, tableName, action) {
 
@@ -352,30 +294,44 @@
             }
 
 
-            
+
 
             var xmlhttp = new XMLHttpRequest(); // new HttpRequest instance 
 
             xmlhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
+                    console.log("Testing: " + this.responseText)
+                    if(this.responseText === "YES"){
+                  
+                        //Query was successful. 
+                        location.reload(); 
+                    } else {
                     console.log(this.responseText);
+                    var feedbacks = document.getElementsByClassName("dbFeedback");
+                        for(var i = 0; i < feedbacks.length; i++){
+                            feedbacks[i].style.display = "block";
+                        }
+                    }
                 }
             }
-            if(action == "INPUT"){
+            if (action == "INPUT") {
                 console.log("WANTS TO INPUT");
-            var json_upload = "user_data=" + JSON.stringify(data);
-            xmlhttp.open("POST", "/addDatabase.php");
+                var json_upload = "user_data=" + JSON.stringify(data);
+                xmlhttp.open("POST", "/addDatabase.php");
             }
-            if (action == "EDIT"){
-            //Need the primary key of the field we are updating
+            if (action == "EDIT") {
+                //Need the primary key of the field we are updating
                 console.log("WANTS TO EDIT");
                 console.log("Adding GEDIT: " + globalEdit[0].Field + " " + globalEdit[0].Data);
-                data.push({ Field: globalEdit[0].Field, Data: globalEdit[0].Data });
+                data.push({
+                    Field: globalEdit[0].Field,
+                    Data: globalEdit[0].Data
+                });
                 var json_upload = "user_data=" + JSON.stringify(data);
-            //This way the pKey will always be last in the data
-                
-                
-            xmlhttp.open("POST", "/editDatabase.php");    
+                //This way the pKey will always be last in the data
+
+
+                xmlhttp.open("POST", "/editDatabase.php");
             }
             xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             xmlhttp.send(json_upload);
@@ -400,14 +356,19 @@
                     <?php
                     if($_SESSION["jobID"] == 1){
                         echo '<li><a id="my" href="main.php?tableType=My">My Tickets</a></li>';
+                      
                     }
                     ?>
                     <li><a id="open" href="main.php?tableType=Open">Open</a></li>
                     <li><a id="closed" href="main.php?tableType=Closed">Closed</a></li>
-                    <li><h3>Queries</h3></li>
+                    <li>
+                        <h3>Queries</h3>
+                    </li>
                     <li><a href="queries.php" class="top-sub">All</a></li>
                     <li><a href="queries.php?tableType=Open">Open</a></li>
-                    <li><h3>More</h3></li>
+                    <li>
+                        <h3>More</h3>
+                    </li>
                     <li><a href="#" class="top-sub">Analytics</a></li>
                     <?php
                     if($_SESSION["jobID"] == 3){
@@ -421,7 +382,7 @@
             <div class="sidebar-bot">
                 <a class="call" href="call.php">New Call</a>
             </div>
-        
+  
     <div class="main">
         <div class="title">
             <h1>Databases</h1>

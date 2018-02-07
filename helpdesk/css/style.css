@@ -424,8 +424,15 @@ table tbody tr:first-child td {
     margin: 2em;
 }
 
+.dbTable th {
+    text-align: center;
+}
+.dbTable tr {
+    transition: 0.05s linear;
+}
+
 .dbTable tr:hover {
-    background-color: #eff1f2;
+    background-color: rgba(151, 199, 245, 0.6);
 }
 .dbTable tr.active {
     background-color: #51a1ef;
@@ -455,6 +462,9 @@ table tbody tr:first-child td {
     overflow: auto;
     background-color: rgba(0,0,0,0.4);
     
+}
+.dbFeedback {
+    display: none;
 }
 
 .inputDB, .editRecord {
