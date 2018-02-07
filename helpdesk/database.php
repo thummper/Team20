@@ -216,7 +216,7 @@
             //Make the edit window visible (should only make visible if it can find an active table row)
             var elementName = "editRecord " + t.parentElement.id;
             var element = document.getElementsByClassName(elementName)[0];
-            element.parentElement.style.display = "block";
+            
 
 
 
@@ -234,7 +234,7 @@
             for (i = 0; i < rows.length; i++) {
                 if (rows[i].classList.contains("active")) {
                     //This is the record we want.
-
+                    element.parentElement.style.display = "block";
                     for (j = 0; j < rows[i].children.length; j++) {
                         if (j == 0) {
                             //First item is always primary key - will store this for the UPDATE query. 
@@ -300,8 +300,10 @@
 
             xmlhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
-                    console.log("Testing: " + this.responseText)
-                    if(this.responseText === "YES"){
+                    
+                    var textCompare = this.responseText;
+                    console.log("Testing: " + this.responseText + " AND YES");
+                    if(textCompare === "YES"){
                   
                         //Query was successful. 
                         location.reload(); 

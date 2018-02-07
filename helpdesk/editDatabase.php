@@ -11,7 +11,7 @@ $conn = new mysqli($DBservername, $DBusername, $DBpassword, $dbname);
 $userData = json_decode($_POST["user_data"]);
 $sql = "";
 $updates = "";
-var_dump($userData);
+
 for($i = 0; $i < sizeof($userData); $i++){
     
   
@@ -42,12 +42,11 @@ for($i = 0; $i < sizeof($userData); $i++){
         $sql .= $updates;
       
         $result = $conn->query($sql);
-        if($result === TRUE){
+                if($result === TRUE){
             echo "YES";
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
                 }
-        
         
         
         
