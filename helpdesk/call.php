@@ -33,6 +33,12 @@
             return false;
           }
         }
+        function copypastehw(){
+             $("#hw-copy").clone().appendTo("#hw-paste");
+        }
+        function copypastesw(){
+            $("#sw-copy").clone().appendTo("#sw-paste");
+        }
     </script>
 	</head>
 	<body>
@@ -125,45 +131,51 @@
                             <option value="3">3 - High</option>
                         </select>
                         <textarea  id="des" rows="5" placeholder="Description" class="des" required></textarea>
-                        <select name="hard1" id="hard1" class="dropdown ware" required>
-                            <option selected disabled value="">Hardware</option>
-                            <option value="None">None</option>
-                            <?php 
-                                include("config.php");
-                                $sql = 'SELECT * FROM Equipment';
-                                $conn = new mysqli($DBservername, $DBusername, $DBpassword, $dbname); 
-                                $result = $conn->query($sql);
-                                if(!$result){
-                                    cLog("DB Error");
-                                } else {
-                                while(($row = $result->fetch_assoc())){
-                                    echo '<option value="'.$row['Serial_Number'].'">'.$row['Serial_Number'].' - '.$row['Type'].'</option>';
-                                }
-                                }
-                            ?>
-                        </select>
-                        <input type="button" class="plus" value="+"/>
-                        <select name="soft1" id="soft1" class="dropdown ware" required>
-                            <option selected disabled value="">Software</option>
-                            <option value="None">None</option>
-                            <?php 
-                                include("config.php");
-                                $sql = 'SELECT * FROM Software';
-                                $conn = new mysqli($DBservername, $DBusername, $DBpassword, $dbname); 
-                                $result = $conn->query($sql);
-                                if(!$result){
-                                    cLog("DB Error");
-                                } else {
-                                while(($row = $result->fetch_assoc())){
-                                    echo '<option value="'.$row['Software_ID'].'">'.$row['Name'].'</option>';
-                                }
-                                }
-                            ?>
-                        </select>
-                        <input type="button" class="plus" value="+"/>
+                        <div id="hw-copy">
+                            <select name="hard1" id="hard1" class="dropdown ware" required>
+                                <option selected disabled value="">Hardware</option>
+                                <option value="None">None</option>
+                                <?php 
+                                    include("config.php");
+                                    $sql = 'SELECT * FROM Equipment';
+                                    $conn = new mysqli($DBservername, $DBusername, $DBpassword, $dbname); 
+                                    $result = $conn->query($sql);
+                                    if(!$result){
+                                        cLog("DB Error");
+                                    } else {
+                                    while(($row = $result->fetch_assoc())){
+                                        echo '<option value="'.$row['Serial_Number'].'">'.$row['Serial_Number'].' - '.$row['Type'].'</option>';
+                                    }
+                                    }
+                                ?>
+                            </select>
+                        </div>
+                        <div id="hw-paste"></div>
+                        <input type="button" class="plus" value="+" onclick="copypastehw();"/>
+                        <div id="sw-copy">
+                            <select name="soft1" id="soft1" class="dropdown ware" required>
+                                <option selected disabled value="">Software</option>
+                                <option value="None">None</option>
+                                <?php 
+                                    include("config.php");
+                                    $sql = 'SELECT * FROM Software';
+                                    $conn = new mysqli($DBservername, $DBusername, $DBpassword, $dbname); 
+                                    $result = $conn->query($sql);
+                                    if(!$result){
+                                        cLog("DB Error");
+                                    } else {
+                                    while(($row = $result->fetch_assoc())){
+                                        echo '<option value="'.$row['Software_ID'].'">'.$row['Name'].'</option>';
+                                    }
+                                    }
+                                ?>
+                            </select>
+                        </div>
+                        <div id="sw-paste"></div>
+                        <input type="button" class="plus" value="+" onclick="copypastesw();"/>
                     </div>
-                    <div class="tick-but">
-                        <input type="reset" class="reset" value="Reset"/>
+                    <div class="tick-but">  
+                        <input type="button" class="reset" value="Reset" onclick="window.location.href='call.php'"/>
                         <input type="submit" id="submit-tick" class="next" value="Next"/>
                     </div>
                 </form>
@@ -196,7 +208,7 @@
                     <textarea  id="des" rows="5" placeholder="Reason for call/ Solution" class="des" required></textarea>
                 </div>
                 <div class="tick-but">
-                    <input type="reset" class="reset" value="Reset"/>
+                    <input type="button" class="reset" value="Reset" onclick="window.location.href='call.php'"/>
                     <input type="submit" id="submit-query" class="next" value="Submit"/>
                 </div>
             </form>
