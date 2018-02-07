@@ -76,20 +76,26 @@
             </ul>
         <div id="ticket">
             <form action="" method="post">
-                <div id="call-input" class="issue-input">
-                    <select name="sort" id="cat" class="dropdown cat">
+                <div id="call-input" class="tick-input">
+                    <select name="cat" id="cat" class="dropdown cat">
                         <option selected disabled value="">Category</option>
                     </select>
-                    <select name="sort" id="priority" class="dropdown priority">
+                    <select name="prior" id="priority" class="dropdown priority">
                         <option selected disabled value="">Priority</option>
                     </select>
-                    <textarea  id="des" rows="10" placeholder="Description" class="des"></textarea>
-                    <textarea  id="soft" rows="3" placeholder="Effected software (item1, item2, ...)" class="soft"></textarea>
-                    <textarea  id="hard" rows="3" placeholder="Effected hardware (item1, item2, ...)" class="hard"></textarea>
-                    <div class="issue-but">
-                        <input type="reset" class="reset" value="Reset"/>
-                        <input type="submit" id="mybtn" class="next" value="Next"/>
-                    </div>
+                    <textarea  id="des" rows="5" placeholder="Description" class="des"></textarea>
+                    <select name="hard1" id="hard1" class="dropdown ware">
+                        <option selected disabled value="">Hardware</option>
+                    </select>
+                    <input type="button" class="plus" value="+"/>
+                    <select name="soft1" id="soft1" class="dropdown ware">
+                        <option selected disabled value="">Software</option>
+                    </select>
+                    <input type="button" class="plus" value="+"/>
+                </div>
+                <div class="tick-but">
+                    <input type="reset" class="reset" value="Reset"/>
+                    <input type="submit" id="submit-tick" class="next" value="Next"/>
                 </div>
             </form>
         </div>
