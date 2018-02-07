@@ -24,7 +24,7 @@
         die("Connection Failed: " . $conn->connect_error);
     } else {
         //echo "Connected to database okay. <br>";
-        //Will make a dbase query
+        //Get all tables.
         $sql = "SHOW TABLES FROM $dbname";
         $result = $conn->query($sql);
         
@@ -34,14 +34,13 @@
 
         $tableNames = array();
         echo "<div class='dbbuttonContainer'>";
+        //From list of tables get the ones we need
         while($row = $result->fetch_row()){
             //Make the buttons for tabbed nav 
             $tableName = $row[0];
-            cLog("Checking: " . $tableName);
+            
             //SHOW sql is weird, seems like this is the best way to avoid reworking it.
             if($tableName === "Equipment" || $tableName === "Job" || $tableName === "Software"|| $tableName === "Specialisation"){
-                cLog("Hello, nice table: " . $tableName);
-            
             array_push($tableNames, $tableName);
             echo "<button class='tablinks' onclick=' openTable(event, \"$tableName\" ) ' >$tableName</button>";
             }
@@ -49,7 +48,7 @@
         echo "</div>";
         
         
-        
+        //For each table make a tabbed section for it. 
         foreach($tableNames as $tableName){
             $start = 0;
             echo "<div id='$tableName' class='tabcontent'>";
@@ -65,7 +64,7 @@
             while( $row1 = $result1->fetch_assoc() ){
 
                 if($start == 0){
-                //Print the keys. 
+                //Start is 0, first row of table, column headers.
                 $keyArr = array_keys($row1);
                     
                     echo "<tr class='keys'>";
@@ -76,7 +75,8 @@
                     }
                     echo "</tr>";
                     
-                }
+                } else {
+                    //Not keys, print normal trs
                 
                 
 
@@ -86,16 +86,23 @@
                     echo "<td>";
                     echo $value1;
                     echo "</td>";
+                
+                
                 }
                 echo "</tr>";
+                }
                 
-
+                
+                
+                   
             $start++;
 
             }
             echo "</table>";
-            //Placeholders for buttons.
-            echo "<div class='dbedit'>";
+                            
+                            
+            //Container for dbButtons
+            echo "<div class='dbedit' id='$tableName'>";
             //Buttons for add/remove/edit
             echo "<button onclick='addEntry(this)'> Add Entry </button><button onclick='removeEntry(this)'> Remove Selected </button><button onclick='editEntry(this)'> Edit Selected </button>";
                             
@@ -104,15 +111,14 @@
             echo "</div>";
             
         }
-            //Draw windows for inputting stuff? 
-            cLog("This is next section");
+            //Get all columns from the table to make the add/edit forms.
             $sqlCols = "SHOW COLUMNS FROM $tableName";
             $result = $conn->query($sqlCols);
             if(!$result){
             cLog("DB Error, could not list tables");
             }
             
-            //Window for inputting new record.
+            //Modal window for inputting data.
             echo "<div class='modal'>";
             echo "<div class='inputDB $tableName'>";
             echo "<button class='closeDBInput' onclick='closeInput(this)'>X</button>";
@@ -127,8 +133,9 @@
             echo "</form></div></div>";
             
             
-            //Window for editing existing record. 
+            //Modal window for editing existing record. 
             echo "<div class='modal'>";
+            cLog("Table Name at this point: " . $tableName);
             echo "<div class='editRecord $tableName'>";
             echo "<button class='closeDBInput' onclick='closeInput(this)'>X</button>";
             echo "<form class='editDBSE $tableName' action='javascript:void(0);'>";
@@ -226,7 +233,11 @@
         var globalEdit = []; 
         function editEntry(t) {
             //Make the edit window visible (should only make visible if it can find an active table row)
+            console.log("EDIT START");
+            console.log("This: " + t);
+            console.log("PARENT: " + t.parentElement.id);
             var elementName = "editRecord " + t.parentElement.id;
+            console.log(elementName);
             var element = document.getElementsByClassName(elementName)[0];
             element.parentElement.style.display = "block";
             
