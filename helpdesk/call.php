@@ -75,7 +75,7 @@
             <h1>New Call</h1>
         </div>
         <div class="id-sel" >
-            <input type="text" class="s-bar s-bar-id" name="staff-id" id="staff-id" placeholder="Staff ID" />
+            <input type="text" class="s-bar s-bar-id" name="staff-id" id="staff-id" placeholder="Staff ID" required/>
             <input type="submit" class="s-button s-button-call" value="Search" />
         </div>
             <table class="staff-info" style="width:100%" >
@@ -102,7 +102,7 @@
             <div id="ticket">
                 <form action="" method="post">
                     <div id="call-input" class="tick-input">
-                        <select name="cat" id="cat" class="dropdown cat">
+                        <select name="cat" id="cat" class="dropdown cat" required>
                             <option selected disabled value="">Category</option>
                             <?php 
                                 include("config.php");
@@ -118,14 +118,14 @@
                                 }
                             ?>
                         </select>
-                        <select name="prior" id="priority" class="dropdown priority">
+                        <select name="prior" id="priority" class="dropdown priority" required>
                             <option selected disabled value="">Priority</option>
                             <option value="1">1 - Low</option>
                             <option value="2">2 - Medium</option>
                             <option value="3">3 - High</option>
                         </select>
-                        <textarea  id="des" rows="5" placeholder="Description" class="des"></textarea>
-                        <select name="hard1" id="hard1" class="dropdown ware">
+                        <textarea  id="des" rows="5" placeholder="Description" class="des" required></textarea>
+                        <select name="hard1" id="hard1" class="dropdown ware" required>
                             <option selected disabled value="">Hardware</option>
                             <option value="None">None</option>
                             <?php 
@@ -143,7 +143,7 @@
                             ?>
                         </select>
                         <input type="button" class="plus" value="+"/>
-                        <select name="soft1" id="soft1" class="dropdown ware">
+                        <select name="soft1" id="soft1" class="dropdown ware" required>
                             <option selected disabled value="">Software</option>
                             <option value="None">None</option>
                             <?php 
@@ -172,7 +172,7 @@
         <div id="query" class="divvis">
             <form action="" method="post">
                 <div id="call-input" class="tick-input">
-                    <select name="tickID" id="tickID" class="dropdown cat">
+                    <select name="tickID" id="tickID" class="dropdown cat" required>
                         <option selected disabled value="">Ticket ID</option>
                         <?php 
                             include("config.php");
@@ -188,12 +188,12 @@
                             }
                         ?>
                     </select>
-                    <select name="resolved" id="resolved" class="dropdown priority">
+                    <select name="resolved" id="resolved" class="dropdown priority" required>
                         <option selected disabled value="">Resolved</option>
                         <option value="Y">Yes</option>
                         <option value="N">No</option>
                     </select>
-                    <textarea  id="des" rows="5" placeholder="Reason for call/ Solution" class="des"></textarea>
+                    <textarea  id="des" rows="5" placeholder="Reason for call/ Solution" class="des" required></textarea>
                 </div>
                 <div class="tick-but">
                     <input type="reset" class="reset" value="Reset"/>

@@ -139,7 +139,7 @@
                     <div class="search">
                         <form action="<?php echo $url; ?>" method="get">
                             <input type="hidden" name="tableType" value="<?php echo htmlspecialchars($_GET['tableType']);?>">
-                            <input type="text" class="s-bar" name="query" id="query" placeholder="Problem Type" />
+                            <input type="text" class="s-bar" name="query" id="query" placeholder="Problem Type" required/>
                             <input type="submit" class="s-button" value="Search" onclick = ""/>
                         </form>
                     </div>
