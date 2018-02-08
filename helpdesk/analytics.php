@@ -70,9 +70,9 @@
 
         <div class="globalStats">
             <canvas id="dChart"></canvas>
+            <canvas id="tickets/hour"></canvas>
             <script>
                 window.onload = function() {
-
 
                     var xhttp = new XMLHttpRequest();
                     xhttp.onreadystatechange = function() {
@@ -80,11 +80,11 @@
                             var dData = JSON.parse(this.responseText);
                             var dataLabels = [];
                             var dataVals = [];
-                            for(var i = 0; i < dData.length; i++){
+                            for (var i = 0; i < dData.length; i++) {
                                 console.log(dData[i]);
-                                for(var j = 0; j< dData[i].length; j++){
+                                for (var j = 0; j < dData[i].length; j++) {
                                     console.log(dData[i][j]);
-                                    if(j == 0){
+                                    if (j == 0) {
                                         //Data Labal
                                         dataLabels.push(dData[i][j]);
                                     } else {
@@ -92,20 +92,13 @@
                                     }
                                 }
                             }
-                          
-            
-                            
-                           
                             ctx = document.getElementById("dChart").getContext('2d');
-                            
-                            
-                            
                             var dChart = new Chart(ctx, {
                                 type: 'doughnut',
                                 data: {
                                     labels: dataLabels,
-                                    
-                                    datasets:[{
+
+                                    datasets: [{
                                         backgroundColor: ['#51a1ef', '#ef51a1', '#a1ef51'],
                                         data: dataVals
                                     }]
@@ -123,6 +116,72 @@
                     };
                     xhttp.open("GET", "getAnalytics.php?var=all", true);
                     xhttp.send();
+
+
+
+
+                    var xhttp1 = new XMLHttpRequest();
+                    xhttp1.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            //Get data
+                            var dataArray = JSON.parse(this.responseText);
+                            console.log(dataArray);
+                            var labels = [];
+                            var data = [];
+                            //Data should be an array of arrays.
+                            for (var i = 0; i < dataArray.length; i++) {
+                                for (var j = 0; j < dataArray[i].length; j++) {
+                                    if (j == 0) {
+                                        //This is label
+                                        labels.push(dataArray[i][j]);
+                                    } else {
+                                        data.push(dataArray[i][j]);
+                                    }
+                                }
+                            }
+
+
+                            //Make chart
+                            var tickethourctx = document.getElementById("tickets/hour").getContext('2d');
+                            var myBarChart = new Chart(tickethourctx, {
+                                type: 'bar',
+                                data: {
+                                    labels: labels,
+                                    datasets: [{
+                                       data: data 
+                                    }]
+                                    
+                                },
+                                options: {          
+                                    legend: {
+                                        display: false
+                                    },
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            min: 0
+                                        }
+                                    }],
+                                    xAxes: [{
+                                        ticks: {
+                                            min: 0
+                                        }
+                                    }]
+                                }
+                                }
+                            });
+
+                        }
+                    };
+                    xhttp1.open("GET", "getHourlyAnalytics.php", true);
+                    xhttp1.send();
+
+
+
+
+
+
+
                 };
 
             </script>
