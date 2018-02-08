@@ -42,24 +42,53 @@ $result = $conn->query($sql);
         }
     }
 //We have total tickets - check file for last total.
-$txtFile = fopen($_SERVER["DOCUMENT_ROOT"]."/stats/hourly.txt", "r+");  
+$txtFile = fopen("/var/www/html/stats/hourly.txt", "r+");  
 
 
-$current = file_get_contents($_SERVER["DOCUMENT_ROOT"]."/stats/hourly.txt");
-cLog("Getting Contents : " . $current);   
+$current = file_get_contents("/var/www/html/stats/hourly.txt");
+  
 //What we actually need.
 $lastHour = $totalTickets - $current;
-cLog("Getting LH : " . $lastHour);  
+  
     
 //Update file with this total
-cLog("Putting: " . $totalTickets . " in file");
-file_put_contents($_SERVER["DOCUMENT_ROOT"]."/stats/hourly.txt", $totalTickets);
+
+file_put_contents("/var/www/html/stats/hourly.txt", $totalTickets);
 if($txtFile){
 fclose($txtFile);
 }
     
     
 //Seems to work kinda - need to store the values somewhere now.
+//Now we would retrieve the array from some other file.
+$arrFile = fopen("/var/www/html/stats/hourlyArray.txt", "r+");
+$arrayContents = file_get_contents("/var/www/html/stats/hourlyArray.txt");
+$time = date("H:i:s"); 
+if($arrayContents == NULL){
+    
+    //There's no array so make one. 
+    $makeArray = array(array($time, $lastHour));
+    $makeArrayEncoded = json_encode($makeArray);
+    file_put_contents("/var/www/html/stats/hourlyArray.txt", $makeArrayEncoded);
+} else {
+    $decodedArray = json_decode($arrayContents, true);
+    if(sizeof($decodedArray) < 24){
+        //There's room in the array
+        $toAdd = array($time, $lastHour);
+        array_push($decodedArray, $toAdd); 
+        
+    } else {
+        //No room in array. 
+        array_shift($decodedArray);
+        $toAdd = array($time, $lastHour);
+        array_push($decodedArray, $toAdd);
+    }
+    $finalArray = json_encode($decodedArray);
+    file_put_contents("/var/www/html/stats/hourlyArray.txt", $finalArray);
+    
+    
+}
+//Should be a normal array at this point.
 
 
 }
