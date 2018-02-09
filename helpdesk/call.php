@@ -7,6 +7,8 @@
                 header("Location: index.php");
             }
             include("config.php");
+            $hwnum = 1;
+            $swnum = 1;
         ?>
         <title>Help Desk</title>
         <link rel="shortcut icon" href="media/helpdesk.ico" width='16px' height='16px'/>
@@ -32,13 +34,7 @@
             
             return false;
           }
-        }
-        function copypastehw(){
-             $("#hw-copy").clone().appendTo("#hw-paste");
-        }
-        function copypastesw(){
-            $("#sw-copy").clone().appendTo("#sw-paste");
-        }
+        } 
     </script>
 	</head>
 	<body>
@@ -132,7 +128,7 @@
                         </select>
                         <textarea  id="des" rows="5" placeholder="Description" class="des" required></textarea>
                         <div id="hw-copy">
-                            <select name="hard1" id="hard1" class="dropdown ware" required>
+                            <select name="hard<?php echo $hwnum;?>" id="hard<?php echo $hwnum++;?>" class="dropdown ware" required>
                                 <option selected disabled value="">Hardware</option>
                                 <option value="None">None</option>
                                 <?php 
@@ -153,7 +149,7 @@
                         <div id="hw-paste"></div>
                         <input type="button" class="plus" value="+" onclick="copypastehw();"/>
                         <div id="sw-copy">
-                            <select name="soft1" id="soft1" class="dropdown ware" required>
+                            <select name="soft<?php echo $swnum;?>" id="soft<?php echo $swnum++;?>" class="dropdown ware" required>
                                 <option selected disabled value="">Software</option>
                                 <option value="None">None</option>
                                 <?php 
@@ -208,7 +204,7 @@
                     <textarea  id="des" rows="5" placeholder="Reason for call/ Solution" class="des" required></textarea>
                 </div>
                 <div class="tick-but">
-                    <input type="button" class="reset" value="Reset" onclick="window.location.href='call.php'"/>
+                    <input type="reset" class="reset" value="Reset"/>
                     <input type="submit" id="submit-query" class="next" value="Submit"/>
                 </div>
             </form>
