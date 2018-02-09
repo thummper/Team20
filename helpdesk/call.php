@@ -35,6 +35,12 @@
             return false;
           }
         } 
+        function copypastehw(){
+            
+        }
+        function copypastesw(){
+            
+        }
     </script>
 	</head>
 	<body>
