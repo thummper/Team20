@@ -148,7 +148,8 @@
                                 data: {
                                     labels: labels,
                                     datasets: [{
-                                       data: data 
+                                        label: "Number of Tickets Made",
+                                        data: data 
                                     }]
                                     
                                 },
