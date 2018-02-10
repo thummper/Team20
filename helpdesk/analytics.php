@@ -147,27 +147,30 @@
                                 type: 'bar',
                                 data: {
                                     labels: labels,
+
                                     datasets: [{
-                                       data: data 
+                                        backgroundColor: "#51a1ef",
+                                        label: "Number of Tickets Made",
+                                        data: data
                                     }]
-                                    
+
                                 },
-                                options: {          
+                                options: {
                                     legend: {
                                         display: false
                                     },
-                                scales: {
-                                    yAxes: [{
-                                        ticks: {
-                                            min: 0
-                                        }
-                                    }],
-                                    xAxes: [{
-                                        ticks: {
-                                            min: 0
-                                        }
-                                    }]
-                                }
+                                    scales: {
+                                        yAxes: [{
+                                            ticks: {
+                                                min: 0
+                                            }
+                                        }],
+                                        xAxes: [{
+                                            ticks: {
+                                                min: 0
+                                            }
+                                        }]
+                                    }
                                 }
                             });
 
