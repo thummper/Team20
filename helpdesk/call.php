@@ -90,7 +90,20 @@
             <input type="text" class="s-bar s-bar-id" name="staff-id" id="staff-id" placeholder="Staff ID" required/>
             <input type="submit" class="s-button s-button-call" value="Search" />
 			</form>
+<<<<<<< HEAD
 			<table class="staff-info" style="width:100%" >
+=======
+
+            <table class="staff-info" style="width:100%" >
+                <tr>
+                    <th>Staff ID:</th>
+                    <th>Full name:</th>
+                    <th>Job title:</th> 
+                    <th>Department:</th> 
+                    <th>Telephone number:</th> 
+                </tr>
+                <tr id="staffinfo" >
+>>>>>>> 158a96221a8da988bc04895122474c6326ff4f26
 				<?php
 					if(!empty($_GET['staff-id'])){
 						include("config.php");
@@ -125,11 +138,22 @@
 							}
 							}
 							}
+<<<<<<< HEAD
 							echo '<tr><th>Staff ID:</th><th>Full name:</th><th>Job title:</th> <th>Department:</th> <th>Telephone number:</th> </tr><tr id="staffinfo" ><td>'.$row['Staff_ID'].'</td><td>'.$row['Forename'].' '.$row['Surname'].'</td><td>'.$job.'</td><td>'.$dep.'</td><td>'.$row['Telephone'].'</td></tr>';
 						}
 						}
 					}
 				?>
+=======
+							echo '<td>'.$row['Staff_ID'].'</td><td>'.$row['Forename'].' '.$row['Surname'].'</td><td>'.$job.'</td><td>'.$dep.'</td><td>'.$row['Telephone'].'</td>';
+						}
+						}
+					} else {	
+                	echo' <td >...</td><td >...</td><td >...</td><td >...</td><td >...</td>'; 
+					}
+				?>
+                </tr>
+>>>>>>> 158a96221a8da988bc04895122474c6326ff4f26
             </table>
             <ul class="tab" >
                 <li><a id="ticketbutton" class="selected" >Ticket</a></li>
