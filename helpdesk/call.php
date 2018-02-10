@@ -36,15 +36,24 @@
           }
         }
 		function copypastehw(){
+            numhw();
 			drpdwn = '<select name="hard(' + hwnum + ')" id="hard(' + hwnum + ')" class="dropdown ware" required><option selected disabled value="">Hardware</option><option value="None">None</option><?php include("config.php"); $sql = 'SELECT * FROM Equipment'; $conn = new mysqli($DBservername, $DBusername, $DBpassword, $dbname); $result = $conn->query($sql);if(!$result){cLog("DB Error");} else {while(($row = $result->fetch_assoc())){echo '<option value="'.$row['Serial_Number'].'">'.$row['Serial_Number'].' - '.$row['Type'].'</option>';}}?></select>';
 			$("#hw").append(drpdwn);
 			hwnum++;
 		}
+        
 		function copypastesw(){
+            numsw();
 			drpdwn = '<select name="soft(' + swnum + ')" id="soft(' + swnum + ')" class="dropdown ware" required><option selected disabled value="">Software</option><option value="None">None</option><?php include("config.php");$sql = 'SELECT * FROM Software';$conn = new mysqli($DBservername, $DBusername, $DBpassword, $dbname); $result = $conn->query($sql);if(!$result){cLog("DB Error");} else {while(($row = $result->fetch_assoc())){echo '<option value="'.$row['Software_ID'].'">'.$row['Name'].'</option>';}}?></select>';
 			$("#sw").append(drpdwn);
 			swnum++;
 		}
+        function numhw(){
+            document.getElementById("hwnum").value = hwnum;
+        }
+        function numsw(){
+            document.getElementById("swnum").value = swnum;
+        }
     </script>
 	</head>
 	<body>
@@ -137,7 +146,7 @@
             </ul>
         <div id="input">
             <div id="ticket">
-                <form action="" method="post">
+                <form action="" method="post" id="tick">
                     <div id="call-input" class="tick-input">
                         <select name="cat" id="cat" class="dropdown cat" required>
                             <option selected disabled value="">Category</option>
@@ -203,7 +212,11 @@
                         </div>
                         <input type="button" class="plus" value="+" onclick="copypastesw();"/>
                     </div>
-                    <div class="tick-but">  
+                    <div class="tick-but">
+                        <input type="hidden" name="save-type" value="ticket">
+                        <input type="hidden" name="staff_ID" value="<?php echo htmlspecialchars($_GET['staff-id']);?>">
+                        <input type="hidden" name="hwnum" id="hwnum" value="1">
+                        <input type="hidden" name="swnum" id="swnum" value="1">
                         <input type="button" class="reset" value="Reset" onclick="window.location.href='call.php?staff-id=<?php echo $_GET['staff-id'];?> '"/>
                         <input type="submit" id="submit-tick" class="next" value="Next"/>
                     </div>
@@ -211,7 +224,7 @@
             </div>
         </div>
         <div id="query" class="divvis">
-            <form action="" method="post">
+            <form action="media/php/additional.php" method="post">
                 <div id="call-input" class="tick-input">
                     <select name="tickID" id="tickID" class="dropdown cat" required>
                         <option selected disabled value="">Ticket ID</option>
@@ -237,6 +250,8 @@
                     <textarea  id="des" rows="5" placeholder="Reason for call/ Solution" class="des" required></textarea>
                 </div>
                 <div class="tick-but">
+                    <input type="hidden" name="save-type" value="query">
+                    <input type="hidden" name="staff_ID" value="<?php echo htmlspecialchars($_GET['staff-id']);?>">
                     <input type="reset" class="reset" value="Reset"/>
                     <input type="submit" id="submit-query" class="next" value="Submit"/>
                 </div>
