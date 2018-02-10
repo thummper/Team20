@@ -7,14 +7,14 @@
                 header("Location: index.php");
             }
             include("config.php");
-            $hwnum = 1;
-            $swnum = 1;
         ?>
         <title>Help Desk</title>
         <link rel="shortcut icon" href="media/helpdesk.ico" width='16px' height='16px'/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <link rel="stylesheet" href="css/style.css" />
     <script type="text/javascript">
+		hwnum = 2;
+		swnum = 2;
         window.onload = function() {
           var ticket = document.getElementById("ticketbutton");
           var query = document.getElementById("querybutton");
@@ -34,13 +34,17 @@
             
             return false;
           }
-        } 
-        function copypastehw(){
-            
         }
-        function copypastesw(){
-            
-        }
+		function copypastehw(){
+			drpdwn = '<select name="hard(' + hwnum + ')" id="hard(' + hwnum + ')" class="dropdown ware" required><option selected disabled value="">Hardware</option><option value="None">None</option><?php include("config.php"); $sql = 'SELECT * FROM Equipment'; $conn = new mysqli($DBservername, $DBusername, $DBpassword, $dbname); $result = $conn->query($sql);if(!$result){cLog("DB Error");} else {while(($row = $result->fetch_assoc())){echo '<option value="'.$row['Serial_Number'].'">'.$row['Serial_Number'].' - '.$row['Type'].'</option>';}}?></select>';
+			$("#hw").append(drpdwn);
+			hwnum++;
+		}
+		function copypastesw(){
+			drpdwn = '<select name="soft(' + swnum + ')" id="soft(' + swnum + ')" class="dropdown ware" required><option selected disabled value="">Software</option><option value="None">None</option><?php include("config.php");$sql = 'SELECT * FROM Software';$conn = new mysqli($DBservername, $DBusername, $DBpassword, $dbname); $result = $conn->query($sql);if(!$result){cLog("DB Error");} else {while(($row = $result->fetch_assoc())){echo '<option value="'.$row['Software_ID'].'">'.$row['Name'].'</option>';}}?></select>';
+			$("#sw").append(drpdwn);
+			swnum++;
+		}
     </script>
 	</head>
 	<body>
@@ -82,25 +86,50 @@
         <div class="title">
             <h1>New Call</h1>
         </div>
-        <div class="id-sel" >
+			<form class="id-sel" action="" method="get">
             <input type="text" class="s-bar s-bar-id" name="staff-id" id="staff-id" placeholder="Staff ID" required/>
             <input type="submit" class="s-button s-button-call" value="Search" />
-        </div>
-            <table class="staff-info" style="width:100%" >
-                <tr>
-                    <th>Staff ID:</th>
-                    <th>Full name:</th>
-                    <th>Job title:</th> 
-                    <th>Department:</th> 
-                    <th>Telephone number:</th> 
-                </tr>
-                <tr id="staffinfo" >
-                    <td >...</td>
-                    <td >...</td>
-                    <td >...</td>
-                    <td >...</td>
-                    <td >...</td> 
-                </tr>
+			</form>
+			<table class="staff-info" style="width:100%" >
+				<?php
+					if(!empty($_GET['staff-id'])){
+						include("config.php");
+						$sql = "SELECT * FROM Staff WHERE Staff_ID = '".$_GET['staff-id']."'";
+						$conn = new mysqli($DBservername, $DBusername, $DBpassword, $dbname); 
+						$result = $conn->query($sql);
+						if(!$result){
+							cLog("DB Error");
+						} else {
+						while(($row = $result->fetch_assoc())){
+							$conn1 = new mysqli($DBservername, $DBusername, $DBpassword, $dbname); 
+							$sql2 = "SELECT * FROM Department";
+							$result2 = $conn1->query($sql2);
+							if(!$result2){
+							cLog("DB Error");
+							} else {
+							while( ($row1 = $result2->fetch_assoc())){
+								if($row1["Department_ID"]==$row["Department_ID"]){
+									$dep = $row1["Department_Name"];
+							}
+							}
+							}
+							$conn2 = new mysqli($DBservername, $DBusername, $DBpassword, $dbname); 
+							$sql3 = "SELECT * FROM Job";
+							$result3 = $conn2->query($sql3);
+							if(!$result3){
+							cLog("DB Error");
+							} else {
+							while( ($row2 = $result3->fetch_assoc())){
+								if($row2["Job_ID"]==$row["Job_ID"]){
+									$job = $row2["Job_Title"];
+							}
+							}
+							}
+							echo '<tr><th>Staff ID:</th><th>Full name:</th><th>Job title:</th> <th>Department:</th> <th>Telephone number:</th> </tr><tr id="staffinfo" ><td>'.$row['Staff_ID'].'</td><td>'.$row['Forename'].' '.$row['Surname'].'</td><td>'.$job.'</td><td>'.$dep.'</td><td>'.$row['Telephone'].'</td></tr>';
+						}
+						}
+					}
+				?>
             </table>
             <ul class="tab" >
                 <li><a id="ticketbutton" class="selected" >Ticket</a></li>
@@ -133,8 +162,8 @@
                             <option value="3">3 - High</option>
                         </select>
                         <textarea  id="des" rows="5" placeholder="Description" class="des" required></textarea>
-                        <div id="hw-copy">
-                            <select name="hard<?php echo $hwnum;?>" id="hard<?php echo $hwnum++;?>" class="dropdown ware" required>
+                        <div id="hw">
+                            <select name="hard(1)" id="hard(1)" class="dropdown ware" required>
                                 <option selected disabled value="">Hardware</option>
                                 <option value="None">None</option>
                                 <?php 
@@ -152,10 +181,9 @@
                                 ?>
                             </select>
                         </div>
-                        <div id="hw-paste"></div>
                         <input type="button" class="plus" value="+" onclick="copypastehw();"/>
-                        <div id="sw-copy">
-                            <select name="soft<?php echo $swnum;?>" id="soft<?php echo $swnum++;?>" class="dropdown ware" required>
+                        <div id="sw">
+                            <select name="soft(1)" id="soft(1)" class="dropdown ware" required>
                                 <option selected disabled value="">Software</option>
                                 <option value="None">None</option>
                                 <?php 
@@ -173,11 +201,10 @@
                                 ?>
                             </select>
                         </div>
-                        <div id="sw-paste"></div>
                         <input type="button" class="plus" value="+" onclick="copypastesw();"/>
                     </div>
                     <div class="tick-but">  
-                        <input type="button" class="reset" value="Reset" onclick="window.location.href='call.php'"/>
+                        <input type="button" class="reset" value="Reset" onclick="window.location.href='call.php?staff-id=<?php echo $_GET['staff-id'];?> '"/>
                         <input type="submit" id="submit-tick" class="next" value="Next"/>
                     </div>
                 </form>

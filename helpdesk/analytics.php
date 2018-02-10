@@ -99,7 +99,7 @@
                                     labels: dataLabels,
 
                                     datasets: [{
-                                        backgroundColor: ['#51a1ef', '#ef51a1', '#a1ef51'],
+                                        backgroundColor: ['#51a1ef', '#94c9fc'],
                                         data: dataVals
                                     }]
                                 },
@@ -114,7 +114,7 @@
 
                         }
                     };
-                    xhttp.open("GET", "getAnalytics.php?var=all", true);
+                    xhttp.open("GET", "getAnalytics.php?var=openclosed", true);
                     xhttp.send();
 
 

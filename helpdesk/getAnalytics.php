@@ -72,6 +72,14 @@ if($conn -> connect_error) {
         $jsonData = json_encode($data);
        
         echo $jsonData;
+    } else if($var === "openclosed"){
+                $data = array(
+             array("Open Tickets", $openTickets), array("Closed Tickets", $closedTickets));
+        $jsonData = json_encode($data);
+       
+        echo $jsonData;
+        
+        
     }
     
 
