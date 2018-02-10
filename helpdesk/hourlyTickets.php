@@ -64,7 +64,6 @@ fclose($txtFile);
 $arrFile = fopen("/var/www/html/stats/hourlyArray.txt", "r+");
 $arrayContents = file_get_contents("/var/www/html/stats/hourlyArray.txt");
 $time = date("H");
-$prev = $time - 1;
 if($arrayContents == NULL){
     
     //There's no array so make one. 
@@ -73,15 +72,15 @@ if($arrayContents == NULL){
     file_put_contents("/var/www/html/stats/hourlyArray.txt", $makeArrayEncoded);
 } else {
     $decodedArray = json_decode($arrayContents, true);
-    if(sizeof($decodedArray) < 24){
+    if(sizeof($decodedArray) < 12){
         //There's room in the array
-        $toAdd = array($prev. " - " .$time, $lastHour);
+        $toAdd = array($time, $lastHour);
         array_push($decodedArray, $toAdd); 
         
     } else {
         //No room in array. 
         array_shift($decodedArray);
-        $toAdd = array($prev. " - " .$time, $lastHour);
+        $toAdd = array($time, $lastHour);
         array_push($decodedArray, $toAdd);
     }
     $finalArray = json_encode($decodedArray);

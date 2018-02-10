@@ -69,8 +69,14 @@
 
 
         <div class="globalStats">
-            <canvas id="dChart"></canvas>
-            <canvas id="tickets/hour"></canvas>
+            <div class="ticketshour">
+                <h1>Tickets made per hour. </h1>
+                <canvas id="tickets/hour"></canvas>
+            </div>
+            <div class="ticketDisplay">
+                <canvas id="dChart"></canvas>
+            </div>
+
             <script>
                 window.onload = function() {
 
@@ -106,7 +112,8 @@
                                 options: {
                                     legend: {
                                         display: false
-                                    }
+                                    },
+                                    cutoutPercentage: 42
                                 }
                             });
 
@@ -144,12 +151,13 @@
                             //Make chart
                             var tickethourctx = document.getElementById("tickets/hour").getContext('2d');
                             var myBarChart = new Chart(tickethourctx, {
-                                type: 'bar',
+                                type: 'line',
                                 data: {
                                     labels: labels,
 
                                     datasets: [{
-                                        backgroundColor: "#51a1ef",
+                                        backgroundColor: "#94c9fc",
+                                        borderColor: "#51a1ef",
                                         label: "Number of Tickets Made",
                                         data: data
                                     }]
@@ -161,11 +169,16 @@
                                     },
                                     scales: {
                                         yAxes: [{
+
                                             ticks: {
-                                                min: 0
+                                                min: 0,
+                                                stepSize: 1
                                             }
                                         }],
                                         xAxes: [{
+                                            gridLines: {
+                                                color: "rgba(0, 0, 0, 0)",
+                                            },
                                             ticks: {
                                                 min: 0
                                             }

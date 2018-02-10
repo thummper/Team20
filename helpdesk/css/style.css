@@ -576,3 +576,17 @@ table tbody tr:first-child td {
 .divvis{
     display:none;
 }
+.globalStats{
+
+    width: 96%;
+    margin: 0 auto;
+}
+.ticketshour{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   
+
+    
+}
