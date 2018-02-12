@@ -83,14 +83,84 @@
             document.getElementById("possibleSolutions").innerHTML = "";
         }
         function submitTicket(item){
+            console.log("Testing");
+            var data = [];
             //This function will collect all data and submit to database.
+            //Probably just some beefy ajax cos that's all i can do D: 
+            //When submit is pressed - get all information. 
+            //JSON in this order: (ID) STAFFID OPERATORID (SPECID) PROBLEMTYPE DESCRIPTION PRIO SOLUTION (DATEMADE) (DATESOLVE) RESOLVED 
+            <?php 
+            $opID = $_SESSION["staffID"];
+            $staffID = $_GET["staff-id"];
+            
+            
+            ?>
+            var form = document.getElementById("tick");
+            var selector = document.getElementById("cat");
+            var priority = document.getElementById("priority").value;
+            var description = document.getElementById("des").value;
+           
+            
+            //Get the selected category. 
+            var problemType = selector[selector.selectedIndex].innerHTML;
+            
+            var staffID = '<?php echo $staffID?>';
+            var operator = '<?php echo $opID?>';
+            console.log("StaffID: " + staffID + " Op ID: " + operator);
+            data.push({
+                Field: "Staff_ID",
+                Data: staffID
+            }, {
+                Field: "Operator_ID",
+                Data: operator
+            }, {
+                Field: "Problem_Type",
+                Data: problemType
+            }, {
+                Field: "Description",
+                Data: description
+            }, {
+                Field: "Priority",
+                Data: priority
+            });
+             var resolved = document.getElementById("tickResolved");
+            var resval = resolved[resolved.selectedIndex].innerHTML;
+            console.log(resval);
+            if(resval === "Yes"){
+                console.log("SOLUTION!");
+                //There is a solution.
+                var solution = document.getElementById("solution").value;
+                data.push({
+                   Field: "Solution",
+                   Data: solution
+                }, {
+                    Field: "Resolved",
+                    Data: resval
+                });
+            } else {
+                console.log("NO SOLUTION");
+                data.push({
+                    Field: "Resolved",
+                    Data: resval
+                })
+            }
+            
+            //Now get all hardware and software.
+            
+            console.log("going to pass this to server: " + JSON.stringify(data));
+            
+            
+            
+            
+             
+            
         }
     </script>
 	</head>
 	<body>
         <div class="sidebar">
         	<div class="sidebar-top">
-                <h2><?php echo $_SESSION["jobTitle"]; ?></h2>
+                <h2><?php echo $_SESSION["jobTitle"];?></h2>
                 <p><?php echo $_SESSION["staffName"]; ?></p>
             </div>
             <div class="sidebar-mid">
@@ -296,7 +366,7 @@
                 
                 <div class="solDiv">
                 <textarea rows="5" id="solution" placeholder="Solution" class="solutionText"></textarea>
-                <select name="resolved" id="resolved" class="solutionDrop dropdown">
+                <select name="resolved" id="tickResolved" class="solutionDrop dropdown">
                     <option selected disabled>Resolved</option>
                     <option value="1">Yes</option>
                     <option value="2">No</option>
