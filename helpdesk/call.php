@@ -54,6 +54,33 @@
         function numsw(){
             document.getElementById("swnum").value = swnum;
         }
+        function openSolution(){
+            var selector = document.getElementById("cat");
+            //Get the selected category. 
+            var value = selector[selector.selectedIndex].innerHTML;
+            console.log(value);
+            //When window opens we need to get the past 3 (closed) tickets with the same ticket type.
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+               
+                    //Results will be a table, append table to a div in the window before displaying.
+                  
+                    document.getElementById("possibleSolutions").innerHTML += this.responseText;
+                    document.getElementById("modal").style.display = "block";
+                    
+                    
+                }
+            };
+            var test = "/getSolutions.php?type="+value;
+            xhttp.open("GET", test, true);
+            xhttp.send();
+            
+        }
+        function closeInput(item){
+            item.parentElement.parentElement.style.display = "none";
+            document.getElementById("possibleSolutions").innerHTML = "";
+        }
     </script>
 	</head>
 	<body>
@@ -146,7 +173,7 @@
             </ul>
         <div id="input">
             <div id="ticket">
-                <form action="" method="post" id="tick">
+                <form action="javascript:void(0);" id="tick">
                     <div id="call-input" class="tick-input">
                         <select name="cat" id="cat" class="dropdown cat" required>
                             <option selected disabled value="">Category</option>
@@ -218,7 +245,7 @@
                         <input type="hidden" name="hwnum" id="hwnum" value="1">
                         <input type="hidden" name="swnum" id="swnum" value="1">
                         <input type="button" class="reset" value="Reset" onclick="window.location.href='call.php?staff-id=<?php echo $_GET['staff-id'];?> '"/>
-                        <input type="submit" id="submit-tick" class="next" value="Next"/>
+                        <input type="submit" id="submit-tick" class="next" value="Next" onclick="openSolution()"/>
                     </div>
                 </form>
             </div>
@@ -251,12 +278,36 @@
                 </div>
                 <div class="tick-but">
                     <input type="hidden" name="save-type" value="query">
-                    <input type="hidden" name="staff_ID" value="<?php echo htmlspecialchars($_GET['staff-id']);?>">
                     <input type="reset" class="reset" value="Reset"/>
                     <input type="submit" id="submit-query" class="next" value="Submit"/>
                 </div>
             </form>
         </div>
+        <div class="modal" id="modal">
+            
+            <div class="ticketSubmit">
+                <div id="possibleSolutions"></div>
+                <button class='closeTicketSubmit' onclick='closeInput(this)'>X</button>
+                <div class="solution">
+                <textarea rows="5" id="solution" placeholder="Solution" class="solutionText"></textarea>
+                <select name="resolved" id="resolved" class="dd">
+                    <option selected disabled>Resolved</option>
+                    <option value="1">Yes</option>
+                    <option value="2">No</option>
+                    </select>
+                </div>
+                
+                <div class="solButtons">
+                <button>Back</button>
+                <button>Submit</button>
+                
+                </div>
+                    
+                
+            
+            </div>
+        </div>
+        
     </div>
 	</body>
 </html>

@@ -480,6 +480,26 @@ table tbody tr:first-child td {
     align-items: center;
 
 }
+.ticketSubmit {
+    background-color: #fefefe;
+    margin: 15% auto;
+    border: 1px solid #888;
+    width: 800px;
+    height: 400px;
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+ 
+    
+}
+.solution {
+    display: flex;
+    justify-content: space-around;
+}
+.solButtons {
+    display: flex;
+    justify-content: space-around;
+}
+
 .inputDB form, .editRecord form{
     margin: 0 auto;
     order: 1;
@@ -488,12 +508,15 @@ table tbody tr:first-child td {
     width: 100%;
 }
 
-.closeDBInput {
+.closeDBInput, .closeTicketSubmit {
    
     font-size: 1em;
     order: 2;
     align-self: flex-start;
  
+}
+.closeTicketSubmit {
+    float: right;
 }
 .dropdown{
     margin-top: 3em;
@@ -585,8 +608,19 @@ table tbody tr:first-child td {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-   
-
+    align-items: center; 
+}
+.solveTimes {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    justify-content: space-between;
+    align-items: center; 
+    margin: 80px 0;
     
+}
+.solveTimes span{
+    padding: 10px 10px;
+    background-color: #f5f6f7;
+    border-radius: 5px;
 }

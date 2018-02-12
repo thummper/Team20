@@ -69,10 +69,26 @@
 
 
         <div class="globalStats">
+                    <div class="solveTimes">
+                <span>
+            Fastest Ticket Solve Time<br>2 Mins
+            </span>
+                <span>
+            Average Ticket Solve Time<br>36 Mins
+              </span>
+                <span>
+            Slowest Ticket Solve Time<br>27 Hours
+                    </span>
+
+            </div>
             <div class="ticketshour">
                 <h1>Tickets made per hour. </h1>
                 <canvas id="tickets/hour"></canvas>
             </div>
+    
+
+
+
             <div class="ticketDisplay">
                 <canvas id="dChart"></canvas>
             </div>
