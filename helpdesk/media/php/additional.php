@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
 <?php
+<<<<<<< HEAD
    if($_POST["save-type"] == "query") {
        include("../../config.php");
        session_start();
@@ -15,5 +16,7 @@
        }else if($_POST["resolved"] == 'Y'){
            
        }
+=======
+>>>>>>> 789ddf36ef123d18d820f17dd42a750174c52c5f
    }
 ?>
