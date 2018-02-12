@@ -78,8 +78,12 @@
             
         }
         function closeInput(item){
-            item.parentElement.parentElement.style.display = "none";
+            var item = document.getElementsByClassName("modal")[0];
+            item.style.display = "none";
             document.getElementById("possibleSolutions").innerHTML = "";
+        }
+        function submitTicket(item){
+            //This function will collect all data and submit to database.
         }
     </script>
 	</head>
@@ -286,11 +290,13 @@
         <div class="modal" id="modal">
             
             <div class="ticketSubmit">
+                <span class='closeTicketSubmit' onclick='closeInput(this)'>×</span>
+                <div class="title"><h1>Possible Solutions.</h1></div>
                 <div id="possibleSolutions"></div>
-                <button class='closeTicketSubmit' onclick='closeInput(this)'>X</button>
-                <div class="solution">
+                
+                <div class="solDiv">
                 <textarea rows="5" id="solution" placeholder="Solution" class="solutionText"></textarea>
-                <select name="resolved" id="resolved" class="dd">
+                <select name="resolved" id="resolved" class="solutionDrop dropdown">
                     <option selected disabled>Resolved</option>
                     <option value="1">Yes</option>
                     <option value="2">No</option>
@@ -298,8 +304,8 @@
                 </div>
                 
                 <div class="solButtons">
-                <button>Back</button>
-                <button>Submit</button>
+                <button onclick='closeInput(this)'>Back</button>
+                <button onclick='submitTicket(this)'>Submit</button>
                 
                 </div>
                     

@@ -8,6 +8,21 @@ h1,h2,h3,h4,h5,h6,a,p,body,textarea, button {
     font-family: "Source Sans Pro", sans-serif;
 }
 
+textarea {
+    font-size: 11pt;
+    width: 42%;
+    margin: 0 2.5%;
+    background: #f5f6f7;
+    border: solid 1px #eff1f2;
+    color: inherit;
+    display: block;
+    outline: 0;
+    text-decoration: none;
+    resize: none;
+    padding: 1em;
+    
+}
+
 input[type="text"], input[type="password"] {
     background: #f5f6f7;
     border: solid 1px #eff1f2;
@@ -463,6 +478,12 @@ table tbody tr:first-child td {
     background-color: rgba(0,0,0,0.4);
     
 }
+#possibleSolutions {
+    text-align: center;
+}
+.modal h1 {
+    font-size: 22pt;
+}
 .dbFeedback {
     display: none;
 }
@@ -482,23 +503,36 @@ table tbody tr:first-child td {
 }
 .ticketSubmit {
     background-color: #fefefe;
-    margin: 15% auto;
+    margin: 40px auto;
+    padding: 20px;
     border: 1px solid #888;
-    width: 800px;
-    height: 400px;
+    width: 80%;
+    height: 80%;
+    
+    
     animation-name: animatetop;
     animation-duration: 0.4s;
  
     
 }
-.solution {
-    display: flex;
-    justify-content: space-around;
+.solDiv{
+    padding: 1em;
 }
-.solButtons {
-    display: flex;
-    justify-content: space-around;
+.solutionText {
+    float: left;
 }
+.solutionDrop {
+    float: right;
+}
+.solButtons{
+    margin-top: 4em;
+    width: 30%;
+    float: right;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 
 .inputDB form, .editRecord form{
     margin: 0 auto;
@@ -517,6 +551,13 @@ table tbody tr:first-child td {
 }
 .closeTicketSubmit {
     float: right;
+    color: #aaaaaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.closeTicketSubmit:hover{
+    color: black;
 }
 .dropdown{
     margin-top: 3em;
