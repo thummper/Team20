@@ -146,8 +146,36 @@
             }
             
             //Now get all hardware and software.
+            var hardware = document.getElementById("hw");
+            hwList = hardware.getElementsByClassName("ware");
+            for(var i = 0; i < hwList.length; i++){
+                data.push({
+                   Field: "Serial_Number",
+                   Data: hwList[i].value
+                });
+            }
+            
+            var software = document.getElementById("sw");
+            swList = software.getElementsByClassName("ware");
+            for(var i = 0; i < swList.length; i++){
+                data.push({
+                   Field: "Software_ID",
+                   Data: swList[i].value
+                });
+            }
             
             console.log("going to pass this to server: " + JSON.stringify(data));
+            var json_upload = "user_data=" + JSON.stringify(data);
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function(){
+                if(this.readyState == 4 && this.status == 200){
+                    console.log(this.responseText);
+                }
+            };
+            xhttp.open("POST", "/submitTicket.php");
+            xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhttp.send(json_upload);
+            
             
             
             
