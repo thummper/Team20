@@ -92,6 +92,7 @@
             <?php 
             $opID = $_SESSION["staffID"];
             $staffID = $_GET["staff-id"];
+            $dateMade = date("Y-m-d h:i:s");
             
             
             ?>
@@ -106,22 +107,32 @@
             
             var staffID = '<?php echo $staffID?>';
             var operator = '<?php echo $opID?>';
+            var dateMade = '<?php echo $dateMade?>';
+            var dateSovled = "NULL";
             console.log("StaffID: " + staffID + " Op ID: " + operator);
             data.push({
+                Field: "Ticket_ID",
+                Data: "NULL"
+            },
+                      {
                 Field: "Staff_ID",
-                Data: staffID
+                Data: "'"+staffID+"'"
             }, {
                 Field: "Operator_ID",
-                Data: operator
+                Data: "'"+operator+"'"
+            }, {
+                Field: "Specialist_ID",
+                Data: "'1'"
+                
             }, {
                 Field: "Problem_Type",
-                Data: problemType
+                Data: "'"+problemType+"'"
             }, {
                 Field: "Description",
-                Data: description
+                Data: "'"+description+"'"
             }, {
                 Field: "Priority",
-                Data: priority
+                Data: "'"+priority+"'"
             });
              var resolved = document.getElementById("tickResolved");
             var resval = resolved[resolved.selectedIndex].innerHTML;
@@ -132,17 +143,36 @@
                 var solution = document.getElementById("solution").value;
                 data.push({
                    Field: "Solution",
-                   Data: solution
+                   Data: "'"+solution+"'"
+                }, { 
+                    Field: "Date_Made",
+                    Data: "'"+dateMade+"'"   
                 }, {
+                    Field: "Date_Solved",
+                    Data: "NULL"
+                    
+                },
+                          {
                     Field: "Resolved",
-                    Data: resval
+                    Data: "'Y'"
                 });
             } else {
                 console.log("NO SOLUTION");
                 data.push({
+                    Field: "Solution",
+                    Data: "NULL"
+                    
+                }, { 
+                    Field: "Date_Made",
+                    Data: "'"+dateMade+"'"   
+                }, {
+                    Field: "Date_Solved",
+                    Data: "NULL"
+                    
+                },{
                     Field: "Resolved",
-                    Data: resval
-                })
+                    Data: "'N'"
+                });
             }
             
             //Now get all hardware and software.
@@ -150,8 +180,8 @@
             hwList = hardware.getElementsByClassName("ware");
             for(var i = 0; i < hwList.length; i++){
                 data.push({
-                   Field: "Serial_Number",
-                   Data: hwList[i].value
+                   Field: "Hardware_ID",
+                   Data: "'"+hwList[i].value+"'"
                 });
             }
             
@@ -160,7 +190,7 @@
             for(var i = 0; i < swList.length; i++){
                 data.push({
                    Field: "Software_ID",
-                   Data: swList[i].value
+                   Data: "'"+swList[i].value+"'"
                 });
             }
             
@@ -396,8 +426,8 @@
                 <textarea rows="5" id="solution" placeholder="Solution" class="solutionText"></textarea>
                 <select name="resolved" id="tickResolved" class="solutionDrop dropdown">
                     <option selected disabled>Resolved</option>
-                    <option value="1">Yes</option>
-                    <option value="2">No</option>
+                    <option value="Y">Yes</option>
+                    <option value="N">No</option>
                     </select>
                 </div>
                 
