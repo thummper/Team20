@@ -149,7 +149,7 @@
                     Data: "'"+dateMade+"'"   
                 }, {
                     Field: "Date_Solved",
-                    Data: "NULL"
+                    Data: "'"+dateMade+"'"
                     
                 },
                           {
