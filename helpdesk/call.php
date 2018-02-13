@@ -383,7 +383,7 @@
             </div>
         </div>
         <div id="query" class="divvis">
-            <form action="media/php/additional.php" method="post">
+            <form action="submitQuery.php" method="post">
                 <div id="call-input" class="tick-input">
                     <select name="tickID" id="tickID" class="dropdown cat" required>
                         <option selected disabled value="">Ticket ID</option>
@@ -406,9 +406,10 @@
                         <option value="Y">Yes</option>
                         <option value="N">No</option>
                     </select>
-                    <textarea  id="des" rows="5" placeholder="Reason for call/ Solution" class="des" required></textarea>
+                    <textarea  id="des" name="reason" rows="5" placeholder="Reason for call/ Solution" class="des" required></textarea>
                 </div>
                 <div class="tick-but">
+                    <input type="hidden" name="staff_ID" value="<?php echo htmlspecialchars($_GET['staff-id']);?>">
                     <input type="hidden" name="save-type" value="query">
                     <input type="reset" class="reset" value="Reset"/>
                     <input type="submit" id="submit-query" class="next" value="Submit"/>
