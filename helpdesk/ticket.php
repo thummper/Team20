@@ -6,6 +6,29 @@
             if(empty($_SESSION["staffID"])){
                 header("Location: index.php");
             }
+            $conn = new mysqli($DBservername, $DBusername, $DBpassword, $dbname);
+            if($conn -> connect_error) {
+                die("Connection Failed: " . $conn->connect_error);
+            } else { 
+               $sql = "SELECT * FROM Ticket WHERE Ticket_ID = '".$_GET["TicketID"]."'";
+               $result = $conn->query($sql);
+               if(!$result){
+                   cLog("DB Error");
+                 } else {
+                    $row = $result->fetch_row();
+                    $staffID = $row["Staff_ID"];
+                    $specID = $row["Specialist_ID"];
+                    $opID = $row["Operator_ID"];
+                    $ptype = $row["Problem_Type"];
+                    $des = $row["Description"];
+                    $pri = $row["Priority"];
+                    $res = $row["Resolved"];
+                    if($res == 'Y'){
+                        $sol = $row["Solution"];
+                        $dsol = $row["Date_Solved"];
+                    }
+               }
+            }
         ?>
         <title>Help Desk</title>
         <link rel="shortcut icon" href="media/helpdesk.ico" width='16px' height='16px'/>
