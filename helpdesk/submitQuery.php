@@ -27,7 +27,18 @@
                }
            } 
        }else if($_POST["resolved"] == 'Y'){
-           
+           $conn = new mysqli($DBservername, $DBusername, $DBpassword, $dbname);
+           if($conn -> connect_error) {
+            die("Connection Failed: " . $conn->connect_error);
+           } else {
+               $sql = "UPDATE Ticket SET Solution = '".$_POST["reason"]."', Date_Solved = '".date("Y-m-d H:i:s")."', Resolved = 'Y' WHERE Ticket_ID = '".$_POST["tickID"]."';";
+               $result = $conn->query($sql);
+               if(!$result){
+                    echo "query Query Fail";
+               } else {
+                    echo "query Query ok";
+               }
+           } 
        }
        header("Location: main.php");
    }

@@ -92,7 +92,7 @@
             <?php 
             $opID = $_SESSION["staffID"];
             $staffID = $_GET["staff-id"];
-            $dateMade = date("Y-m-d h:i:s");
+            $dateMade = date("Y-m-d H:i:s");
             
             
             ?>
