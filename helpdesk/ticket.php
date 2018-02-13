@@ -2,6 +2,7 @@
 <html>
 	<head>
          <?php 
+            include("config.php");
             session_start();
             if(empty($_SESSION["staffID"])){
                 header("Location: index.php");
