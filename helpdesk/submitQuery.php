@@ -1,6 +1,4 @@
 <?php
-
-   if($_POST["save-type"] == "query") {
        include("config.php");
        session_start();
        if($_POST["resolved"] == 'N'){
@@ -41,5 +39,4 @@
            } 
        }
        header("Location: main.php");
-   }
 ?>
