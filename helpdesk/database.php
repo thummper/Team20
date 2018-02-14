@@ -40,7 +40,7 @@
                 $tableName = $row[0];
             
                 //SHOW sql is weird, seems like this is the best way to avoid reworking it.
-                if($tableName === "Equipment" || $tableName === "Job" || $tableName === "Software"|| $tableName === "Specialisation"){
+                if($tableName === "Equipment" || $tableName === "Job" || $tableName === "Software"|| $tableName === "Specialisation" || $tableName === "Staff_Spec"){
                 array_push($tableNames, $tableName);
                 echo "<button class='tablinks' onclick=' openTable(event, \"$tableName\" ) ' >$tableName</button>";
                 }
