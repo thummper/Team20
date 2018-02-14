@@ -97,13 +97,12 @@
             
             ?>
             var form = document.getElementById("tick");
-            var selector = document.getElementById("cat");
+            var problemType = document.getElementById("cat").value;
             var priority = document.getElementById("priority").value;
             var description = document.getElementById("des").value;
            
             
             //Get the selected category. 
-            var problemType = selector[selector.selectedIndex].innerHTML;
             
             var staffID = '<?php echo $staffID?>';
             var operator = '<?php echo $opID?>';
