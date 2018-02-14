@@ -15,7 +15,7 @@
             function FullTable(){
                 $start = 0;
                 if(!empty($_GET['query'])){
-                    $sql1 = "SELECT * FROM Ticket WHERE Problem_Type LIKE '%".$_GET['query']."%' ORDER BY Ticket_ID DESC";
+                    $sql1 = "SELECT * FROM Ticket WHERE Problem_Type IN (SELECT Spec_ID FROM Specialisation WHERE Spec_Name LIKE '%".$_GET['query']."%') ORDER BY Ticket_ID DESC";
                 }else {
                     $sql1 = "SELECT * FROM Ticket ORDER BY Ticket_ID DESC";
                 }
@@ -25,7 +25,7 @@
             function OpenTable(){
                 $start = 0;
                 if(!empty($_GET['query'])){
-                    $sql1 = "SELECT * FROM Ticket WHERE Problem_Type LIKE '%".$_GET['query']."%' AND Resolved = 'N' ORDER BY Ticket_ID DESC";
+                    $sql1 = "SELECT * FROM Ticket WHERE Problem_Type IN (SELECT Spec_ID FROM Specialisation WHERE Spec_Name LIKE '%".$_GET['query']."%') AND Resolved = 'N' ORDER BY Ticket_ID DESC";
                 }else {
                     $sql1 = "SELECT * FROM Ticket WHERE Resolved = 'N' ORDER BY Ticket_ID DESC";
                 }
@@ -36,9 +36,10 @@
             function ClosedTable(){
                 $start = 0;
                 if(!empty($_GET['query'])){
-                    $sql1 = "SELECT * FROM Ticket WHERE Problem_Type LIKE '%".$_GET['query']."%' AND Resolved = 'Y' ORDER BY Ticket_ID DESC";
+                    $sql1 = "SELECT * FROM Ticket WHERE Problem_Type IN (SELECT Spec_ID FROM Specialisation WHERE Spec_Name LIKE '%".$_GET['query']."%') AND Resolved = 'Y' ORDER BY Ticket_ID DESC";
                 }else {
                     $sql1 = "SELECT * FROM Ticket WHERE Resolved = 'Y' ORDER BY Ticket_ID DESC";
+                    
                 }
                 echo FillTable($sql1, $start);
                 echo "<script>document.getElementById(\"all\").classList.remove('active');document.getElementById(\"open\").classList.remove('active');document.getElementById(\"closed\").classList.add('active');document.getElementById(\"my\").classList.remove('active') </script>";
@@ -46,7 +47,7 @@
             function MyTable(){
                 $start = 0;
                 if(!empty($_GET['query'])){
-                    $sql1 = "SELECT * FROM Ticket WHERE Problem_Type LIKE '%".$_GET['query']."%' AND Resolved = 'N' AND Specialist_ID = '".$_SESSION["staffID"]."' ORDER BY Ticket_ID DESC";
+                    $sql1 = "SELECT * FROM Ticket WHERE Problem_Type IN (SELECT Spec_ID FROM Specialisation WHERE Spec_Name LIKE '%".$_GET['query']."%') AND Resolved = 'N' AND Specialist_ID = '".$_SESSION["staffID"]."' ORDER BY Ticket_ID DESC";
                 }else {
                     $sql1 = "SELECT * FROM Ticket WHERE Resolved = 'N' AND Specialist_ID = '".$_SESSION["staffID"]."' ORDER BY Ticket_ID DESC";
                 }

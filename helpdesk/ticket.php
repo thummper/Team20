@@ -24,6 +24,7 @@
                     $des = $row["Description"];
                     $pri = $row["Priority"];
                     $res = $row["Resolved"];
+                    $date = $row["Date_Made"];
                     if($res == 'Y'){
                         $sol = $row["Solution"];
                         $dsol = $row["Date_Solved"];
@@ -72,7 +73,9 @@
         
     <div class="main">
         <div class="title">
+            <p class="tick-date" ><?php echo $date; ?></p>
             <h1>Ticket: <?php echo $_GET["TicketID"]; ?></h1>
+            
         </div>
         <div class="op-spec">
             <div class="spec-div">
