@@ -95,6 +95,9 @@
             <div class="problemsbyhwsw">
                 <canvas id="hwsw"></canvas>
             </div>
+            <div class="avDaily">
+                <canvas id="avDaily"></canvas>
+            </div>
 
             <script>
                 window.onload = function() {
@@ -274,6 +277,8 @@
 
 
                         }
+
+
                     };
                     xhttp2.open("GET", "tickethwsw.php", true);
                     xhttp2.send();
@@ -285,7 +290,7 @@
                             for (var i = 0; i < data.length; i++) {
                                 switch (i) {
                                     case 0:
-                                        if (data[i] > 60) {
+                                        if (data[i] > 59) {
                                             document.getElementById("fastest").innerHTML = (data[i] / 60).toFixed(2) + " Hours";
                                         } else {
                                             document.getElementById("fastest").innerHTML = data[i] + " Mins";
@@ -293,14 +298,14 @@
 
                                         break;
                                     case 1:
-                                        if (data[i] > 60) {
+                                        if (data[i] > 59) {
                                             document.getElementById("globalAv").innerHTML = (data[i] / 60).toFixed(2) + " Hours";
                                         } else {
                                             document.getElementById("globalAv").innerHTML = data[i] + " Mins";
                                         }
                                         break;
                                     case 2:
-                                        if (data[i] > 60) {
+                                        if (data[i] > 59) {
                                             document.getElementById("slowest").innerHTML = (data[i] / 60).toFixed(2) + " Hours";
                                         } else {
                                             document.getElementById("slowest").innerHTML = data[i] + " Mins";
@@ -315,6 +320,81 @@
                     }
                     xhttp3.open("GET", "getSolveTimes.php?var=all");
                     xhttp3.send();
+
+
+
+
+
+
+
+
+                    var xhttp4 = new XMLHttpRequest();
+                    xhttp4.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            //Get data
+                            var dataArray = JSON.parse(this.responseText);
+                            console.log(dataArray);
+                            var labels = [];
+                            var data = [];
+                            //Data should be an array of arrays.
+                            for (var i = 0; i < dataArray.length; i++) {
+                                for (var j = 0; j < dataArray[i].length; j++) {
+                                    if (j == 0) {
+                                        //This is label
+                                        labels.push(dataArray[i][j]);
+                                    } else {
+                                        data.push(dataArray[i][j]);
+                                    }
+                                }
+                            }
+
+
+                            //Make chart
+                            var avDaily = document.getElementById("avDaily").getContext('2d');
+                            var linechart = new Chart(avDaily, {
+                                type: 'line',
+                                data: {
+                                    labels: labels,
+
+                                    datasets: [{
+                                        backgroundColor: "#94c9fc",
+                                        borderColor: "#51a1ef",
+                                        label: "Number of Tickets Made",
+                                        data: data
+                                    }]
+
+                                },
+                                options: {
+                                    legend: {
+                                        display: false
+                                    },
+                                    scales: {
+                                        yAxes: [{
+
+                                            ticks: {
+                                                min: 0,
+                                                stepSize: 60
+                                            }
+                                        }],
+                                        xAxes: [{
+                                            gridLines: {
+                                                color: "rgba(0, 0, 0, 0)",
+                                            },
+                                            ticks: {
+                                                min: 0
+                                            }
+                                        }]
+                                    }
+                                }
+                            });
+
+                        }
+                    };
+                    xhttp4.open("GET", "getDaySolveTimes.php", true);
+                    xhttp4.send();
+
+
+
 
 
 
