@@ -87,7 +87,16 @@
                     }
                     }
                     }
-                    $ticketTable = $ticketTable."<tr><td>".$row["Ticket_ID"]."</td><td>".$row["Problem_Type"]."</td><td>".$op."</td><td>".$row["Date_Made"]."</td><td>".$spec."</td><td>".$row["Priority"]."</td><td>".$row["Resolved"]."</td><td><a href='ticket.php?TicketID=".$row["Ticket_ID"]."'>View</a></td></tr>";
+                    $conn3 = new mysqli($DBservername, $DBusername, $DBpassword, $dbname); 
+                        $sql4 = "SELECT * FROM Specialisation WHERE Spec_ID = '".$row["Problem_Type"]."';";
+                        $result4 = $conn1->query($sql4);
+                        if(!$result4){
+                        cLog("DB Error");
+                        } else {
+                            $row3 = $result4->fetch_assoc();
+                            $ptype = $row3["Spec_Name"];
+                        }
+                    $ticketTable = $ticketTable."<tr><td>".$row["Ticket_ID"]."</td><td>".$ptype."</td><td>".$op."</td><td>".$row["Date_Made"]."</td><td>".$spec."</td><td>".$row["Priority"]."</td><td>".$row["Resolved"]."</td><td><a href='ticket.php?TicketID=".$row["Ticket_ID"]."'>View</a></td></tr>";
                     $start++;
                 }
                 $ticketTable = $ticketTable."</table>"; 
