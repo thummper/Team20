@@ -71,13 +71,13 @@
         <div class="globalStats">
             <div class="solveTimes">
                 <span>
-            Fastest Ticket Solve Time<br>2 Mins
+            Fastest Ticket Solve Time<br><div id="fastest">0</div>
             </span>
                 <span>
-            Average Ticket Solve Time<br>36 Mins
+                    Average Ticket Solve Time<br><div id="globalAv">0</div>
               </span>
                 <span>
-            Slowest Ticket Solve Time<br>27 Hours
+            Slowest Ticket Solve Time<br><div id="slowest">0</div>
                     </span>
 
             </div>
@@ -278,17 +278,49 @@
                     xhttp2.open("GET", "tickethwsw.php", true);
                     xhttp2.send();
 
+                    var xhttp3 = new XMLHttpRequest();
+                    xhttp3.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            var data = JSON.parse(this.responseText);
+                            for (var i = 0; i < data.length; i++) {
+                                switch (i) {
+                                    case 0:
+                                        if (data[i] > 60) {
+                                            document.getElementById("fastest").innerHTML = (data[i] / 60).toFixed(2) + " Hours";
+                                        } else {
+                                            document.getElementById("fastest").innerHTML = data[i] + " Mins";
+                                        }
+
+                                        break;
+                                    case 1:
+                                        if (data[i] > 60) {
+                                            document.getElementById("globalAv").innerHTML = (data[i] / 60).toFixed(2) + " Hours";
+                                        } else {
+                                            document.getElementById("globalAv").innerHTML = data[i] + " Mins";
+                                        }
+                                        break;
+                                    case 2:
+                                        if (data[i] > 60) {
+                                            document.getElementById("slowest").innerHTML = (data[i] / 60).toFixed(2) + " Hours";
+                                        } else {
+                                            document.getElementById("slowest").innerHTML = data[i] + " Mins";
+                                        }
+                                        break;
+
+                                }
+
+
+                            }
+                        };
+                    }
+                    xhttp3.open("GET", "getSolveTimes.php?var=all");
+                    xhttp3.send();
+
+
+
+
+
                 };
-
-
-
-
-
-
-
-
-
-            
 
             </script>
         </div>
