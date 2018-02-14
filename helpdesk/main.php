@@ -57,7 +57,7 @@
                 include("config.php");
                 $conn = new mysqli($DBservername, $DBusername, $DBpassword, $dbname); 
                 $start = 0;
-                $ticketTable = " <table style=\"width:100%\" id=\"issuesTable\"><tr><th>Ticket ID:</th><th>Category:</th><th>Operator:</th><th>Date Added:</th><th>Specialist:</th><th>Priority:</th> <th>Resolved:</th></tr>";
+                $ticketTable = " <table style=\"width:100%\" id=\"issuesTable\"><tr><th onclick='sortTable(3);'>Ticket ID:</th><th>Category:</th><th>Operator:</th><th onclick='sortTable(3);'>Date Added:</th><th onclick='sortTable(4);'>Specialist:</th><th onclick='sortTable(5);'>Priority:</th> <th>Resolved:</th></tr>";
                 $result1 = $conn->query($sql1);
                 if(!$result1){
                     cLog("DB Error");
@@ -95,6 +95,34 @@
                 }
             }
         ?>
+	<script>
+		function sortTable(num){
+		  console.log("Sort Newest");
+		  var table, rows, switching, i, x, y, shouldSwitch;
+		  table = document.getElementById("issuesTable");
+		  switching = true;
+		  while (switching) {
+			switching = false;
+			rows = table.getElementsByTagName("TR");
+			for (i = 1; i < (rows.length - 1); i++) {
+			  shouldSwitch = false;
+			  x = rows[i].getElementsByTagName("TD")[num];
+			  y = rows[i + 1].getElementsByTagName("TD")[num];
+			  //check if the two rows should switch place:
+			  if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+				shouldSwitch= true;
+				break;
+			  }
+			}
+			if (shouldSwitch) {
+			  rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+			  switching = true;
+			}
+		  }
+		}
+
+	</script>
+
 	</head>
 	<body>
      	<div class="sidebar">
