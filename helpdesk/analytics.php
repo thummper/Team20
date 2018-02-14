@@ -69,7 +69,7 @@
 
 
         <div class="globalStats">
-                    <div class="solveTimes">
+            <div class="solveTimes">
                 <span>
             Fastest Ticket Solve Time<br>2 Mins
             </span>
@@ -85,12 +85,15 @@
                 <h1>Tickets made per hour. </h1>
                 <canvas id="tickets/hour"></canvas>
             </div>
-    
+
 
 
 
             <div class="ticketDisplay">
                 <canvas id="dChart"></canvas>
+            </div>
+            <div class="problemsbyhwsw">
+                <canvas id="hwsw"></canvas>
             </div>
 
             <script>
@@ -166,7 +169,7 @@
 
                             //Make chart
                             var tickethourctx = document.getElementById("tickets/hour").getContext('2d');
-                            var myBarChart = new Chart(tickethourctx, {
+                            var linechart = new Chart(tickethourctx, {
                                 type: 'line',
                                 data: {
                                     labels: labels,
@@ -208,13 +211,84 @@
                     xhttp1.open("GET", "getHourlyAnalytics.php", true);
                     xhttp1.send();
 
+                    var xhttp2 = new XMLHttpRequest();
+                    xhttp2.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            //Get data
+
+                            var dataArray = JSON.parse(this.responseText);
+                            console.log(dataArray);
+                            var labels = [];
+                            var data = [];
+                            for (var i = 0; i < dataArray.length; i++) {
+                                //Array of arrays.. 
+                                for (var j = 0; j < dataArray[i].length; j++) {
+                                    if (j == 0) {
+                                        //Label
+                                        labels.push(dataArray[i][j]);
+                                    } else {
+                                        //Data
+                                        data.push(dataArray[i][j]);
+                                    }
+                                }
+                            }
+                            var hwsw = document.getElementById("hwsw").getContext('2d');
+                            var barchart = new Chart(hwsw, {
+                                type: 'bar',
+                                data: {
+                                    labels: labels,
+
+                                    datasets: [{
+                                        backgroundColor: "#94c9fc",
+                                        borderColor: "#51a1ef",
+                                        label: "Active Tickets",
+                                        data: data
+                                    }]
+
+                                },
+                                options: {
+                                    legend: {
+                                        display: false
+                                    },
+                                    scales: {
+                                        yAxes: [{
+
+                                            ticks: {
+                                                min: 0,
+                                                stepSize: 1
+                                            }
+                                        }],
+                                        xAxes: [{
+                                            gridLines: {
+                                                color: "rgba(0, 0, 0, 0)",
+                                            },
+                                            ticks: {
+                                                min: 0
+                                            }
+                                        }]
+                                    }
+                                }
+                            });
 
 
 
 
-
+                        }
+                    };
+                    xhttp2.open("GET", "tickethwsw.php", true);
+                    xhttp2.send();
 
                 };
+
+
+
+
+
+
+
+
+
+            
 
             </script>
         </div>
