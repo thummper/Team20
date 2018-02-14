@@ -400,7 +400,7 @@ table tbody tr:first-child td {
     border: none;
     outline: none;
     cursor: pointer;
-    width: 25%;
+    width: 20%;
     text-decoration: none;
     color: #000;
     font-weight: 300;
@@ -703,4 +703,11 @@ table tbody tr:first-child td {
     margin-left: 45%;
     padding-bottom: 2em;
 
+}
+.tick-date{
+    float:right;
+    margin-right: 2%;
+    font-style: italic;
+    font-size: 14pt;
+    color: #666;
 }
