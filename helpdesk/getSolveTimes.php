@@ -14,34 +14,32 @@ if($conn -> connect_error) {
     $result = $conn->query($sql);
     $totalTime = 0;
     $numTimes = 0;
-    $fastest;
-    $slowest;
+    $fastest = 0;
+    $slowest = 0;
     if($result){
     while($row = $result->fetch_assoc()){
         
         $startS = strtotime($row["Date_Made"]);
         $endS = strtotime($row["Date_Solved"]);
         $diff = ($endS - $startS)/60;
-        if($fastest == NULL){
-            //No value assigned
-            $fastest = $diff;
-            
-        } else {
+       
+     
+
             if($diff < $fastest){
+                
                 $fastest = $diff;
             }
-        }
         
-        if($slowest == NULL){
-            $slowest = $diff;
-        } else {
+        
+
             if($diff > $slowest){
                 $slowest = $diff;
             }
-        }
+        
+ 
         
         $totalTime += $diff;
-     
+        
         $numTimes++;
   
         
@@ -49,6 +47,8 @@ if($conn -> connect_error) {
         
     }
     }
+    
+    
     $globalAvgSolve = ceil($totalTime/$numTimes);
     
     
@@ -68,6 +68,7 @@ if($conn -> connect_error) {
         echo $slowest;
     } else if($var === "all"){
         $output = array($fastest, $globalAvgSolve, $slowest);
+     
         $jsonOutput = json_encode($output);
         echo $jsonOutput;
     }
