@@ -121,7 +121,7 @@
                 Data: "'"+operator+"'"
             }, {
                 Field: "Specialist_ID",
-                Data: "'1'"
+                Data: "'ASSIGN'"
                 
             }, {
                 Field: "Problem_Type",
@@ -139,6 +139,9 @@
             if(resval === "Yes"){
                 console.log("SOLUTION!");
                 //There is a solution.
+                //Spec id should be op as they solved ticket
+                console.log("spec id will be op id");
+                data[3]["Data"] = operator;
                 var solution = document.getElementById("solution").value;
                 data.push({
                    Field: "Solution",
@@ -157,6 +160,7 @@
                 });
             } else {
                 console.log("NO SOLUTION");
+                
                 data.push({
                     Field: "Solution",
                     Data: "NULL"
