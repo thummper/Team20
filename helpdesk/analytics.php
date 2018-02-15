@@ -81,23 +81,27 @@
                     </span>
 
             </div>
-            <div class="ticketshour">
-                <h1>Tickets made per hour. </h1>
+            
+            
+            <div class="chartContainer">
+            <div class="ticketshour chart">
+            
                 <canvas id="tickets/hour"></canvas>
             </div>
 
 
 
 
-            <div class="ticketDisplay">
+            <div class="ticketDisplay chart">
                 <canvas id="dChart"></canvas>
             </div>
-            <div class="problemsbyhwsw">
+            <div class="problemsbyhwsw chart">
                 <canvas id="hwsw"></canvas>
             </div>
-            <div class="avDaily">
+            <div class="avDaily chart">
                 <canvas id="avDaily"></canvas>
-            </div>
+                </div>
+                </div>
 
             <script>
                 window.onload = function() {
@@ -359,7 +363,7 @@
                                     datasets: [{
                                         backgroundColor: "#94c9fc",
                                         borderColor: "#51a1ef",
-                                        label: "Number of Tickets Made",
+                                        label: "Average Ticket Solve Time",
                                         data: data
                                     }]
 
