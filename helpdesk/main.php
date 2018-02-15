@@ -24,7 +24,7 @@
                 }
                 echo FillTable($sql1, $start);
                 //calls the function the create the table passing the sql statement through it
-                echo "<script>document.getElementById(\"all\").classList.add('active');document.getElementById(\"open\").classList.remove('active');document.getElementById(\"closed\").classList.remove('active');document.getElementById(\"my\").classList.remove('active') </script>";]
+                echo "<script>document.getElementById(\"all\").classList.add('active');document.getElementById(\"open\").classList.remove('active');document.getElementById(\"closed\").classList.remove('active');document.getElementById(\"my\").classList.remove('active') </script>";
                 //adds the active class to the all menu item and removes from others
             }
             function OpenTable(){
@@ -40,7 +40,6 @@
                 //calls the function the create the table passing the sql statement through it
                 echo "<script>document.getElementById(\"all\").classList.remove('active');document.getElementById(\"open\").classList.add('active');document.getElementById(\"closed\").classList.remove('active');document.getElementById(\"my\").classList.remove('active'); </script>";
                 //adds the active class to the open menu item and removes from others
-
             }
             function ClosedTable(){
                 //function with sql for a  table of ticket info where the tickets are closed
@@ -51,7 +50,7 @@
                     $sql1 = "SELECT * FROM Ticket WHERE Resolved = 'Y' ORDER BY Ticket_ID DESC";  
                 }
                 //relevent sql statements with/without user query
-                echo FillTable($sql1, $start);\
+                echo FillTable($sql1, $start);
                 //calls the function the create the table passing the sql statement through it
                 echo "<script>document.getElementById(\"all\").classList.remove('active');document.getElementById(\"open\").classList.remove('active');document.getElementById(\"closed\").classList.add('active');document.getElementById(\"my\").classList.remove('active') </script>";
                 //adds the active class to the closed menu item and removes from others
@@ -140,7 +139,7 @@
 			  shouldSwitch = false;
 			  x = rows[i].getElementsByTagName("TD")[num];
 			  y = rows[i + 1].getElementsByTagName("TD")[num];
-			  //check if the two rows should switch place:
+			  //check if the two rows should switch place
 			  if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
 				shouldSwitch= true;
 				break;
