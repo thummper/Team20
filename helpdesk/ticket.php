@@ -35,6 +35,16 @@
         <title>Help Desk</title>
         <link rel="shortcut icon" href="media/helpdesk.ico" width='16px' height='16px'/>
         <link rel="stylesheet" href="css/style.css" />
+        <script>
+            function solution(){
+                document.getElementById("modal").style.display = "block";
+            }
+            function closeInput(item){
+                var item = document.getElementsByClassName("modal")[0];
+                item.style.display = "none";
+                document.getElementById("possibleSolutions").innerHTML = "";
+            }
+        </script>
 	</head>
 	<body>
         <div class="sidebar">
@@ -111,7 +121,7 @@
             <div class="details">
             <h2>Information</h2>
                 <div class="spec-div">
-                    <h3>Staff details</h3>
+                    <h3>Staff Details</h3>
                     <?php
                         $conn1 = new mysqli($DBservername, $DBusername, $DBpassword, $dbname); 
                         $sql2 = "SELECT * FROM Staff WHERE Staff_ID = '$staffID';";
@@ -141,7 +151,7 @@
                     ?>
                 </div>
                 <div class="spec-div">
-                    <h3>Descrpition</h3>
+                    <h3>Description</h3>
                     <?php
                         echo '<table class="staff-info tick-info" style="width:100%" ><tr><th> </th></tr><tr><td>'.$des.'</td></tr></table>';
                     ?>
@@ -245,12 +255,36 @@
             </div>
             <?php
                 if(($res == 'N') && ($specID == $_SESSION["staffID"])){
-                    echo "<div class=\"s-but\"><input type=\"submit\" id=\"submit-query\" class=\"next\" value=\"Resolve\"/></div>";
+                    echo "<div class=\"s-but\"><input type=\"submit\" id=\"submit-query\" class=\"next\" value=\"Resolve\" onclick=\"solution();\"/></div>";
                 } else if($res == 'Y') {
                     echo '<div class="solutions"><h2>Solved</h2><div class="spec-div"><h3>Solution</h3><table class="staff-info tick-info" style="width:100%" ><tr><th></th></tr><tr><td>'.$sol.'</td></tr></table></div></div><div class="op-div"><h3>Date</h3><table class="staff-info tick-info" style="width:100%" ><tr><th></th></tr><tr><td>'.$dsol.'</td></tr></table></div></div>';
                 }
             ?>
         </div>    
+    </div>
+    <div class="modal" id="modal">
+        <div class="ticketSubmit">
+            <span class='closeTicketSubmit' onclick='closeInput(this)'>×</span>
+            <div class="title">
+                <h1>Resolve Ticket</h1>
+            </div>
+            <form action="submitQuery.php" method="post">
+                <div id="call-input" class="tick-input">
+                    
+                    
+                    <textarea  id="des" name="reason" rows="5" placeholder="Solution" class="des" required></textarea>
+                </div>
+                <div class="tick-but">
+                    <input type="hidden" name="tickID" value="<?php echo $_GET["TicketID"]; ?>"/>
+                    <input type="hidden" name="resolved" value="Y"/>
+                    <input type="reset" class="reset" value="Reset"/>
+                    <input type="submit" id="submit-query" class="next" value="Submit"/>
+                </div>
+            </form>
+         </div>   
+
+
+
     </div>
 	</body>
 </html>
