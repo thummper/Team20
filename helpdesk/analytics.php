@@ -84,24 +84,22 @@
             
             
             <div class="chartContainer">
-            <div class="ticketshour chart">
-            
-                <canvas id="tickets/hour"></canvas>
-            </div>
-
-
-
-
-            <div class="ticketDisplay chart">
-                <canvas id="dChart"></canvas>
-            </div>
-            <div class="problemsbyhwsw chart">
-                <canvas id="hwsw"></canvas>
-            </div>
-            <div class="avDaily chart">
-                <canvas id="avDaily"></canvas>
+                <div class="ticketshour chart">
+                    <canvas id="tickets/hour"></canvas>
                 </div>
+                <div class="chartRow">
+                    <div class="ticketDisplay chart">
+                        <canvas id="dChart"></canvas>
+                    </div>
+                    <div class="problemsbyhwsw chart">
+                        <canvas id="hwsw"></canvas>
+                    </div>
                 </div>
+                    
+                <div class="avDaily chart">
+                    <canvas id="avDaily"></canvas>
+                </div>
+            </div>
 
             <script>
                 window.onload = function() {
@@ -136,6 +134,10 @@
                                     }]
                                 },
                                 options: {
+                                title: {
+                                      display: true, 
+                                      text: "Total Open/Closed Tickets"
+                                    },
                                     legend: {
                                         display: false
                                     },
@@ -190,6 +192,10 @@
 
                                 },
                                 options: {
+                                    title: {
+                                      display: true, 
+                                      text: "Tickets Made Per Hour"
+                                    },
                                     legend: {
                                         display: false
                                     },
@@ -254,6 +260,10 @@
 
                                 },
                                 options: {
+                                    title: {
+                                      display: true, 
+                                      text: "Problematic Hardware/Software"
+                                    },
                                     legend: {
                                         display: false
                                     },
@@ -369,6 +379,10 @@
 
                                 },
                                 options: {
+                                    title: {
+                                        display: true, 
+                                        text: "Average Solve Time Per Day"
+                                    },
                                     legend: {
                                         display: false
                                     },
