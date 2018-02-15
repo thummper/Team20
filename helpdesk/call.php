@@ -57,7 +57,7 @@
         function openSolution(){
             var selector = document.getElementById("cat");
             //Get the selected category. 
-            var value = selector[selector.selectedIndex].innerHTML;
+            var value = selector[selector.selectedIndex].value;
             console.log(value);
             //When window opens we need to get the past 3 (closed) tickets with the same ticket type.
             var xhttp = new XMLHttpRequest();
@@ -419,22 +419,21 @@
             
             <div class="ticketSubmit">
                 <span class='closeTicketSubmit' onclick='closeInput(this)'>×</span>
-                <div class="title"><h1>Possible Solutions.</h1></div>
+                <div class="title"><h1>Possible Solutions</h1></div>
                 <div id="possibleSolutions"></div>
                 
                 <div class="solDiv">
-                <textarea rows="5" id="solution" placeholder="Solution" class="solutionText"></textarea>
-                <select name="resolved" id="tickResolved" class="solutionDrop dropdown">
+                <textarea rows="5" id="solution" placeholder="Solution" class="priority"></textarea>
+                <select name="resolved" id="tickResolved" class="cat dropdown">
                     <option selected disabled>Resolved</option>
                     <option value="Y">Yes</option>
                     <option value="N">No</option>
                     </select>
                 </div>
                 
-                <div class="solButtons">
-                <button onclick='closeInput(this)'>Back</button>
-                <button onclick='submitTicket(this)'>Submit</button>
-                
+                <div class="mod-but">
+                    <button onclick='closeInput(this)' class='reset'>Back</button>
+                    <button onclick='submitTicket(this)' class='next'>Submit</button>
                 </div>
                     
                 

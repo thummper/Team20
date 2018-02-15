@@ -484,11 +484,12 @@ table tbody tr:first-child td {
 
 .ticketSubmit, .inputDB, .editRecord, .solveSubmit{
     background-color: #fefefe;
-    margin: 40px auto;
+    margin: 0 auto;
+    margin-top: 7%;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
-    height: 80%;
+    width: 60%;
+    height: 40em;
     animation-name: animatetop;
     animation-duration: 0.4s;
 }
@@ -634,6 +635,11 @@ table tbody tr:first-child td {
     margin-left: 40%;
     padding-bottom: 2em;
 
+}
+.mod-but{
+    float:left;
+    width:50%;
+    margin-left: 42%; 
 }
 .issue-but1{
     display: flex;
