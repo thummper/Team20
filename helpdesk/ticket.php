@@ -257,13 +257,13 @@
                 if(($res == 'N') && ($specID == $_SESSION["staffID"])){
                     echo "<div class=\"s-but\"><input type=\"submit\" id=\"submit-query\" class=\"next\" value=\"Resolve\" onclick=\"solution();\"/></div>";
                 } else if($res == 'Y') {
-                    echo '<div class="solutions"><h2>Solved</h2><div class="spec-div"><h3>Solution</h3><table class="staff-info tick-info" style="width:100%" ><tr><th></th></tr><tr><td>'.$sol.'</td></tr></table></div></div><div class="op-div"><h3>Date</h3><table class="staff-info tick-info" style="width:100%" ><tr><th></th></tr><tr><td>'.$dsol.'</td></tr></table></div></div>';
+                    echo '<div class="solutions"><h2>Solved</h2><div class="spec-div"><h3>Solution</h3><table class="staff-info tick-info" style="width:100%" ><tr><th></th></tr><tr><td>'.$sol.'</td></tr></table></div><div class="op-div"><h3>Date</h3><table class="staff-info tick-info" style="width:100%" ><tr><th></th></tr><tr><td>'.$dsol.'</td></tr></table></div></div>';
                 }
             ?>
         </div>    
     </div>
     <div class="modal" id="modal">
-        <div class="ticketSubmit">
+        <div class="solveSubmit">
             <span class='closeTicketSubmit' onclick='closeInput(this)'>×</span>
             <div class="title">
                 <h1>Resolve Ticket</h1>

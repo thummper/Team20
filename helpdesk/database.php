@@ -103,12 +103,13 @@
             
             //Modal window for inputting data.
             echo "<div class='modal'>";
-            echo "<div class='inputDB $tableName'>";
-            echo "<button class='closeDBInput' onclick='closeInput(this)'>X</button>";
+            echo "<div class='inputDB " . $tableName . " " . $tableName . "mod'>";
+            echo "<span class='closeTicketSubmit' onclick='closeInput(this)'>×</span>";
+            echo "<div class='title'><h1>$tableName</h1></div>";
             echo "<form class='inputDBSE $tableName' action='javascript:void(0);'>";
             while($row = $result->fetch_row()){
-                echo $row[0].": <br>"; 
-                echo "<input type='text' name='$row[0]'><br>";
+ 
+                echo "<input type='text' placeholder='$row[0]' name='$row[0]'><br>";
                 
                 
             }
@@ -120,8 +121,9 @@
             //Modal window for editing existing record. 
             echo "<div class='modal'>";
             cLog("Table Name at this point: " . $tableName);
-            echo "<div class='editRecord $tableName'>";
-            echo "<button class='closeDBInput' onclick='closeInput(this)'>X</button>";
+            echo "<div class='editRecord " . $tableName . " " . $tableName . "mod'>";
+            echo "<span class='closeTicketSubmit' onclick='closeInput(this)'>×</span>";
+            echo "<div class='title'><h1>$tableName</h1></div>";
             echo "<form class='editDBSE $tableName' action='javascript:void(0);'>";
             $sqlCols = "SHOW COLUMNS FROM $tableName";
             $result = $conn->query($sqlCols);
@@ -129,8 +131,8 @@
             cLog("DB Error, could not list tables");
             }
             while($row = $result->fetch_row()){
-            echo $row[0].": <br>"; 
-            echo "<input type='text' name='$row[0]'><br>";
+             
+            echo "<input type='text' placeholder='$row[0]' name='$row[0]'><br>";
             }
             echo "<button class='dbSubmit' onclick='databaseInput(this.parentNode, \"$tableName\", \"EDIT\")'> Submit</button>";
             
