@@ -719,6 +719,5 @@ table tbody tr:first-child td {
     flex-wrap: wrap;
 }
 .chart {
-    width: 500px;
-    height: 500px;
+    width: 30%;
 }
