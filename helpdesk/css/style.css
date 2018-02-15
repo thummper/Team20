@@ -2,6 +2,8 @@
 body {
     background-color: #fff;
     width: 98%;
+    display: flex;
+    /* I get weird scroll bars on smaller monitors. */ 
 }
 
 h1,h2,h3,h4,h5,h6,a,p,body,textarea, button {
@@ -710,4 +712,12 @@ table tbody tr:first-child td {
     font-style: italic;
     font-size: 14pt;
     color: #666;
+}
+.chartContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.chart {
+    width: 30%;
 }
