@@ -6,6 +6,7 @@
             session_start();
             if(empty($_SESSION["staffID"])){
                 header("Location: index.php");
+                //sends user to index.php if session has expired
             }
         ?>
         <title>Help Desk</title>
@@ -13,48 +14,63 @@
         <link rel="stylesheet" href="css/style.css" />
         <?php
             function FullTable(){
+                //function with sql for a full table of ticket info
                 $start = 0;
                 if(!empty($_GET['query'])){
                     $sql1 = "SELECT * FROM Ticket WHERE Problem_Type IN (SELECT Spec_ID FROM Specialisation WHERE Spec_Name LIKE '%".$_GET['query']."%') ORDER BY Ticket_ID DESC";
+                    //if the user has made a query it is inserted into the sql statement
                 }else {
                     $sql1 = "SELECT * FROM Ticket ORDER BY Ticket_ID DESC";
                 }
                 echo FillTable($sql1, $start);
+                //calls the function the create the table passing the sql statement through it
                 echo "<script>document.getElementById(\"all\").classList.add('active');document.getElementById(\"open\").classList.remove('active');document.getElementById(\"closed\").classList.remove('active');document.getElementById(\"my\").classList.remove('active') </script>";
+                //adds the active class to the all menu item and removes from others
             }
             function OpenTable(){
+                //function with sql for a  table of ticket info where the tickets are open
                 $start = 0;
                 if(!empty($_GET['query'])){
                     $sql1 = "SELECT * FROM Ticket WHERE Problem_Type IN (SELECT Spec_ID FROM Specialisation WHERE Spec_Name LIKE '%".$_GET['query']."%') AND Resolved = 'N' ORDER BY Ticket_ID DESC";
                 }else {
                     $sql1 = "SELECT * FROM Ticket WHERE Resolved = 'N' ORDER BY Ticket_ID DESC";
                 }
+                //relevent sql statements with/without user query
                 echo FillTable($sql1, $start);
+                //calls the function the create the table passing the sql statement through it
                 echo "<script>document.getElementById(\"all\").classList.remove('active');document.getElementById(\"open\").classList.add('active');document.getElementById(\"closed\").classList.remove('active');document.getElementById(\"my\").classList.remove('active'); </script>";
-
+                //adds the active class to the open menu item and removes from others
             }
             function ClosedTable(){
+                //function with sql for a  table of ticket info where the tickets are closed
                 $start = 0;
                 if(!empty($_GET['query'])){
                     $sql1 = "SELECT * FROM Ticket WHERE Problem_Type IN (SELECT Spec_ID FROM Specialisation WHERE Spec_Name LIKE '%".$_GET['query']."%') AND Resolved = 'Y' ORDER BY Ticket_ID DESC";
                 }else {
-                    $sql1 = "SELECT * FROM Ticket WHERE Resolved = 'Y' ORDER BY Ticket_ID DESC";
-                    
+                    $sql1 = "SELECT * FROM Ticket WHERE Resolved = 'Y' ORDER BY Ticket_ID DESC";  
                 }
+                //relevent sql statements with/without user query
                 echo FillTable($sql1, $start);
+                //calls the function the create the table passing the sql statement through it
                 echo "<script>document.getElementById(\"all\").classList.remove('active');document.getElementById(\"open\").classList.remove('active');document.getElementById(\"closed\").classList.add('active');document.getElementById(\"my\").classList.remove('active') </script>";
+                //adds the active class to the closed menu item and removes from others
             }
             function MyTable(){
+                //contains the sql statement to show specialist assigned tickets
                 $start = 0;
                 if(!empty($_GET['query'])){
                     $sql1 = "SELECT * FROM Ticket WHERE Problem_Type IN (SELECT Spec_ID FROM Specialisation WHERE Spec_Name LIKE '%".$_GET['query']."%') AND Resolved = 'N' AND Specialist_ID = '".$_SESSION["staffID"]."' ORDER BY Ticket_ID DESC";
                 }else {
                     $sql1 = "SELECT * FROM Ticket WHERE Resolved = 'N' AND Specialist_ID = '".$_SESSION["staffID"]."' ORDER BY Ticket_ID DESC";
                 }
+                //relevent sql statements with/without user query
                 echo FillTable($sql1, $start);
+                //calls the function the create the table passing the sql statement through it
                 echo "<script>document.getElementById(\"all\").classList.remove('active');document.getElementById(\"open\").classList.remove('active');document.getElementById(\"closed\").classList.remove('active');document.getElementById(\"my\").classList.add('active') </script>";
+                //adds the active class to the my table menu item and removes from others
             }
             function FillTable($sql1, $start){
+                //function the create table with ticket info
                 include("config.php");
                 $conn = new mysqli($DBservername, $DBusername, $DBpassword, $dbname); 
                 $start = 0;
@@ -88,6 +104,7 @@
                     }
                     }
                     }
+                    //above queries find operator and specialist forenames and surnames
                     $conn3 = new mysqli($DBservername, $DBusername, $DBpassword, $dbname); 
                         $sql4 = "SELECT * FROM Specialisation WHERE Spec_ID = '".$row["Problem_Type"]."';";
                         $result4 = $conn1->query($sql4);
@@ -97,16 +114,20 @@
                             $row3 = $result4->fetch_assoc();
                             $ptype = $row3["Spec_Name"];
                         }
+                    //finds the specialiation type using the ID from ticket info
                     $ticketTable = $ticketTable."<tr><td>".$row["Ticket_ID"]."</td><td>".$ptype."</td><td>".$op."</td><td>".$row["Date_Made"]."</td><td>".$spec."</td><td>".$row["Priority"]."</td><td>".$row["Resolved"]."</td><td><a href='ticket.php?TicketID=".$row["Ticket_ID"]."'>View</a></td></tr>";
+                    //creates a table row using table info from datatbase
                     $start++;
                 }
                 $ticketTable = $ticketTable."</table>"; 
                 return $ticketTable;
+                //returns ticket table
                 }
             }
         ?>
 	<script>
 		function sortTable(num){
+        //sorts tables where num is the colomn to be sorted by 
 		  console.log("Sort Newest");
 		  var table, rows, switching, i, x, y, shouldSwitch;
 		  table = document.getElementById("issuesTable");
@@ -118,7 +139,7 @@
 			  shouldSwitch = false;
 			  x = rows[i].getElementsByTagName("TD")[num];
 			  y = rows[i + 1].getElementsByTagName("TD")[num];
-			  //check if the two rows should switch place:
+			  //check if the two rows should switch place
 			  if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
 				shouldSwitch= true;
 				break;
@@ -129,6 +150,7 @@
 			  switching = true;
 			}
 		  }
+        //performs a bubble sort on the ticket table from main.php
 		}
 
 	</script>
@@ -148,6 +170,7 @@
                     if($_SESSION["jobID"] == 1){
                         echo '<li><a id="my" href="main.php?tableType=My">My Tickets</a></li>';
                     }
+                    //shows menu item if user is specialist
                     ?>
                     <li><a id="open" href="main.php?tableType=Open">Open</a></li>
                     <li><a id="closed" href="main.php?tableType=Closed">Closed</a></li>
@@ -160,6 +183,7 @@
                     if($_SESSION["jobID"] == 3){
                         echo '<li><a href="database.php">Databases</a></li>';
                     }
+                    //shows menu item if user is administrator
                     ?>
                     <li><a href="logout.php">Log out</a></li>
                 </ul>
@@ -193,10 +217,9 @@
                     } else {
                         FullTable();
                     }
+                    //displays correct table depending on which menu item has been selected (all/my/open/closed)
                 ?>
                 </div>
-            
         </div>
-        
 	</body>
 </html>

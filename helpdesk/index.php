@@ -10,8 +10,10 @@
         die("Connection Failed: " . $conn->connect_error);
       } else {
           $sql = "SELECT * FROM Staff WHERE Staff_ID = '$staffID' AND Password = '$password'";
+          //sql statement that uses the users entered info to find the relevent account
           $result = $conn->query($sql);
           if($result->num_rows == 1){
+              //if the user exists then their info is stored as a session to use throughout the website
               $row = $result->fetch_assoc();
               $_SESSION["staffID"] = $staffID;
               $_SESSION["staffName"] = $row["Forename"] . " " . $row["Surname"];
@@ -30,10 +32,12 @@
                     session_destroy();
                     echo '<script language="javascript">alert("incorrect username and password");location.href = "index.php";</script>';
                 }
+              //the statemnt ensures that the user is actually a part of the helpdesk team (and assigns relevent title)
           }else{
               session_destroy();
               echo '<script language="javascript">alert("incorrect username and password");location.href = "index.php";</script>'; 
           }
+          //creates a msg box to tell the user that the entered info is incorrect
       }
    }
 ?>
