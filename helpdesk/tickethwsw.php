@@ -27,9 +27,9 @@ if($conn -> connect_error) {
                 if($result1){
                 while($row1 = $result1->fetch_row()){
                     foreach($row1 as $item){
-                        if(array_key_exists($item, $hardwareArray)){
+                    if(array_key_exists($item, $hardwareArray)){
                             //Already in array, increment.
-                            $hardwareArray[$item] = $hardwareArray[$item]++;
+                            $hardwareArray[$item]++;
                         }else{
                             //Not in array, add 
                             
