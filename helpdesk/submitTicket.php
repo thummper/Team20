@@ -71,7 +71,6 @@ for($i = sizeof($dataArray); $i > 0; $i--){
         
     } else if($dataArray[$i]->Field === "Specialist_ID"){
         if($dataArray[$i]->Data === "'ASSIGN'"){
-            echo "ASSIGNING SPECIALIST";
         //Found spec ID - AUTO ASSIGN SPECIALIST.
         //Get the problem Type. 
        
@@ -79,16 +78,14 @@ for($i = sizeof($dataArray); $i > 0; $i--){
             if($dataArray[$j]->Field === "Problem_Type"){
                 //Get the specialist with the least amount of tickets with this specialty. 
                 $problemType = $dataArray[$j]->Data;
-                echo "<br>PROBLEM TYPE: $problemType<br>";
                 $sql = "SELECT * FROM `Staff_Spec` INNER JOIN Staff ON Staff_Spec.Staff_ID = Staff.Staff_ID WHERE Staff.Job_ID = '1' AND Spec_ID = $problemType";
-                echo "Making: $sql";
                 $staffWspec = array(); 
                 $result = $conn->query($sql);
                 
                 if($result){
                     while($row = $result->fetch_assoc()){
                         $id = $row["Staff_ID"];
-                        echo "STAFF: $id HAS THE SPECIALTY";
+                       
                         array_push($staffWspec, $id);
                         
                     }
@@ -96,12 +93,13 @@ for($i = sizeof($dataArray); $i > 0; $i--){
                     //Nobody has spec (arr len will be 0)
                 }
                 
-                
-                $sql = "SELECT Specialist_ID, COUNT(*) FROM Ticket GROUP BY Specialist_ID";
+                //Get count of all unresolved tickets. 
+                $sql = "SELECT Specialist_ID, COUNT(*) FROM Ticket WHERE Resolved = 'N' GROUP BY Specialist_ID";
                 $genStaff = array();
                 $specStaff = array(); 
                 $res = $conn->query($sql);
                 if($res){
+
                     while($row = $res->fetch_row()){
                         for($l = 0; $l < sizeof($row); $l++){
                             if($l == 0){
@@ -117,45 +115,57 @@ for($i = sizeof($dataArray); $i > 0; $i--){
                             } 
                         }
                     }
+                    
+                    
                     $assignTo; 
                     if(sizeof($specStaff) != 0){
+                        //There are staff members with spec.
                         //Get the member of staff with the lowest ticket count 
                         if(sizeof($specStaff) == 1){
                             //Give it to this guy. 
                             $assignTo = $specStaff[0][0];
                         } else {
-                            $smallest; 
+                            $smallest;
+                            $id = 0;
                             foreach($specStaff as $staff){
                                 $numTickets = $staff[1];
+                                $id = $staff[0];
                                 if($smallest == NULL){
                                     $smallest = $numTickets;
+                                    $id = $staff[0];
                                 } else {
                                     if($numTickets < $smallest){
                                         $smallest = $numTickets;
+                                        $id = $staff[0];
                                     }
                                 }
                             }
-                            $assignTo = $smallest;
+                            $assignTo = $id;
                         }
                     } else {
+                        //There are no memebers of staff with spec. 
                         //Get GENERIC member of staff with lowest ticket count.
                         $smallest;
+                        $id = 0;
                         foreach($genStaff as $staff){
                                 $numTickets = $staff[1];
+                                $id = $staff[0];
                                 if($smallest == NULL){
                                     $smallest = $numTickets;
+                                    $id = $staff[0];
                                 } else {
                                     if($numTickets < $smallest){
                                         $smallest = $numTickets;
+                                        $id = $staff[0];
                                     }
                                 }
                             }
-                            $assignTo = $smallest;
+                            $assignTo = $id;
                             
                         }
                     
                     
-                    echo "Ticket Should be given to: $assignTo";
+                    
                     $dataArray[$i]->Data = "'".$assignTo."'";
                     }
                     
@@ -218,7 +228,7 @@ for($i = 0; $i < sizeof($dataArray); $i++){
 }
 //All is good here. 
 $ticketfinal = $ticketSQL. $ticketTables. $ticketValues;
-echo $ticketfinal;
+
 
 //We need the ticket id.. 
 //Could possiblt be multiple hardware and software queries? 
@@ -229,7 +239,7 @@ if(sizeof($hardwareArray) > 0){
     
     for($i = 0; $i < sizeof($hardwareArray); $i++){
         $hwsql = "INSERT INTO Hardware_Ticket (Ticket_Number, Hardware_ID) VALUES ('$ticketID', " . $hardwareArray[$i]->Data . ")";
-        echo $hwsql;
+       
         array_push($hardwareQueries, $hwsql);
     }
     
@@ -239,7 +249,7 @@ if(sizeof($softwareArray) > 0){
     //Make (multiple) hardware queries. 
     for($i = 0; $i < sizeof($softwareArray); $i++){
       $swsql = "INSERT INTO Software_Ticket (Ticket_Number, Software_ID) VALUES ('$ticketID', " . $softwareArray[$i]->Data . ")";
-         echo $swsql;
+         
       array_push($softwareQueries, $swsql);
     }
 }
@@ -255,22 +265,24 @@ if($conn -> connect_error) {
 
 
 $resultTicket = $conn->query($ticketfinal) or die('Error: '.$conn->error);
-
+if($resultTicket){
+    echo "OK";
+}
 for($i = 0; $i < sizeof($hardwareQueries); $i++){
     $result1 = $conn->query($hardwareQueries[$i]);
         if(!$result1){
-        echo "hw Query Fail";
+        
    } else {
-        echo "hw Query ok";
+        
    }
     
 }
 for($i = 0; $i < sizeof($softwareQueries); $i++){
    $result1 = $conn->query($softwareQueries[$i]); 
             if(!$result1){
-        echo "sw Query Fail";
+        
    } else {
-        echo "sw Query ok";
+        
     }
 }
 }

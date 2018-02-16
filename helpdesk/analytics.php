@@ -1,4 +1,10 @@
 <!DOCTYPE HTML>
+<!-- 
+Analytics.php 
+
+Contains many AJAX requests to various php to get data to draw graphs from. 
+
+-->
 
 <html>
 
