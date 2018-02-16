@@ -4,6 +4,8 @@ Analytics.php
 
 Contains many AJAX requests to various php to get data to draw graphs from. 
 
+Made by: Aron, Jake
+
 -->
 
 <html>
@@ -161,8 +163,8 @@ Contains many AJAX requests to various php to get data to draw graphs from.
 
 
 
-                    var xhttp1 = new XMLHttpRequest();
-                    xhttp1.onreadystatechange = function() {
+                    var xhttp = new XMLHttpRequest();
+                    xhttp.onreadystatechange = function() {
                         if (this.readyState == 4 && this.status == 200) {
                             //Get data
                             var dataArray = JSON.parse(this.responseText);
@@ -227,11 +229,11 @@ Contains many AJAX requests to various php to get data to draw graphs from.
 
                         }
                     };
-                    xhttp1.open("GET", "getHourlyAnalytics.php", true);
-                    xhttp1.send();
+                    xhttp.open("GET", "getHourlyAnalytics.php", true);
+                    xhttp.send();
 
-                    var xhttp2 = new XMLHttpRequest();
-                    xhttp2.onreadystatechange = function() {
+                    var xhttp = new XMLHttpRequest();
+                    xhttp.onreadystatechange = function() {
                         if (this.readyState == 4 && this.status == 200) {
                             //Get data
 
@@ -300,11 +302,11 @@ Contains many AJAX requests to various php to get data to draw graphs from.
 
 
                     };
-                    xhttp2.open("GET", "tickethwsw.php", true);
-                    xhttp2.send();
+                    xhttp.open("GET", "tickethwsw.php", true);
+                    xhttp.send();
 
-                    var xhttp3 = new XMLHttpRequest();
-                    xhttp3.onreadystatechange = function() {
+                    var xhttp = new XMLHttpRequest();
+                    xhttp.onreadystatechange = function() {
                         if (this.readyState == 4 && this.status == 200) {
                             var data = JSON.parse(this.responseText);
                             for (var i = 0; i < data.length; i++) {
@@ -338,8 +340,8 @@ Contains many AJAX requests to various php to get data to draw graphs from.
                             }
                         };
                     }
-                    xhttp3.open("GET", "getSolveTimes.php?var=all");
-                    xhttp3.send();
+                    xhttp.open("GET", "getSolveTimes.php?var=all");
+                    xhttp.send();
 
 
 
@@ -348,8 +350,8 @@ Contains many AJAX requests to various php to get data to draw graphs from.
 
 
 
-                    var xhttp4 = new XMLHttpRequest();
-                    xhttp4.onreadystatechange = function() {
+                    var xhttp = new XMLHttpRequest();
+                    xhttp.onreadystatechange = function() {
                         if (this.readyState == 4 && this.status == 200) {
                             //Get data
                             var dataArray = JSON.parse(this.responseText);
@@ -414,8 +416,8 @@ Contains many AJAX requests to various php to get data to draw graphs from.
 
                         }
                     };
-                    xhttp4.open("GET", "getDaySolveTimes.php", true);
-                    xhttp4.send();
+                    xhttp.open("GET", "getDaySolveTimes.php", true);
+                    xhttp.send();
 
 
 

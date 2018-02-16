@@ -1,4 +1,13 @@
 <!DOCTYPE HTML>
+<!-- 
+call.php 
+
+Contains the forms required to make new tickets/queries.
+Once a ticket/query is made the associated data is passed to a file and then to the database. 
+
+Made by: Tom, Aron.
+
+-->
 <html>
 	<head>
          <?php 

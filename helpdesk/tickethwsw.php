@@ -1,4 +1,18 @@
-<?php 
+<?php
+
+/* 
+tickethwsw.php
+
+This file counts the number of times certain hardware/software items appear in open tickets. Analytics.php calls this file and recieves 
+an array with all of the results. 
+
+Made By: Aron
+
+
+
+*/
+
+
 include("config.php");
 require_once('myFunctions.php');
 $hardwareArray = array();

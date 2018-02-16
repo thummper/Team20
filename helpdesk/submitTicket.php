@@ -1,4 +1,16 @@
 <?php 
+/* 
+submitTicket.php
+
+This file is passed an array containing all information needed to create a ticket in the database. 
+If certain conditions are met, specialists will be auto assigned to the ticket based on their workload/ specialisation. 
+
+Made by: Aron, Dennis
+
+
+*/
+
+
 include("config.php");
 require_once('myFunctions.php');
 
