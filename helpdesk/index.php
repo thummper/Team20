@@ -1,4 +1,11 @@
 <!DOCTYPE HTML>
+<!-- 
+index.php 
+
+Handles user login, makes sure the correct staff details are displayed.
+
+Made by: Tom
+-->
 <?php
    if($_SERVER["REQUEST_METHOD"] == "POST") { 
       include("config.php");

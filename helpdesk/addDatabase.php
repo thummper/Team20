@@ -17,6 +17,7 @@ $conn = new mysqli($DBservername, $DBusername, $DBpassword, $dbname);
         $sql = "";
         $columns = "";
         $values = "";
+        //Generates SQL query.
         for($i = 0; $i < sizeof($userData); $i++){
             if($i==0){
                 //First item is table name

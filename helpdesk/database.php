@@ -1,5 +1,12 @@
 <!DOCTYPE HTML>
+<!-- 
+database.php
 
+Displays certain tables from the database and allows an administrator to edit/add items to tables. 
+
+Made by: Aron, Tom
+
+-->
 <html>
 
 <head>
@@ -15,7 +22,6 @@
         header("Location: index.php");
     }
     require_once('myFunctions.php');
-    
     function dbData(){
         include("config.php");
         $conn = new mysqli($DBservername, $DBusername, $DBpassword, $dbname);
@@ -38,18 +44,15 @@
             while($row = $result->fetch_row()){
                 //Make the buttons for tabbed nav 
                 $tableName = $row[0];
-            
                 //SHOW sql is weird, seems like this is the best way to avoid reworking it.
                 if($tableName === "Equipment" || $tableName === "Job" || $tableName === "Software"|| $tableName === "Specialisation" || $tableName === "Staff_Spec"){
                 array_push($tableNames, $tableName);
                 echo "<button class='tablinks' onclick=' openTable(event, \"$tableName\" ) ' >$tableName</button>";
                 }
             }
-        echo "</div>";
-        
-        
-        //For each table make a tabbed section for it. 
-        foreach($tableNames as $tableName){
+            echo "</div>";
+            //For each table make a tabbed section for it. 
+            foreach($tableNames as $tableName){
             $start = 0;
             echo "<div id='$tableName' class='tabcontent'>";
             
@@ -65,7 +68,6 @@
                 if($start == 0){
                 //Start is 0, first row of table, column headers.
                 $keyArr = array_keys($row1);
-                    
                     echo "<tr class='keys'>";
                     foreach($keyArr as $key){
                         echo "<th>";
@@ -75,16 +77,15 @@
                     echo "</tr>";
                     
                 } 
-                    // print normal trs
-                    echo "<tr onclick='rowClick(this,event)'>";
-                    foreach($row1 as $value1){
-                        //Draw table stuff.
-                        echo "<td>";
-                        echo $value1;
-                        echo "</td>";
-                    }
-                    echo "</tr>";
-                
+                // print normal trs
+                echo "<tr onclick='rowClick(this,event)'>";
+                foreach($row1 as $value1){
+                    //Draw table stuff.
+                    echo "<td>";
+                    echo $value1;
+                    echo "</td>";
+                }
+                echo "</tr>";
                 $start++;
             }
             echo "</table>";     
@@ -274,31 +275,19 @@
                             Field: nodeList[i].name,
                             Data: ""
                         });
-
-
-
-
-
                     } else {
                         data.push({
                             Field: nodeList[i].name,
                             Data: "'" + nodeList[i].value + "'"
                         });
                     }
-
-
-
-                    //Now it will try and submit to database
-
                 }
-
-
             }
 
 
 
-
-            var xmlhttp = new XMLHttpRequest(); // new HttpRequest instance 
+            //AJAX to submit data 
+            var xmlhttp = new XMLHttpRequest(); 
 
             xmlhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {

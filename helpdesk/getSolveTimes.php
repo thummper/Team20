@@ -1,4 +1,12 @@
 <?php 
+/* 
+getSovleTimes.php 
+
+This file gets the fastest, slowest and average solve times of all solved tickets in the system.
+
+Made by: Jake, Dennis
+
+*/
 //Get fastest, slowest, average ticket solve times. 
 $var = $_GET["var"];
 include("config.php");
@@ -22,43 +30,17 @@ if($conn -> connect_error) {
         $startS = strtotime($row["Date_Made"]);
         $endS = strtotime($row["Date_Solved"]);
         $diff = ($endS - $startS)/60;
-       
-     
-
-            if($diff < $fastest){
-                
-                $fastest = $diff;
+        if($diff < $fastest){
+            $fastest = $diff;
             }
-        
-        
-
-            if($diff > $slowest){
-                $slowest = $diff;
-            }
-        
- 
-        
+        if($diff > $slowest){
+            $slowest = $diff;
+        }
         $totalTime += $diff;
-        
         $numTimes++;
-  
-        
-
-        
     }
     }
-    
-    
     $globalAvgSolve = ceil($totalTime/$numTimes);
-    
-    
-    
-    
-  
-    
-    
-    
-    
     
     if($var === "globalAv"){
         echo $globalAvgSolve;
@@ -73,6 +55,4 @@ if($conn -> connect_error) {
         echo $jsonOutput;
     }
 }
-
-
 ?> 

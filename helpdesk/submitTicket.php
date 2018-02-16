@@ -12,42 +12,27 @@ Made by: Aron, Dennis
 
 
 include("config.php");
-require_once('myFunctions.php');
-
 $totalTickets;
 
 $conn = new mysqli($DBservername, $DBusername, $DBpassword, $dbname);
 if($conn -> connect_error) {
     die("Connection Failed: " . $conn->connect_error);
 } else { 
-
-
-
-   $sql = "SELECT COUNT(*) FROM Ticket";
-   $result = $conn->query($sql);
-   
-     if($result){
-         
-     } else {
-         echo "Error: " . $sql . "<br>" . $conn->error;
+    $sql = "SELECT COUNT(*) FROM Ticket";
+    $result = $conn->query($sql);
+    if($result){
+        
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
      }
     while($row = $result->fetch_row()){
         foreach($row as $value){
-           $totalTickets = $value;
+            $totalTickets = $value;
         }
     }
-    
 }
 
-
-
-
-
-
-
-
 $dataArray = json_decode($_POST["user_data"]);
-
 $hardwareArray = array();
 $softwareArray = array();
 $ticketID = $totalTickets + 1;
@@ -55,10 +40,9 @@ $ticketID = $totalTickets + 1;
 $dataArray[0]->Data = "'".$ticketID."'";
 for($i = sizeof($dataArray); $i > 0; $i--){
     //Array is array inside arrays :^(
-    
     if($dataArray[$i]->Field === "Hardware_ID"){
-        
         //Hardware Item, should be removed. 
+        
         if($dataArray[$i]->Data === "'None'"){
             //Should be removed from main array but not added to dbase.
             unset($dataArray[$i]);
@@ -66,10 +50,9 @@ for($i = sizeof($dataArray); $i > 0; $i--){
             $temp = $dataArray[$i];
             unset($dataArray[$i]);
             array_push($hardwareArray, $temp);
-            
         }
     } else if($dataArray[$i]->Field === "Software_ID"){
-                //Hardware Item, should be removed. 
+        //Hardware Item, should be removed. 
         if($dataArray[$i]->Data === "'None'"){
             //Should be removed from main array but not added to dbase.
             unset($dataArray[$i]);
@@ -77,10 +60,7 @@ for($i = sizeof($dataArray); $i > 0; $i--){
             $temp = $dataArray[$i];
             unset($dataArray[$i]);
             array_push($softwareArray, $temp);
-            
         }
-        
-        
     } else if($dataArray[$i]->Field === "Specialist_ID"){
         if($dataArray[$i]->Data === "'ASSIGN'"){
         //Found spec ID - AUTO ASSIGN SPECIALIST.
@@ -97,9 +77,7 @@ for($i = sizeof($dataArray); $i > 0; $i--){
                 if($result){
                     while($row = $result->fetch_assoc()){
                         $id = $row["Staff_ID"];
-                       
                         array_push($staffWspec, $id);
-                        
                     }
                 } else {
                     //Nobody has spec (arr len will be 0)
@@ -111,15 +89,16 @@ for($i = sizeof($dataArray); $i > 0; $i--){
                 $specStaff = array(); 
                 $res = $conn->query($sql);
                 if($res){
-
                     while($row = $res->fetch_row()){
+                        
                         for($l = 0; $l < sizeof($row); $l++){
+                            
                             if($l == 0){
                                 //StaffID
                                 if(in_array($row[$l], $staffWspec)){
+                                    
                                     //Found a staff memeber with the specification, should record ID and value
                                     array_push($specStaff, array($row[$l], $row[($l+1)]));
-                                    
                                 } else {
                                     //Staff member does not have ticket spec, record data in different array.
                                     array_push($genStaff, array($row[$l], $row[($l+1)]));
@@ -127,8 +106,6 @@ for($i = sizeof($dataArray); $i > 0; $i--){
                             } 
                         }
                     }
-                    
-                    
                     $assignTo; 
                     if(sizeof($specStaff) != 0){
                         //There are staff members with spec.
@@ -172,45 +149,15 @@ for($i = sizeof($dataArray); $i > 0; $i--){
                                     }
                                 }
                             }
-                            $assignTo = $id;
-                            
+                            $assignTo = $id;   
                         }
-                    
-                    
-                    
                     $dataArray[$i]->Data = "'".$assignTo."'";
                     }
-                    
-                    
-                }
-            
-
-                
-                
-                
-                
-                
             }
-           
-            
-            
-            
-
-            
-            
-            
-            
         }
-        
-        
-        
+        }
     }
-    }
-
-    
-
-
-
+}
 
 //Now make all of our queries. 
 $ticketSQL = "INSERT INTO `Ticket` ";
@@ -248,60 +195,40 @@ $hardwareQueries = array();
 $softwareQueries = array(); 
 if(sizeof($hardwareArray) > 0){
     //Make (multiple) hardware queries. 
-    
     for($i = 0; $i < sizeof($hardwareArray); $i++){
         $hwsql = "INSERT INTO Hardware_Ticket (Ticket_Number, Hardware_ID) VALUES ('$ticketID', " . $hardwareArray[$i]->Data . ")";
        
         array_push($hardwareQueries, $hwsql);
-    }
-    
-    
+    }   
 }
+
 if(sizeof($softwareArray) > 0){
+    
     //Make (multiple) hardware queries. 
     for($i = 0; $i < sizeof($softwareArray); $i++){
       $swsql = "INSERT INTO Software_Ticket (Ticket_Number, Software_ID) VALUES ('$ticketID', " . $softwareArray[$i]->Data . ")";
-         
-      array_push($softwareQueries, $swsql);
+        array_push($softwareQueries, $swsql);
     }
 }
 
-
-//Make all queries.
-
-
+//Execute all queries.
 $conn= new mysqli($DBservername, $DBusername, $DBpassword, $dbname);
 if($conn -> connect_error) {
     die("Connection Failed: " . $conn->connect_error);
 } else { 
-
-
-$resultTicket = $conn->query($ticketfinal) or die('Error: '.$conn->error);
-if($resultTicket){
+    $resultTicket = $conn->query($ticketfinal) or die('Error: '.$conn->error);
+    if($resultTicket){
     echo "OK";
 }
-for($i = 0; $i < sizeof($hardwareQueries); $i++){
-    $result1 = $conn->query($hardwareQueries[$i]);
-        if(!$result1){
-        
-   } else {
-        
-   }
-    
-}
-for($i = 0; $i < sizeof($softwareQueries); $i++){
-   $result1 = $conn->query($softwareQueries[$i]); 
-            if(!$result1){
-        
-   } else {
-        
+    for($i = 0; $i < sizeof($hardwareQueries); $i++){
+        $result1 = $conn->query($hardwareQueries[$i]);
+        if(!$result1){   
+        } else {
+            
+        }
+    }
+    for($i = 0; $i < sizeof($softwareQueries); $i++){
+        $result1 = $conn->query($softwareQueries[$i]); 
     }
 }
-}
-
-
-
-
-
-
 ?>

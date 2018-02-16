@@ -1,6 +1,8 @@
 <?php 
 
 /* 
+hourlyTickets.php
+
 Will run hourly. 
 Stores number of tickets in file.
 Does current tickets - tickets in file to get the number of tickets made in that hour. 
@@ -8,19 +10,11 @@ Array of tickets made hourly for last 12 hours stored in a file
 if size < 12 it can add the time and tickets made 
 if size > 12 remove the first entry in the array and add this. 
 
+Made by: Aron
 
-
-
-1 - Get current tickets.
 */ 
 include("config.php");
 require_once('myFunctions.php');
-
-
-
-
-
-
 
 $conn = new mysqli($DBservername, $DBusername, $DBpassword, $dbname);
 if($conn -> connect_error) {
@@ -52,7 +46,6 @@ $lastHour = $totalTickets - $current;
   
     
 //Update file with this total
-
 file_put_contents("/var/www/html/stats/hourly.txt", $totalTickets);
 if($txtFile){
 fclose($txtFile);
@@ -85,13 +78,6 @@ if($arrayContents == NULL){
     }
     $finalArray = json_encode($decodedArray);
     file_put_contents("/var/www/html/stats/hourlyArray.txt", $finalArray);
-    
-    
 }
-//Should be a normal array at this point.
-
-
 }
-
-
 ?>

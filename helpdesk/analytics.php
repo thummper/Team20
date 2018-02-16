@@ -72,25 +72,18 @@ Made by: Aron, Jake
         <div class="title">
             <h1>Analytics</h1>
         </div>
-
-
-
-
         <div class="globalStats">
             <div class="solveTimes">
                 <span>
-            Fastest Ticket Solve Time<br><div id="fastest">0</div>
-            </span>
+                    Fastest Ticket Solve Time<br><div id="fastest">0</div>
+                </span>
                 <span>
                     Average Ticket Solve Time<br><div id="globalAv">0</div>
-              </span>
+                </span>
                 <span>
             Slowest Ticket Solve Time<br><div id="slowest">0</div>
-                    </span>
-
+                </span>
             </div>
-            
-            
             <div class="chartContainer">
                 <div class="ticketshour chart">
                     <canvas id="tickets/hour"></canvas>
@@ -103,13 +96,14 @@ Made by: Aron, Jake
                         <canvas id="hwsw"></canvas>
                     </div>
                 </div>
-                    
+
                 <div class="avDaily chart">
                     <canvas id="avDaily"></canvas>
                 </div>
             </div>
 
             <script>
+                
                 window.onload = function() {
 
                     var xhttp = new XMLHttpRequest();
@@ -142,9 +136,9 @@ Made by: Aron, Jake
                                     }]
                                 },
                                 options: {
-                                title: {
-                                      display: true, 
-                                      text: "Total Open/Closed Tickets"
+                                    title: {
+                                        display: true,
+                                        text: "Total Open/Closed Tickets"
                                     },
                                     legend: {
                                         display: false
@@ -152,17 +146,11 @@ Made by: Aron, Jake
                                     cutoutPercentage: 42
                                 }
                             });
-
-
-
                         }
                     };
                     xhttp.open("GET", "getAnalytics.php?var=openclosed", true);
                     xhttp.send();
-
-
-
-
+                    
                     var xhttp = new XMLHttpRequest();
                     xhttp.onreadystatechange = function() {
                         if (this.readyState == 4 && this.status == 200) {
@@ -182,8 +170,6 @@ Made by: Aron, Jake
                                     }
                                 }
                             }
-
-
                             //Make chart
                             var tickethourctx = document.getElementById("tickets/hour").getContext('2d');
                             var linechart = new Chart(tickethourctx, {
@@ -201,8 +187,8 @@ Made by: Aron, Jake
                                 },
                                 options: {
                                     title: {
-                                      display: true, 
-                                      text: "Tickets Made Per Hour"
+                                        display: true,
+                                        text: "Tickets Made Per Hour"
                                     },
                                     legend: {
                                         display: false
@@ -226,7 +212,6 @@ Made by: Aron, Jake
                                     }
                                 }
                             });
-
                         }
                     };
                     xhttp.open("GET", "getHourlyAnalytics.php", true);
@@ -236,7 +221,6 @@ Made by: Aron, Jake
                     xhttp.onreadystatechange = function() {
                         if (this.readyState == 4 && this.status == 200) {
                             //Get data
-
                             var dataArray = JSON.parse(this.responseText);
                             console.log(dataArray);
                             var labels = [];
@@ -258,7 +242,6 @@ Made by: Aron, Jake
                                 type: 'bar',
                                 data: {
                                     labels: labels,
-
                                     datasets: [{
                                         backgroundColor: "#94c9fc",
                                         borderColor: "#51a1ef",
@@ -269,8 +252,8 @@ Made by: Aron, Jake
                                 },
                                 options: {
                                     title: {
-                                      display: true, 
-                                      text: "Problematic Hardware/Software"
+                                        display: true,
+                                        text: "Problematic Hardware/Software"
                                     },
                                     legend: {
                                         display: false
@@ -294,13 +277,7 @@ Made by: Aron, Jake
                                     }
                                 }
                             });
-
-
-
-
                         }
-
-
                     };
                     xhttp.open("GET", "tickethwsw.php", true);
                     xhttp.send();
@@ -333,23 +310,13 @@ Made by: Aron, Jake
                                             document.getElementById("slowest").innerHTML = data[i] + " Mins";
                                         }
                                         break;
-
                                 }
-
-
                             }
                         };
                     }
                     xhttp.open("GET", "getSolveTimes.php?var=all");
                     xhttp.send();
-
-
-
-
-
-
-
-
+                    
                     var xhttp = new XMLHttpRequest();
                     xhttp.onreadystatechange = function() {
                         if (this.readyState == 4 && this.status == 200) {
@@ -369,8 +336,6 @@ Made by: Aron, Jake
                                     }
                                 }
                             }
-
-
                             //Make chart
                             var avDaily = document.getElementById("avDaily").getContext('2d');
                             var linechart = new Chart(avDaily, {
@@ -388,7 +353,7 @@ Made by: Aron, Jake
                                 },
                                 options: {
                                     title: {
-                                        display: true, 
+                                        display: true,
                                         text: "Average Solve Time Per Day"
                                     },
                                     legend: {
@@ -418,22 +383,9 @@ Made by: Aron, Jake
                     };
                     xhttp.open("GET", "getDaySolveTimes.php", true);
                     xhttp.send();
-
-
-
-
-
-
-
-
                 };
-
             </script>
         </div>
     </div>
-
-
-
-</body>
-
+    </body>
 </html>
