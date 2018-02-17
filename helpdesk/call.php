@@ -64,6 +64,25 @@ Made by: Tom, Aron.
             document.getElementById("swnum").value = swnum;
         }
         function openSolution(){
+            
+            
+            //Form must be filled in before pressing this button.
+            var form = document.getElementById("tick");
+            var inputs = form.getElementsByTagName("input");
+            var selects = form.getElementsByTagName("select");
+            var filled = true; 
+            for(var i = 0; i < inputs.length; i++){
+                if(inputs[i].value === ""){
+                    filled = false;
+                }
+            }
+            for(var i = 0; i < selects.length; i++){
+                if(selects[i].value === ""){
+                    filled = false;
+                }
+            }
+            if(filled){
+        
             var selector = document.getElementById("cat");
             //Get the selected category. 
             var value = selector[selector.selectedIndex].value;
@@ -84,6 +103,7 @@ Made by: Tom, Aron.
             var test = "/getSolutions.php?type="+value;
             xhttp.open("GET", test, true);
             xhttp.send();
+            } 
             
         }
         function closeInput(item){
