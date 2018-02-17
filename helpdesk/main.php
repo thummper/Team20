@@ -70,7 +70,7 @@
                 //adds the active class to the my table menu item and removes from others
             }
             function FillTable($sql1, $start){
-                //function the create table with ticket info
+                //function to create table with ticket info
                 include("config.php");
                 $conn = new mysqli($DBservername, $DBusername, $DBpassword, $dbname); 
                 $start = 0;

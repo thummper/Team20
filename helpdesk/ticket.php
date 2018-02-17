@@ -31,6 +31,7 @@
                     }
                }
             }
+            //fetches the ticket data using the ticketID in the url
         ?>
         <title>Help Desk</title>
         <link rel="shortcut icon" href="media/helpdesk.ico" width='16px' height='16px'/>
@@ -38,11 +39,12 @@
         <script>
             function solution(){
                 document.getElementById("modal").style.display = "block";
+                //makes the modal box visible
             }
             function closeInput(item){
                 var item = document.getElementsByClassName("modal")[0];
                 item.style.display = "none";
-                document.getElementById("possibleSolutions").innerHTML = "";
+                //makes the modal box invisible
             }
         </script>
 	</head>
@@ -100,7 +102,7 @@
                             $row1 = $result2->fetch_assoc();
                             echo '<table class="staff-info" style="width:100%" ><tr><th>Staff ID:</th><th>Full name:</th><th>Telephone number:</th></tr><tr><td>'.$specID.'</td><td>'.$row1["Forename"].' '.$row1["Surname"].'</td><td>'.$row1["Telephone"].'</td></tr></table>';
                         }
-                        
+                        //creates a table containing the specialists info
                 ?>
             </div>
             <div class="op-div">
@@ -115,7 +117,7 @@
                             $row1 = $result2->fetch_assoc();
                             echo '<table class="staff-info" style="width:100%" ><tr><th>Staff ID:</th><th>Full name:</th><th>Telephone number:</th></tr><tr><td>'.$opID.'</td><td>'.$row1["Forename"].' '.$row1["Surname"].'</td><td>'.$row1["Telephone"].'</td></tr></table>';
                         }
-                        
+                        //creates a table containing the operators info
                 ?>
             </div>
             <div class="details">
@@ -132,7 +134,7 @@
                             $row1 = $result2->fetch_assoc();
                             echo '<table class="staff-info" style="width:100%" ><tr><th>Staff ID:</th><th>Full name:</th><th>Telephone number:</th></tr><tr><td>'.$staffID.'</td><td>'.$row1["Forename"].' '.$row1["Surname"].'</td><td>'.$row1["Telephone"].'</td></tr></table>';
                         }
-                        
+                        //creates a table containing the staff members info
                 ?>
                 </div>
                 <div class="op-div">
@@ -147,7 +149,7 @@
                             $row1 = $result2->fetch_assoc();
                             echo '<table class="staff-info tick-info" style="width:100%" ><tr><th> </th></tr><tr><td>'.$row1["Spec_Name"].'</td></tr></table>';
                         }
-                        
+                        //displays problem type
                     ?>
                 </div>
                 <div class="spec-div">
@@ -173,7 +175,9 @@
                                 $priority = $pri;
                                 break;
                         }
+                        //changes the priority var depending on proority
                         echo '<table class="staff-info tick-info" style="width:100%" ><tr><th> </th></tr><tr><td>'.$priority.'</td></tr></table>';
+                        //display priority
                     ?>
                 </div>
                 <div class="spec-div">
@@ -202,6 +206,7 @@
                             $hwtable = $hwtable.'</table>';
                             echo $hwtable;
                         }
+                    //displaya table of hardware affected
                     ?>
                 </div>
                 <div class="op-div">
@@ -232,6 +237,7 @@
                             $hwtable = $hwtable.'</table>';
                             echo $hwtable;
                         }
+                    //displaya table of sotfware affected
                     ?>
                 </div>
             </div>
@@ -251,13 +257,16 @@
                         $qtable = $qtable.'</table>';
                         echo $qtable;
                     }
+                    //displays a table of queries made 
                 ?>
             </div>
             <?php
                 if(($res == 'N') && ($specID == $_SESSION["staffID"])){
                     echo "<div class=\"s-but\"><input type=\"submit\" id=\"submit-query\" class=\"next\" value=\"Resolve\" onclick=\"solution();\"/></div>";
+                    //display a button to resolve ticket if ticket is unresolved and the user is the spec assigned to ticket
                 } else if($res == 'Y') {
                     echo '<div class="solutions"><h2>Solved</h2><div class="spec-div"><h3>Solution</h3><table class="staff-info tick-info" style="width:100%" ><tr><th></th></tr><tr><td>'.$sol.'</td></tr></table></div><div class="op-div"><h3>Date</h3><table class="staff-info tick-info" style="width:100%" ><tr><th></th></tr><tr><td>'.$dsol.'</td></tr></table></div></div>';
+                    //if ticket is resolved display solution and date of solution
                 }
             ?>
         </div>    
@@ -270,8 +279,6 @@
             </div>
             <form action="submitQuery.php" method="post">
                 <div id="call-input" class="tick-input">
-                    
-                    
                     <textarea  id="des" name="reason" rows="5" placeholder="Solution" class="des" required></textarea>
                 </div>
                 <div class="tick-but">
@@ -282,9 +289,6 @@
                 </div>
             </form>
          </div>   
-
-
-
     </div>
 	</body>
 </html>

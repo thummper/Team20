@@ -6,37 +6,41 @@
             session_start();
             if(empty($_SESSION["staffID"])){
                 header("Location: index.php");
-                }
-            ?>
+            }
+            //sends user to index.php if session has expired
+        ?>
         <title>Help Desk</title>
         <link rel="shortcut icon" href="media/helpdesk.ico" width='16px' height='16px'/>
         <link rel="stylesheet" href="css/style.css" />
         <?php
         function FullTable(){
+            //function with sql for a full table of query info
             $sql1 = "SELECT * FROM Query ORDER BY Query_ID DESC";
             $start = 0;
             echo FillTable($sql1, $start);
+            //calls the function the create the table passing the sql statement through it
             echo "<script>document.getElementById(\"qall\").classList.add('active');document.getElementById(\"qopen\").classList.remove('active');</script>";
+            //adds the active class to the all menu item and removes from others
         }
         function OpenTable(){
+            //function with sql for a table of queries related to open tickets
             $sql1 = "SELECT * FROM Query WHERE Ticket_ID IN (SELECT Ticket_ID FROM Ticket WHERE Resolved = 'N') ORDER BY Query_ID DESC";
             $start = 0;
             echo FillTable($sql1, $start);
+            //calls the function the create the table passing the sql statement through it
             echo "<script>document.getElementById(\"qall\").classList.remove('active');document.getElementById(\"qopen\").classList.add('active'); </script>";
-
+            //adds the active class to the open menu item and removes from others
         }
         function FillTable($sql1, $start){
-        include("config.php");
-        $conn = new mysqli($DBservername, $DBusername, $DBpassword, $dbname); 
-        $start = 0;
-        $ticketTable = " <table style=\"width:100%\" id=\"issuesTable\"><tr><th>Query ID:</th><th>Ticket ID:</th><th>Operator:</th><th>Date Added:</th></tr>";
-            
+            //function to create table with query info
+            include("config.php");
+            $conn = new mysqli($DBservername, $DBusername, $DBpassword, $dbname); 
+            $start = 0;
+            $ticketTable = " <table style=\"width:100%\" id=\"issuesTable\"><tr><th>Query ID:</th><th>Ticket ID:</th><th>Operator:</th><th>Date Added:</th></tr>";
             $result1 = $conn->query($sql1);
             if(!$result1){
                 cLog("DB Error");
             } else {
-            
-            //Draw the table
             while( ($row = $result1->fetch_assoc())){
                 $conn2 = new mysqli($DBservername, $DBusername, $DBpassword, $dbname); 
                 $sql3 = "SELECT * FROM Staff";
@@ -50,11 +54,14 @@
                 }
                 }
                 }
+                //finds operators full name from staff table
                 $ticketTable = $ticketTable."<tr><td>".$row["Query_ID"]."</td><td>".$row["Ticket_ID"]."</td><td>".$op."</td><td>".$row["Date"]."</td><td><a href='ticket.php?TicketID=".$row["Ticket_ID"]."'>View </a></td></tr>";
+                //creates a table row using table info from datatbase
                 $start++;
             }
             $ticketTable = $ticketTable."</table>"; 
             return $ticketTable;
+                //return the query table
         }
         }
         ?>
