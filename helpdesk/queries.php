@@ -55,7 +55,7 @@
                 }
                 }
                 //finds operators full name from staff table
-                $ticketTable = $ticketTable."<tr><td>".$row["Query_ID"]."</td><td>".$row["Ticket_ID"]."</td><td>".$op."</td><td>".$row["Date"]."</td><td><a href='ticket.php?TicketID=".$row["Ticket_ID"]."'>View </a></td></tr>";
+                $ticketTable = $ticketTable."<tr><td>".$row["Query_ID"]."</td><td>".$row["Ticket_ID"]."</td><td>".$op."</td><td>".$row["Date"]."</td><td><a href='ticket.php?TicketID=".$row["Ticket_ID"]."#queries'>View </a></td></tr>";
                 //creates a table row using table info from datatbase
                 $start++;
             }

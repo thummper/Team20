@@ -241,7 +241,7 @@
                     ?>
                 </div>
             </div>
-            <div class="queries">
+            <div id="queries" class="queries">
                 <h2>Queries</h2>
                 <?php 
                     $qtable = "<table style=\"width:100%\" id=\"issuesTable\"><tr><th>Query ID:</th><th>Caller ID:</th><th>Operator ID:</th><th>Date Added:</th><th>Reason for call:</th></tr>";
