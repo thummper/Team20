@@ -74,7 +74,7 @@
                 include("config.php");
                 $conn = new mysqli($DBservername, $DBusername, $DBpassword, $dbname); 
                 $start = 0;
-                $ticketTable = " <table style=\"width:100%\" id=\"issuesTable\"><tr><th onclick='sortTable(3);'>Ticket ID:</th><th>Category:</th><th>Operator:</th><th onclick='sortTable(3);'>Date Added:</th><th onclick='sortTable(4);'>Specialist:</th><th onclick='sortTable(5);'>Priority:</th> <th>Resolved:</th></tr>";
+                $ticketTable = " <table style=\"width:100%\" id=\"issuesTable\"><tr><th onclick='sort(0)'>Ticket ID:</th><th onclick='sort(1)'>Category:</th><th onclick='sort(2);'>Operator:</th><th onclick='sort(3);'>Date Added:</th><th onclick='sort(4);'>Specialist:</th><th onclick='sort(5);'>Priority:</th> <th onclick='sort(6)'>Resolved:</th></tr>";
                 $result1 = $conn->query($sql1);
                 if(!$result1){
                     cLog("DB Error");
@@ -126,33 +126,88 @@
             }
         ?>
 	<script>
-		function sortTable(num){
-        //sorts tables where num is the colomn to be sorted by 
-		  console.log("Sort Newest");
-		  var table, rows, switching, i, x, y, shouldSwitch;
-		  table = document.getElementById("issuesTable");
-		  switching = true;
-		  while (switching) {
-			switching = false;
-			rows = table.getElementsByTagName("TR");
-			for (i = 1; i < (rows.length - 1); i++) {
-			  shouldSwitch = false;
-			  x = rows[i].getElementsByTagName("TD")[num];
-			  y = rows[i + 1].getElementsByTagName("TD")[num];
-			  //check if the two rows should switch place
-			  if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-				shouldSwitch= true;
-				break;
-			  }
-			}
-			if (shouldSwitch) {
-			  rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-			  switching = true;
-			}
-		  }
-        //performs a bubble sort on the ticket table from main.php
-		}
 
+        function sort(n) {
+            var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+            table = document.getElementById("issuesTable");
+            switching = true;
+            // Set the sorting direction to ascending:
+            dir = "asc"; 
+            /* Make a loop that will continue until
+            no switching has been done: */
+            while (switching) {
+                // Start by saying: no switching is done:
+                switching = false;
+                rows = table.getElementsByTagName("TR");
+                /* Loop through all table rows (except the
+                first, which contains table headers): */
+                for (i = 1; i < (rows.length - 1); i++) {
+                // Start by saying there should be no switching:
+                shouldSwitch = false;
+                /* Get the two elements you want to compare,
+                one from current row and one from the next: */
+                x = rows[i].getElementsByTagName("TD")[n];
+                y = rows[i + 1].getElementsByTagName("TD")[n];
+                /* Check if the two rows should switch place,
+                based on the direction, asc or desc: */
+                if (dir == "asc") {
+                    if(!isNaN(x.innerHTML)){
+                        //Its a number
+                        var xnum = parseInt(x.innerHTML, 10);
+                        var ynum = parseInt(y.innerHTML, 10);
+                        
+                        if(xnum > ynum){
+                            shouldSwitch = true;
+                            break;
+                        }
+                        
+                    } else {
+                        
+                    
+                    if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                        // If so, mark as a switch and break the loop:
+                        shouldSwitch= true;
+                        break;
+                }
+                }
+                } else if (dir == "desc") {
+                    if(!isNaN(x.innerHTML)){
+                        //Its a number
+                        var xnum = parseInt(x.innerHTML, 10);
+                        var ynum = parseInt(y.innerHTML, 10);
+                        
+                        if(xnum < ynum){
+                            shouldSwitch = true;
+                            break;
+                        }
+                        
+                    } else {
+                    
+                    if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                        // If so, mark as a switch and break the loop:
+                        shouldSwitch= true;
+                        break;
+                    }
+                }
+                }
+            }
+            if (shouldSwitch) {
+            /* If a switch has been marked, make the switch
+            and mark that a switch has been done: */
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+            // Each time a switch is done, increase this count by 1:
+            switchcount ++; 
+            } else {
+            /* If no switching has been done AND the direction is "asc",
+            set the direction to "desc" and run the while loop again. */
+                if (switchcount == 0 && dir == "asc") {
+                dir = "desc";
+                switching = true;
+                }
+            }
+        }
+        }
 	</script>
 
 	</head>
