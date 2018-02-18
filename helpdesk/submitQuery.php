@@ -1,3 +1,10 @@
+<!-- 
+submitQuery.php 
+
+Creates queries and updates ticket with solution and date of solution
+
+Made by: Tom
+-->
 <?php
        include("config.php");
        session_start();

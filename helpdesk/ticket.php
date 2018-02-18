@@ -1,4 +1,11 @@
 <!DOCTYPE HTML>
+<!-- 
+ticket.php 
+
+Displays ticket info and allows specialists to solve assigned tickets
+
+Made by: Tom
+-->
 <html>
 	<head>
          <?php 
