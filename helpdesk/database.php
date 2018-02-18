@@ -45,7 +45,7 @@ Made by: Aron, Tom
                 //Make the buttons for tabbed nav 
                 $tableName = $row[0];
                 //SHOW sql is weird, seems like this is the best way to avoid reworking it.
-                if($tableName === "Equipment" || $tableName === "Job" || $tableName === "Software"|| $tableName === "Specialisation" || $tableName === "Staff_Spec"){
+                if($tableName === "Equipment" || $tableName === "Job" || $tableName === "Software"|| $tableName === "Specialisation" || $tableName === "Staff_Spec" || $tableName === "Staff"){
                 array_push($tableNames, $tableName);
                 echo "<button class='tablinks' onclick=' openTable(event, \"$tableName\" ) ' >$tableName</button>";
                 }
@@ -55,8 +55,12 @@ Made by: Aron, Tom
             foreach($tableNames as $tableName){
             $start = 0;
             echo "<div id='$tableName' class='tabcontent'>";
-            
+            if($tableName === "Staff"){
+                $sql1 = "SELECT Staff_ID, Forename, Surname FROM $tableName";
+                
+            }else{
             $sql1 = "SELECT * FROM $tableName";
+            }
             $result1 = $conn->query($sql1);
                         if(!$result1){
                 cLog("DB Error");
@@ -92,7 +96,7 @@ Made by: Aron, Tom
             //Container for dbButtons
             echo "<div class='dbedit' id='$tableName'>";
             //Buttons for add/remove/edit
-            echo "<button onclick='addEntry(this)'> Add Entry </button><button onclick='editEntry(this)'> Edit Selected </button>";
+            echo "<button onclick='addEntry(this)'> Add Entry </button><button id='editButton' onclick='editEntry(this)'> Edit Selected </button>";
             echo "</div>";
             }
             //Get all columns from the table to make the add/edit forms.
