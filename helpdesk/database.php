@@ -322,7 +322,7 @@ Made by: Aron, Tom
                 console.log("Adding GEDIT: " + globalEdit[0].Field + " " + globalEdit[0].Data);
                 data.push({
                     Field: globalEdit[0].Field,
-                    Data: globalEdit[0].Data
+                    Data: "'"+globalEdit[0].Data+"'"
                 });
                 var json_upload = "user_data=" + JSON.stringify(data);
                 //This way the pKey will always be last in the data
